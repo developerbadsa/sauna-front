@@ -1,8 +1,8 @@
 import bgPattern from './../../../../assets/Group 1000006184.png';
 import barrelImg from './../../../../assets/sone4  1.png';
-import {PhoneIcon} from './../../../../components/ui/icons/akar-icons-phone'; 
-import { ClockIcon } from './../../../../components/ui/icons/akar-icons-clock';
-import { EnvelopeIcon } from './../../../../components/ui/icons/akar-icons-envelope';
+import {PhoneIcon} from './../../../../components/ui/icons/akar-icons-phone';
+import {ClockIcon} from './../../../../components/ui/icons/akar-icons-clock';
+import {EnvelopeIcon} from './../../../../components/ui/icons/akar-icons-envelope';
 
 function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
    return (
@@ -22,7 +22,11 @@ export function HeroSection() {
          value: '+1 (555) 123-4567',
          icon: <PhoneIcon size={22} />,
       },
-      {name: 'Email', value: 'rahim@gmail.com', icon: <EnvelopeIcon size={22} />},
+      {
+         name: 'Email',
+         value: 'rahim@gmail.com',
+         icon: <EnvelopeIcon size={22} />,
+      },
       {
          name: 'Opening Time',
          value: '09:00 am - 19:00pm',
@@ -44,11 +48,10 @@ export function HeroSection() {
 
          <div className='bg-linear-to-t from-[#403d39d7] to-[#00000000] h-full w-full flex items-start justify-center inset-1 z-10'>
             {/* main card wrapper */}
-            <div className='relative z-10  h-[605px] px-4 '>
+            <div className='relative z-10  w-full px-4 mx-auto flex justify-center'>
+               {/* <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-8 w-[1037px] h-[640px] sd:w-[1280px]  sd:h-[730px]'> */}
 
-
-
-               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-48 w-[1037px] h-[640px] sd:w-[1280px]  sd:h-[730px]'>
+               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-28  h-[640px]   sd:h-[730px] w-[85%]'>
                   <div className='relative overflow-visible rounded-[40px] bg-[#fbf2e5] px-6 pt-8 h-full flex flex-col justify-between'>
                      {/* top nav */}
                      <header className='grid grid-cols-[auto_1fr_auto] items-center'>
@@ -184,8 +187,6 @@ export function HeroSection() {
                                     </div>
                                  );
                               })}
-
-                              
                            </div>
                         </div>
                      </div>
