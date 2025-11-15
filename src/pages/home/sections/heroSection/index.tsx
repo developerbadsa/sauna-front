@@ -31,7 +31,7 @@ export function HeroSection() {
    ];
 
    return (
-      <section className='relative flex h-screen  overflow-hidden'>
+      <section className='relative flex h-screen  overflow-hidden '>
          {/* background pattern */}
          <div
             className='pointer-events-none absolute inset-0 opacity-60 z-0'
@@ -42,11 +42,14 @@ export function HeroSection() {
             }}
          />
 
-         <div className='bg-linear-to-t from-[#403d39d7] to-[#00000000] h-full w-full flex items-center justify-center inset-1 z-10'>
+         <div className='bg-linear-to-t from-[#403d39d7] to-[#00000000] h-full w-full flex items-start justify-center inset-1 z-10'>
             {/* main card wrapper */}
-            <div className='relative z-10 w-[1180px] px-4 '>
-               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)]'>
-                  <div className='relative overflow-visible rounded-[40px] bg-[#fbf2e5] px-6 pt-8 '>
+            <div className='relative z-10  h-[605px] px-4 '>
+
+
+
+               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-48 w-[1037px] h-[640px] sd:w-[1280px]  sd:h-[730px]'>
+                  <div className='relative overflow-visible rounded-[40px] bg-[#fbf2e5] px-6 pt-8 h-full flex flex-col justify-between'>
                      {/* top nav */}
                      <header className='grid grid-cols-[auto_1fr_auto] items-center'>
                         {/* logo */}
@@ -121,7 +124,7 @@ export function HeroSection() {
                      </header>
 
                      {/* heading */}
-                     <div className='mb-0 mt-10 text-center'>
+                     <div className='mb-0 mt-10 text-center mr-20'>
                         <h2 className='text-[18px] md:text-[20px] font-semibold leading-0 uppercase text-[#2f241c]'>
                            Ready to heat up your home?
                         </h2>
@@ -131,9 +134,9 @@ export function HeroSection() {
                      </div>
 
                      {/* bottom content region */}
-                     <div className='relative mt-10 flex items-end justify-between gap-6 pb-10 '>
+                     <div className='relative mt-10 flex items-end justify-end gap-6 pb-10'>
                         {/* left copy + explore button */}
-                        <div className='relative z-20 max-w-[220px] text-[11px] leading-relaxed uppercase tracking-[0.16em] text-[#736355]'>
+                        <div className='relative z-20 max-w-[220px] text-[11px] leading-relaxed uppercase tracking-[0.16em] text-[#736355] py-10 '>
                            <p>Ready to install saunas</p>
                            <p>Sauna barrels for your home</p>
 
@@ -146,17 +149,17 @@ export function HeroSection() {
                         </div>
 
                         {/* center sauna image */}
-                        <div className='pointer-events-none absolute left-[54%] bottom-[-124%] z-10 w-[64%] -translate-x-1/2'>
+                        <div className='pointer-events-none absolute left-[54%] w-[600px] sd:w-[750px] bottom-[-34%] sd:bottom-[-60%] z-10  -translate-x-1/2'>
                            <img
                               src={barrelImg}
                               alt='Wooden barrel sauna'
-                              className='block w-full select-none'
+                              className='block w-full  select-none'
                            />
                         </div>
 
                         {/* right product catalog card */}
-                        <div className='relative z-20 flex flex-1 justify-end'>
-                           <div className='max-w-[210px] px-4 pb-4 pt-3 flex flex-col justify-end items-end gap-2 '>
+                        <div className='relative z-20 flex flex-1 justify-end overflow-hidden'>
+                           <div className='max-w-[210px] px-4 pb-4 a pt-3 flex flex-col justify-end items-end gap-2 mb-32 '>
                               {/* <img
                                     src={barrelImg}
                                     alt='Sauna product catalog'
