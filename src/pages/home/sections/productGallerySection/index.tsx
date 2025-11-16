@@ -76,7 +76,6 @@ export default function ProductGallerySection() {
                      );
                   })}
                </div>
-
             </div>
 
             {/* sub tabs */}
@@ -108,7 +107,7 @@ export default function ProductGallerySection() {
                   No products for this filter yet.
                </div>
             ) : (
-               <div className='grid  grid-cols-2 md:grid-cols-3  md:grid-cols-4 gap-x-24 gap-y-12 py-12'>
+               <div className='grid  grid-cols-2 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-x-18 gap-y-12 py-12'>
                   {visibleProducts.map(product => (
                      <ProductCard key={product.id} product={product} />
                   ))}

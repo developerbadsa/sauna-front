@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export type Callout = {
   id: string;
-  icon: ReactNode;
+  icon: string;
   title: string;
   subtitle: string;
   href?: string;
@@ -10,10 +10,11 @@ export type Callout = {
 
 type CalloutRowProps = {
   item: Callout;
+
 };
 
 export function CalloutRow({ item }: CalloutRowProps) {
-  const { icon, title, subtitle, href } = item;
+  const { icon, title, href } = item;
 
   const content = (
     <>

@@ -5,7 +5,7 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { image, name, seller, rating, reviewsCount, featured } = product;
+  const { image, name, seller, reviewsCount } = product;
 
   const fullStars = 5;
 
@@ -13,7 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <button
       type="button"
       className={`
-        group relative flex h-[240px]  min-w-[250px] flex-col justify-between
+        group relative flex h-[240px]  min-w-[250px] max-w-[450px] flex-col justify-between
         rounded-[26px] bg-[#f5f3f0]
         px-6 pt-6 pb-5
         shadow-[0_16px_32px_rgba(0,0,0,0.35)]
@@ -35,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
             block max-h-[150px] w-full max-w-[230px] object-contain
             transition-transform duration-200
             origin-bottom
-            group-hover:-translate-y-[6px] group-hover:scale-[1.05]
+            group-hover:-translate-y-[6px] group-hover:scale-[1.2]
           "
         />
       </div>
