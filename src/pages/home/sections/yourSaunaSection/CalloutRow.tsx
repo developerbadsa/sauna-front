@@ -17,12 +17,11 @@ export function CalloutRow({ item }: CalloutRowProps) {
 
   const content = (
     <>
-      <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(0,0,0,0.55)]">
-        {icon}
+      <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full ">
+        <img src={icon} alt="" />
       </div>
       <div className="space-y-1">
-        <p className="text-[13px] font-semibold text-[#fdf7ec]">{title}</p>
-        <p className="text-[11px] text-[#d3c4b2]">{subtitle}</p>
+        <p className="text-[18px] font-semibold text-[#fdf7ec]">{title}</p>
       </div>
     </>
   );
