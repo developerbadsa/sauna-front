@@ -3,6 +3,7 @@ import { Puzzle, Home, PhoneCall, ArrowRight } from "lucide-react";
 
 import forestBg from "./../../../../assets/Mask group (9).png"
 import whyChooseImg from "./../../../../assets/Group 97.png";   // bottom image
+import { CalloutRow } from './CalloutRow';
 
 type Callout = {
   id: string;
@@ -164,38 +165,6 @@ export default function YourSaunaSection() {
   );
 }
 
-/* ---------- small subcomponents ---------- */
-
-type CalloutRowProps = {
-  item: Callout;
-};
-
-function CalloutRow({ item }: CalloutRowProps) {
-  const { icon, title, subtitle, href } = item;
-
-  const Wrapper: React.ComponentType<{ children: ReactNode }> = href
-    ? ({ children }) => (
-        <a
-          href={href}
-          className="flex gap-4 text-left transition-transform duration-150 hover:-translate-y-[1px]"
-        >
-          {children}
-        </a>
-      )
-    : ({ children }) => <div className="flex gap-4 text-left">{children}</div>;
-
-  return (
-    <Wrapper>
-      <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(0,0,0,0.55)]">
-        {icon}
-      </div>
-      <div className="space-y-1">
-        <p className="text-[13px] font-semibold text-[#fdf7ec]">{title}</p>
-        <p className="text-[11px] text-[#d3c4b2]">{subtitle}</p>
-      </div>
-    </Wrapper>
-  );
-}
 
 type BenefitRowProps = {
   benefit: Benefit;
