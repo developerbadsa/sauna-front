@@ -1,5 +1,3 @@
-// src/pages/home/sections/productCategorySection/index.tsx
-
 import allSaunasImg from './../../../../assets/Infrared Saunas 1.png';
 import infraredSaunasImg from './../../../../assets/Infrared Saunas 1.png';
 import hotTubsImg from './../../../../assets/Infrared Saunas 1.png';
@@ -7,6 +5,7 @@ import coldPlungeImg from './../../../../assets/Infrared Saunas 1.png';
 import heaterImg from './../../../../assets/Infrared Saunas 1.png';
 import accessoriesImg from './../../../../assets/Infrared Saunas 1.png';
 import bgPattern from './../../../../assets/Clip path group.png';
+import SectionTitle from './../../../../components/shared/sectionTitle';
 
 type Category = {
    id: string;
@@ -32,13 +31,13 @@ const categories: Category[] = [
 type CategoryCardProps = {category: Category};
 
 function CategoryCard({category}: CategoryCardProps) {
-   const {title, image, featured} = category;
+   const {title, image} = category;
 
    return (
       <button
          className={`group flex h-[250px] w-[97%] flex-col justify-between
         rounded-[26px] bg-[#D9D9D9] px-6 pb-6 pt-5 text-left
-        shadow-[0_16px_32px_rgba(0,0,0,0.35)]
+        shadow-[0_16px_32px_rgba(0,0,0,0.35)] z-1
         transition-transform duration-200 ease-out
         hover:shadow-[0_24px_48px_rgba(0,0,0,0.45)]
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#403D39] overflow-visible hover:bg-[#FFFDF6] origin-bottom  hover:scale-y-[1.13] hover:z-10 hover:rounded-[29px]
@@ -88,10 +87,8 @@ export default function ProductCategorySection() {
          <div className='relative bg-linear-to-r from-[#403d39] to-[#403d39ef]'>
             <div className='mx-auto w-full max-w-[85%] px-4'>
                {/* top title bar */}
-               <div className='mb-44 pb-0 '>
-                  <h2 className='text-center text-[44px] leading-30 font-medium uppercase tracking-[20px] font-naville bg-linear-to-r from-[#D9D9D9]  to-[#999999] bg-clip-text text-transparent w-full'>
-                     Product Category
-                  </h2>
+               <div className='mb-32 pb-0 '>
+                  <SectionTitle title=' Product Category' />
                </div>
 
                {/* grid – 1col mobile, 2col small, 3col from 1080px (sld) */}

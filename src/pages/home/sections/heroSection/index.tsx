@@ -152,11 +152,11 @@ export function HeroSection() {
                         </div>
 
                         {/* center sauna image */}
-                        <div className='pointer-events-none absolute left-[54%] w-[600px] sd:w-[750px] bottom-[-34%] sd:bottom-[-60%] z-10  -translate-x-1/2'>
+                        <div className=' absolute left-[54%] w-[600px] sd:w-[750px] bottom-[-34%] sd:bottom-[-60%] z-10  -translate-x-1/2 '>
                            <img
                               src={barrelImg}
                               alt='Wooden barrel sauna'
-                              className='block w-full  select-none'
+                              className='block w-full   hover:scale-[1.02] transition-transform duration-300 ease-out'
                            />
                         </div>
 
