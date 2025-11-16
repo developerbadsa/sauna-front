@@ -29,7 +29,7 @@ export default function ProductGallerySection() {
         '
          />
 
-         <div className='relative z-10 mx-auto w-full max-w-[1180px] sd:max-w-[1300px] bd:max-w-[1500px] px-4'>
+         <div className='relative z-10 mx-auto w-full sauna-container sd:max-w-[1300px] bd:max-w-[1500px] px-4'>
             {/* title */}
             <div className='mb-8 sd:mb-10'>
                <SectionTitle title=' Product Gallery' />
@@ -41,8 +41,6 @@ export default function ProductGallerySection() {
                   {MAIN_TABS.map((tab, idx) => {
                      const isFirst = idx === 0;
                      const isLast = idx === MAIN_TABS.length - 1;
-
-                     console.log(idx);
                      const active = tab.id === mainTab;
                      return (
                         <button
@@ -50,7 +48,7 @@ export default function ProductGallerySection() {
                            type='button'
                            onClick={() => setMainTab(tab.id)}
                            className={`
-        relative pb-1 px-6 border-b-2 transition-colors duration-150
+        relative pb-1 px-6 border-b-2 transition-colors duration-150 text-[24px] font-light leading-15
         ${
            active
               ? 'text-[#f48a1c] border-[#D47318]'
@@ -59,7 +57,7 @@ export default function ProductGallerySection() {
 
         ${
            isFirst
-              ? `before:absolute before:left-0 before:top-[26px] before:h-[6px] before:w-[6px]
+              ? `before:absolute before:left-2.5 before:top-[64.3px] before:h-[8px] before:w-[6px]
                before:-translate-x-3 before:-translate-y-1/2 before:rounded-full
                ${active ? 'before:bg-[#D47318]' : 'before:bg-white'}`
               : ''
@@ -67,7 +65,7 @@ export default function ProductGallerySection() {
 
         ${
            isLast
-              ? `after:absolute after:right-0 after:top-[26px] after:h-[6px] after:w-[6px] after:translate-x-3 after:-translate-y-1/2 after:rounded-full  ${
+              ? `after:absolute after:right-2.5 after:top-[64.3px] after:h-[8px] after:w-[6px] after:translate-x-3 after:-translate-y-1/2 after:rounded-full  ${
                    active ? 'after:bg-[#D47318]' : 'after:bg-white'
                 }`
               : ''
@@ -90,12 +88,11 @@ export default function ProductGallerySection() {
                         key={tab.id}
                         type='button'
                         onClick={() => setSubTab(tab.id)}
-                        className={`
-                  rounded-full border px-5 py-2 text-[11px] uppercase tracking-[0.22em]
+                        className={` border px-5 py-2 text-[11px] uppercase tracking-[0.22em]
                   transition-colors duration-150
                   ${
                      active
-                        ? 'border-[#f48a1c] bg-[#f48a1c] text-white'
+                        ? 'border-[#f48a1c]  text-white'
                         : 'border-[#8a837b] text-[#f0e9df] hover:border-[#f48a1c] hover:text-white'
                   }
                 `}>
@@ -107,11 +104,11 @@ export default function ProductGallerySection() {
 
             {/* grid */}
             {visibleProducts.length === 0 ? (
-               <div className='py-10 text-center text-[13px] text-[#e1ddd8]'>
+               <div className='py-24 text-center text-[13px] text-[#e1ddd8]'>
                   No products for this filter yet.
                </div>
             ) : (
-               <div className='grid gap-6 sm:grid-cols-2 sld:grid-cols-3 sd:grid-cols-4'>
+               <div className='grid  grid-cols-2 md:grid-cols-3  md:grid-cols-4 gap-x-24 gap-y-12 py-12'>
                   {visibleProducts.map(product => (
                      <ProductCard key={product.id} product={product} />
                   ))}

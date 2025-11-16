@@ -13,7 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <button
       type="button"
       className={`
-        group relative flex h-full flex-col justify-between
+        group relative flex h-[240px]  min-w-[250px] flex-col justify-between
         rounded-[26px] bg-[#f5f3f0]
         px-6 pt-6 pb-5
         shadow-[0_16px_32px_rgba(0,0,0,0.35)]
@@ -22,22 +22,16 @@ export function ProductCard({ product }: ProductCardProps) {
         hover:scale-y-[1.03] hover:shadow-[0_24px_48px_rgba(0,0,0,0.45)]
         hover:bg-[#fffdf6]
         text-left
-      ${featured ? "sd:col-span-1" : ""}
       `}
     >
-      {/* highlight badge for featured card */}
-      {featured && (
-        <div className="pointer-events-none absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#f48a1c] text-xs font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.4)]">
-          J
-        </div>
-      )}
+
 
       {/* image */}
       <div className="relative mb-5 flex min-h-[130px] items-end justify-center">
         <img
           src={image}
           alt={name}
-          className="
+          className=" absolute -top-3
             block max-h-[150px] w-full max-w-[230px] object-contain
             transition-transform duration-200
             origin-bottom
@@ -47,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* text block */}
-      <div className="space-y-1">
+      <div className="space-y-0">
         <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#2b241e]">
           {name}
         </p>
