@@ -51,7 +51,7 @@ function CategoryCard({ category }: CategoryCardProps) {
         <img
           src={image}
           alt={title}
-          className="object-cover overflow-hidden h-auto w-[260px] transition-transform duration-200 group-hover:scale-105 z-10 absolute -top-35"
+          className="object-cover overflow-hidden h-auto w-[260px] transition-transform duration-200 group-hover:scale-105 z-10 absolute -top-25"
         />
       </div>
 
