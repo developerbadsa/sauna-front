@@ -1,5 +1,5 @@
-import type {ReactNode} from 'react';
-import {Puzzle, Home, PhoneCall, ArrowRight} from 'lucide-react';
+
+import { ArrowRight} from 'lucide-react';
 
 import forestBg from './../../../../assets/Mask group (9).png';
 import whyChooseImg from './../../../../assets/Group 97.png';
@@ -14,11 +14,13 @@ import call from './../../../../assets/icons/Layer_1.svg';
 
 type Callout = {
    id: string;
-   icon: ReactNode;
+    icon: string;
    title: string;
    subtitle: string;
    href?: string;
 };
+
+
 
 const CALLOUTS: Callout[] = [
    {
