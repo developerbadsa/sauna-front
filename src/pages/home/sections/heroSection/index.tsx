@@ -35,7 +35,7 @@ export function HeroSection() {
    ];
 
    return (
-      <section className='relative flex h-screen  overflow-hidden '>
+      <section className='relative flex h-[950px]  overflow-hidden '>
          {/* background pattern */}
          <div
             className='pointer-events-none absolute inset-0 opacity-60 z-0'
@@ -51,7 +51,7 @@ export function HeroSection() {
             <div className='relative z-10  w-full px-4 mx-auto flex justify-center'>
                {/* <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-8 w-[1037px] h-[640px] sd:w-[1280px]  sd:h-[730px]'> */}
 
-               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]  shadow-[0_32px_80px_rgba(0,0,0,0.65)] mt-28  h-[640px]   sd:h-[730px] w-[85%]'>
+               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px]   mt-28  h-[640px]   sd:h-[730px] w-[85%]'>
                   <div className='relative overflow-visible rounded-[40px] bg-[#fbf2e5] px-6 pt-8 h-full flex flex-col justify-between'>
                      {/* top nav */}
                      <header className='grid grid-cols-[auto_1fr_auto] items-center'>

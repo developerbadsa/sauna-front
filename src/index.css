@@ -1,5 +1,45 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* @font-face {
+  font-family: "Naville";
+  src: url("/public/fonts/fonnts.com-naville-semibold.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Naville";
+  src: url("/public/fonts/naville-light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Naville";
+  src: url("/public/fonts/naville-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Naville";
+  src: url("/public/fonts/naville-medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Naville";
+  src: url("/public/fonts/fonnts.com-naville-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,6 +52,7 @@ body {
   --breakpoint-sld: 1080px;
   --breakpoint-sd: 1440px;
   --breakpoint-bd: 1920px;
+    /* --font-naville: "Naville", system-ui, sans-serif; */
 }
 
 
@@ -135,4 +176,8 @@ body {
 
 .nav-info-item:hover .nav-info-item-icon {
     background: #EA7F15;
+}
+
+.featured-category-card img{
+  transform: scale(1.4);
 }

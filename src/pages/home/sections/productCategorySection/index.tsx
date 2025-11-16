@@ -20,7 +20,7 @@ const categories: Category[] = [
     id: "infrared",
     title: "Infrared saunas",
     image: infraredSaunasImg,
-    featured: true, // center highlighted card
+    featured: true, 
   },
   { id: "hot-tubs", title: "Hot tubs", image: hotTubsImg },
   { id: "cold-plunge", title: "Cold plunge", image: coldPlungeImg },
@@ -35,26 +35,23 @@ function CategoryCard({ category }: CategoryCardProps) {
 
   return (
     <button
-      className={`group relative flex h-full w-full flex-col justify-between overflow-hidden
-        rounded-[26px] bg-[#f5f3f0] px-6 pb-6 pt-5 text-left
+      className={`group flex h-[250px] w-[97%] flex-col justify-between
+        rounded-[26px] bg-[#D9D9D9] px-6 pb-6 pt-5 text-left
         shadow-[0_16px_32px_rgba(0,0,0,0.35)]
         transition-transform duration-200 ease-out
-        hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.45)]
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#403D39]
-        ${featured ? "bg-gradient-to-b from-[#ffe4c2] via-[#fef5e8] to-[#f5f3f0]" : ""}
+        hover:shadow-[0_24px_48px_rgba(0,0,0,0.45)]
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#403D39] overflow-visible hover:bg-[#FFFDF6] origin-bottom  hover:scale-y-[1.13] hover:z-10 hover:rounded-[29px]
       `}
     >
       {/* right orange glow bar for featured card */}
-      {featured && (
-        <div className="pointer-events-none absolute inset-y-3 right-3 w-[7px] rounded-full bg-[#f48a1c] opacity-80" />
-      )}
+
 
       {/* image */}
-      <div className="relative z-10 mb-4 flex min-h-[140px] items-end justify-center">
+      <div className="relative  flex min-h-[140px] items-end justify-center">
         <img
           src={image}
           alt={title}
-          className="max-h-[160px] w-full max-w-[220px] object-contain"
+          className="object-cover overflow-hidden h-auto w-[260px] transition-transform duration-200 group-hover:scale-105 z-10 absolute -top-35"
         />
       </div>
 
@@ -73,29 +70,23 @@ function CategoryCard({ category }: CategoryCardProps) {
         </p>
       </div>
 
-      {/* small round badge on featured card (like your Figma) */}
-      {featured && (
-        <div className="pointer-events-none absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#f48a1c] text-xs font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.4)]">
-          J
-        </div>
-      )}
     </button>
   );
 }
 
 export default function ProductCategorySection() {
   return (
-    <section className="relative w-full bg-[#403D39] py-10 sd:py-14 bd:py-16">
-      <div className="mx-auto w-full max-w-[1180px] px-4">
+    <section className="relative w-full py-4  -mt-2 ">
+      <div className="mx-auto w-full max-w-[85%] px-4">
         {/* top title bar */}
-        <div className="mb-8 border-b border-[#5b554d] pb-4">
-          <h2 className="text-center text-[13px] font-medium uppercase tracking-[0.3em] text-[#e1ddd8]">
+        <div className="mb-44 pb-0 ">
+          <h2 className="text-center text-[44px] leading-30 font-medium uppercase tracking-[20px] text-[#e1ddd8] font-naville bg-linear-to-r from-[#D9D9D9]  to-[#999999] bg-clip-text text-transparent w-full">
             Product Category
           </h2>
         </div>
 
         {/* grid – 1col mobile, 2col small, 3col from 1080px (sld) */}
-        <div className="grid gap-6 sm:grid-cols-2 sld:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-3 gap-y-32 z-0">
           {categories.map((cat) => (
             <CategoryCard key={cat.id} category={cat} />
           ))}
