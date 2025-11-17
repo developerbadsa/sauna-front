@@ -1,18 +1,7 @@
-import {useState} from 'react';
-import type {FormEvent} from 'react';
 
-const CONTACT_IMAGE = '/images/contact-wellness.jpg'; // TODO: replace with your real asset
 
 export default function ContactSection() {
-   const [submitting, setSubmitting] = useState(false);
 
-   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setSubmitting(true);
-      // TODO: hook into your form handler / API
-      // for now just simulate
-      setTimeout(() => setSubmitting(false), 800);
-   };
 
    return (
       <section className='py-0 relative '>
@@ -94,9 +83,9 @@ export default function ContactSection() {
 
                            <button
                               type='button'
-                              className='mt-6 inline-flex items-center justify-between gap-3 rounded-full bg-[#f5f5f5] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#222]'>
+                              className='mt-6 inline-flex items-center justify-between gap-3 rounded-full bg-[#403D39] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ddd] border border-[#ddd]'>
                               <span>Send message</span>
-                              <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#f48a1c] text-[16px] leading-none text-white'>
+                              <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#403D39] text-[16px] leading-none text-white'>
                                  <svg
                                     xmlns='http://www.w3.org/2000/svg'
                                     width='53'
@@ -137,7 +126,7 @@ export default function ContactSection() {
                      </h3>
 
                      <form
-                        onSubmit={handleSubmit}
+                        // onSubmit={handleSubmit}
                         className='space-y-4 text-[12px] text-[#f5f1ea]'>
                         <div className='space-y-1'>
                            <label className='block text-[11px] font-semibold uppercase tracking-[0.18em]'>

@@ -6,6 +6,7 @@ import ProductGallerySection from './sections/productGallerySection/index';
 import WeBringYourDreamSection from './sections/weBringYourDreamSection/index';
 import WorkProcessesSection from './sections/WorkProcessesSection/index';
 import ContactSection from './sections/ContactSection/index';
+import WellnessInsightsSection from './sections/WellnessInsightsSection/index';
 
 const Home = () => {
    return (
@@ -18,6 +19,7 @@ const Home = () => {
          <WeBringYourDreamSection/>
          <WorkProcessesSection/>
          <ContactSection/>
+         <WellnessInsightsSection/>
       </>
    );
 };
