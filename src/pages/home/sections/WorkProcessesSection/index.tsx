@@ -3,7 +3,6 @@ import type {KeyboardEvent as ReactKeyboardEvent} from 'react';
 import type {Variants} from 'framer-motion';
 import {motion, AnimatePresence} from 'framer-motion';
 import SectionTitle from './../../../../components/shared/sectionTitle';
-import bgimghero from './../../../../assets/Mask group (10).png';
 
 type Step = {
    id: string;
