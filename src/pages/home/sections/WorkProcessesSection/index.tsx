@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 import type {KeyboardEvent as ReactKeyboardEvent} from 'react';
-import type { Variants } from 'framer-motion';
+import type {Variants} from 'framer-motion';
 import {motion, AnimatePresence} from 'framer-motion';
 import SectionTitle from './../../../../components/shared/sectionTitle';
 import bgimghero from './../../../../assets/Mask group (10).png';
@@ -268,7 +268,7 @@ const itemVariants = {
       y: direction === 1 ? -40 : 40,
       transition: {duration: 0.22, ease: 'easeInOut'},
    }),
-}  satisfies Variants;
+} satisfies Variants;
 
 export default function WorkProcessesSection() {
    const [activeIndex, setActiveIndex] = useState<number>(1); // step 2 by default
@@ -380,22 +380,28 @@ export default function WorkProcessesSection() {
                   </div>
                </div> */}
 
-               <div className='bg-[#f48a1c]'>
+               <div
+
+                  className='bg-[#f48a1c] '>
                   {/* Center hero block */}
                   <div
-                     className='relative mx-0 min-h-[420px]  sauna-container'
-                     style={{
-                        backgroundImage: `url(${bgimghero})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                     }}>
+                     className='relative mx-0 h-[585px] flex  sauna-container'
+                  style={{
+                     backgroundImage: `url(${'https://i.ibb.co.com/WNg9xJvT/Mask-group-10.png'})`,
+                     backgroundSize: 'cover',
+                     backgroundPosition: 'center',
+                  }}
+                     
+                     >
+
+
                      {/* dark overlay */}
                      <div className='absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.94)_0%,rgba(0,0,0,0.9)_30%,rgba(0,0,0,0.75)_65%,rgba(0,0,0,0.92)_100%)] ' />
 
                      {/* content */}
                      <div
                         ref={sectionRef}
-                        className='relative z-10 flex flex-col items-stretch gap-2 px-8 py-10 sd:px-12 sd:py-14 sld:flex-row sld:items-center'
+                        className='relative z-10 flex flex-col items-stretch gap-2 px-8 py-10 sd:px-12 sd:py-14 sld:flex-row sld:items-center '
                         tabIndex={0}
                         aria-label='Work processes steps'
                         onKeyDown={handleKeyDown}
