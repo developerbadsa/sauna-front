@@ -1,5 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 import type {KeyboardEvent as ReactKeyboardEvent} from 'react';
+import type { Variants } from 'framer-motion';
 import {motion, AnimatePresence} from 'framer-motion';
 import SectionTitle from './../../../../components/shared/sectionTitle';
 import bgimghero from './../../../../assets/Mask group (10).png';
@@ -267,7 +268,7 @@ const itemVariants = {
       y: direction === 1 ? -40 : 40,
       transition: {duration: 0.22, ease: 'easeInOut'},
    }),
-};
+}  satisfies Variants;
 
 export default function WorkProcessesSection() {
    const [activeIndex, setActiveIndex] = useState<number>(1); // step 2 by default
@@ -403,26 +404,26 @@ export default function WorkProcessesSection() {
                         <div className='w-[350px] flex justify-between'>
                            <div className='relative  w-full pt-6 pb-6 '>
                               {/* vertical dotted line */}
-<div
-  className="pointer-events-none absolute right-[63px] top-0 bottom-0"
-  style={{
-    width: "2px",
+                              <div
+                                 className='pointer-events-none absolute right-[63px] top-0 bottom-0'
+                                 style={{
+                                    width: '2px',
 
-    // 1) dashed pattern
-    backgroundImage:
-      "repeating-linear-gradient(to bottom, #f48a1c 0 6px, transparent 6px 12px)",
+                                    // 1) dashed pattern
+                                    backgroundImage:
+                                       'repeating-linear-gradient(to bottom, #f48a1c 0 6px, transparent 6px 12px)',
 
-    // 2) orange glow sideways
-    filter: "drop-shadow(0 0 6px rgba(244,138,28,0.85))",
+                                    // 2) orange glow sideways
+                                    filter:
+                                       'drop-shadow(0 0 6px rgba(244,138,28,0.85))',
 
-    // 3) fade out top & bottom
-    WebkitMaskImage:
-      "linear-gradient(to bottom, transparent 0%, black 10%, black 30%, transparent 100%)",
-    maskImage:
-      "linear-gradient(to bottom, transparent 0%, black 40%, black 30%, transparent 100%)",
-  }}
-/>
-
+                                    // 3) fade out top & bottom
+                                    WebkitMaskImage:
+                                       'linear-gradient(to bottom, transparent 0%, black 10%, black 30%, transparent 100%)',
+                                    maskImage:
+                                       'linear-gradient(to bottom, transparent 0%, black 40%, black 30%, transparent 100%)',
+                                 }}
+                              />
 
                               <div className='relative h-[290px] w-full overflow-hidden flex flex-col justify-center items-center'>
                                  <AnimatePresence
