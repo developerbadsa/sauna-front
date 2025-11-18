@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ArrowRight, Facebook, Instagram, Youtube, Linkedin} from 'lucide-react';
 
 import forestBg from './../../../../assets/Mask group (9).png';
-import bgPattern from './../../../../assets/Group 89.png';
 import SectionTitle from './../../../../components/shared/sectionTitle';
 
 type Review = {
@@ -12,6 +11,7 @@ type Review = {
    text: string;
    initials: string;
    featured?: boolean;
+   avatar: string;
 };
 
 const REVIEWS: Review[] = [
@@ -21,6 +21,8 @@ const REVIEWS: Review[] = [
       role: 'Homeowner, Toronto',
       text: 'From the first consultation to the final installation, the team was professional, patient, and incredibly detail-oriented. Our sauna has become the favourite room in our home.',
       initials: 'JH',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
       id: 'ann',
@@ -28,6 +30,8 @@ const REVIEWS: Review[] = [
       role: 'Interior Designer',
       text: 'They understood exactly what my client needed. Beautiful finishes, clean lines, and a truly relaxing experience. I recommend them on every spa project now.',
       initials: 'AM',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
       id: 'john',
@@ -36,6 +40,8 @@ const REVIEWS: Review[] = [
       text: 'Installation was fast and seamless. The crew respected our space and left everything spotless. The cedar smells amazing and the heat is perfectly even.',
       initials: 'J',
       featured: true,
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
       id: 'diana',
@@ -43,6 +49,8 @@ const REVIEWS: Review[] = [
       role: 'Wellness Coach',
       text: 'My clients are obsessed with the new sauna. It quickly became the centerpiece of my studio and an essential part of our recovery routine.',
       initials: 'DC',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
       id: 'lucas',
@@ -50,6 +58,54 @@ const REVIEWS: Review[] = [
       role: 'Developer, Vancouver',
       text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
       initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
+   },
+   {
+      id: 'lucas',
+      name: 'Lucas Grande',
+      role: 'Developer, Vancouver',
+      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
+      initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
+   },
+   {
+      id: 'lucas',
+      name: 'Lucas Grande',
+      role: 'Developer, Vancouver',
+      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
+      initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
+   },
+   {
+      id: 'lucas',
+      name: 'Lucas Grande',
+      role: 'Developer, Vancouver',
+      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
+      initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
+   },
+
+   {
+      id: 'lucas',
+      name: 'Lucas Grande',
+      role: 'Developer, Vancouver',
+      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
+      initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
+   },
+   {
+      id: 'lucas',
+      name: 'Lucas Grande',
+      role: 'Developer, Vancouver',
+      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
+      initials: 'LG',
+      avatar:
+         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
 ];
 
@@ -82,22 +138,87 @@ const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
 const PAYMENT_METHODS = ['Visa', 'MasterCard', 'Amex', 'PayPal'];
 
 export default function OurReviewSection() {
+   const [activeIndex, setActiveIndex] = useState(2);
+   const sliderRef = useRef<HTMLDivElement | null>(null);
+
+   useEffect(() => {
+      const slider = sliderRef.current;
+      if (!slider) return;
+
+      const handleScroll = () => {
+         const sliderRect = slider.getBoundingClientRect();
+         const centerX = sliderRect.left + sliderRect.width / 2;
+
+         let closestIndex = 0;
+         let closestDistance = Infinity;
+
+         const children = Array.from(slider.children) as HTMLElement[];
+
+         children.forEach((child, index) => {
+            const rect = child.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(cardCenter - centerX);
+
+            if (distance < closestDistance) {
+               closestDistance = distance;
+               closestIndex = index;
+            }
+         });
+
+         setActiveIndex(closestIndex);
+      };
+
+      handleScroll(); // set initial
+
+      slider.addEventListener('scroll', handleScroll, {passive: true});
+      window.addEventListener('resize', handleScroll);
+
+      return () => {
+         slider.removeEventListener('scroll', handleScroll);
+         window.removeEventListener('resize', handleScroll);
+      };
+   }, []);
+
+   useEffect(() => {
+  const slider = sliderRef.current;
+  if (!slider) return;
+
+  const interval = setInterval(() => {
+    setActiveIndex(prevIndex => {
+      const nextIndex = (prevIndex + 1) % REVIEWS.length;
+
+      const children = slider.children as unknown as HTMLElement[];
+      const target = children[nextIndex] as HTMLElement | undefined;
+      if (target) {
+        const sliderRect = slider.getBoundingClientRect();
+        const cardRect = target.getBoundingClientRect();
+
+        // how far we need to move so that card center == slider center
+        const offset =
+          cardRect.left -
+          sliderRect.left -
+          (sliderRect.width - cardRect.width) / 2;
+
+        slider.scrollTo({
+          left: slider.scrollLeft + offset,
+          behavior: 'smooth',
+        });
+      }
+
+      return nextIndex;
+    });
+  }, 4000); // 4 seconds per slide
+
+  return () => clearInterval(interval);
+}, []);
+
+
    return (
       <section className='relative w-full bg-[#403D39] py-12 sd:py-16'>
          <div className='mx-auto '>
             <div className=''>
-               {/* subtle pattern bg over whole block */}
-               <div
-                  className='pointer-events-none absolute inset-0 opacity-15'
-                  style={{
-                     backgroundImage: `url(${bgPattern})`,
-                     backgroundSize: 'cover',
-                     backgroundPosition: 'center',
-                  }}
-               />
-
                {/* TOP: REVIEWS PANEL */}
-               <div className='relative z-10 h-[1000px]  px-6 sd:px-12 pt-12 pb-16 sauna-container bg-white relative rounded-t-[32px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.75)] '>
+               <div className=' z-10 h-[1000px]  px-6 sd:px-12 pt-12 pb-16 sauna-container bg-white  rounded-t-[32px]  shadow-[0_30px_80px_rgba(0,0,0,0.75)] '>
                   <div className='text-center'>
                      <SectionTitle title='Our Reviews' />
 
@@ -148,15 +269,48 @@ export default function OurReviewSection() {
                   </div>
 
                   {/* review cards */}
-                  <div className='mt-10'>
-                     <div className='relative -mx-4 sd:-mx-8'>
-                        <div className='flex gap-5 sd:gap-6 overflow-x-auto pb-2 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory'>
-                           {REVIEWS.map(review => (
-                              <ReviewCard key={review.id} review={review} />
-                           ))}
-                        </div>
+                  {/* <div className='mt-10 absolute w-[100%] overflow-visible left-0 right-[100%]'>
+   <div className=' -mx-4 sd:-mx-8'>
+      <div className='flex gap-5 sd:gap-6 overflow-hidden pb-2 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory'>
+         {REVIEWS.map(review => (
+            <ReviewCard key={review.id} review={review} />
+         ))}
+      </div>
+   </div>
+</div> */}
+                  {/* review cards */}
+                  {/* <div className='mt-10 absolute w-[100%] left-0 right-[100%]'>
+                     <div
+                        ref={sliderRef}
+                        className='flex gap-5 sd:gap-6  pb-4 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory'>
+                        {REVIEWS.map((review, index) => (
+                           <ReviewCard
+                              key={`${review.id}-${index}`}
+                              review={review}
+                              isActive={index === activeIndex}
+                           />
+                        ))}
                      </div>
-                  </div>
+                  </div> */}
+
+<div className="mt-10 -mx-4 sd:-mx-8">
+  <div
+    ref={sliderRef}
+    className="flex gap-5 sd:gap-6 overflow-x-none overflow-y-none
+               pb-4 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory left-0 absolute"
+  >
+    {REVIEWS.map((review, index) => (
+      <ReviewCard
+        key={`${review.id}-${index}`}
+        review={review}
+        isActive={index === activeIndex}
+      />
+    ))}
+  </div>
+</div>
+
+
+
                </div>
 
                {/* BOTTOM: ORANGE HERO + DARK FOOTER */}
@@ -311,35 +465,54 @@ export default function OurReviewSection() {
    );
 }
 
-function ReviewCard({review}: {review: Review}) {
+function ReviewCard({
+   review,
+   isActive,
+}: {
+   review: Review;
+   isActive: boolean;
+}) {
    const avatarBase =
-      'absolute -top-7 left-1/2 -translate-x-1/2 flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#F28A1F] text-[13px] font-semibold text-white shadow-[0_12px_30px_rgba(0,0,0,0.5)] border-[3px]';
-   const avatarBorder = review.featured
-      ? ' border-[#1C85FF]'
-      : ' border-[#F4F1EA]';
+      'flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#F28A1F] text-[13px] font-semibold text-white shadow-[0_12px_30px_rgba(0,0,0,0.5)] border-[3px]';
+   const avatarBorder = isActive ? ' border-[#1C85FF]' : ' border-[#F4F1EA]';
 
    return (
       <article
-         className={`relative snap-start flex-shrink-0 w-[230px] sd:w-[250px] rounded-[30px] bg-white px-6 pt-9 pb-7 shadow-[0_18px_45px_rgba(0,0,0,0.16)] border border-[#F1EAE1] ${
-            review.featured ? 'scale-[1.03] border-[#1C85FF]/75' : ''
-         } transition-transform duration-200`}>
+         className={
+            `relative snap-center flex-shrink-0 w-[230px] sd:w-[250px] rounded-[30px]
+             bg-white px-6 pt-16 pb-6 border border-[#F1EAE1]
+             flex flex-col items-center text-center
+             transition-transform transition-shadow duration-300
+             ` +
+            (isActive
+               ? ' scale-110 shadow-[0_26px_55px_rgba(0,0,0,0.3)] z-10'
+               : ' scale-95 opacity-80 shadow-[0_18px_45px_rgba(0,0,0,0.12)]')
+         }
+      >
          <div className={`${avatarBase} ${avatarBorder}`}>
-            {review.initials}
+            {review.avatar ? (
+               <img
+                  className="h-full w-full rounded-full object-cover"
+                  src={review.avatar}
+                  alt={review.name}
+               />
+            ) : (
+               <span>{review.initials}</span>
+            )}
          </div>
 
-         <div className='mt-2 text-center'>
-            <h4 className='mt-6 text-[13px] font-semibold text-[#3A332D]'>
-               {review.name}
-            </h4>
-            <p className='mt-1 text-[11px] text-[#9B9085]'>{review.role}</p>
-         </div>
+         <h4 className="mt-6 text-[13px] font-semibold text-[#3A332D]">
+            {review.name}
+         </h4>
+         <p className="mt-1 text-[11px] text-[#9B9085]">{review.role}</p>
 
-         <p className='mt-4 text-[11px] leading-relaxed text-[#5D5147]'>
+         <p className="mt-4 text-[11px] leading-relaxed text-[#5D5147]">
             {review.text}
          </p>
       </article>
    );
 }
+
 
 function FooterLinks({group}: {group: FooterLinkGroup}) {
    return (
