@@ -1,5 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ArrowRight, Facebook, Instagram, Youtube, Linkedin} from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 import forestBg from './../../../../assets/Mask group (9).png';
 import SectionTitle from './../../../../components/shared/sectionTitle';
@@ -53,7 +55,7 @@ const REVIEWS: Review[] = [
          'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
-      id: 'lucas',
+      id: 'lucas-1',
       name: 'Lucas Grande',
       role: 'Developer, Vancouver',
       text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
@@ -62,44 +64,7 @@ const REVIEWS: Review[] = [
          'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
    },
    {
-      id: 'lucas',
-      name: 'Lucas Grande',
-      role: 'Developer, Vancouver',
-      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
-      initials: 'LG',
-      avatar:
-         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
-   },
-   {
-      id: 'lucas',
-      name: 'Lucas Grande',
-      role: 'Developer, Vancouver',
-      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
-      initials: 'LG',
-      avatar:
-         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
-   },
-   {
-      id: 'lucas',
-      name: 'Lucas Grande',
-      role: 'Developer, Vancouver',
-      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
-      initials: 'LG',
-      avatar:
-         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
-   },
-
-   {
-      id: 'lucas',
-      name: 'Lucas Grande',
-      role: 'Developer, Vancouver',
-      text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
-      initials: 'LG',
-      avatar:
-         'https://i.ibb.co.com/6RLqnCXf/Gemini-Generated-Image-wa8lspwa8lspwa8l-1.png',
-   },
-   {
-      id: 'lucas',
+      id: 'lucas-2',
       name: 'Lucas Grande',
       role: 'Developer, Vancouver',
       text: 'I wanted a modern look that still felt warm and timeless. They delivered on every detail and stayed on budget the entire way.',
@@ -138,340 +103,269 @@ const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
 const PAYMENT_METHODS = ['Visa', 'MasterCard', 'Amex', 'PayPal'];
 
 export default function OurReviewSection() {
-   const [activeIndex, setActiveIndex] = useState(2);
-   const sliderRef = useRef<HTMLDivElement | null>(null);
+   const [selectedIndex, setSelectedIndex] = useState(0);
+
+   const [emblaRef, emblaApi] = useEmblaCarousel(
+      {
+         loop: true,
+         align: 'center',
+         skipSnaps: false,
+      },
+      [
+         Autoplay({
+            delay: 4000,
+            stopOnInteraction: false,
+         }),
+      ]
+   );
 
    useEffect(() => {
-      const slider = sliderRef.current;
-      if (!slider) return;
+      if (!emblaApi) return;
 
-      const handleScroll = () => {
-         const sliderRect = slider.getBoundingClientRect();
-         const centerX = sliderRect.left + sliderRect.width / 2;
-
-         let closestIndex = 0;
-         let closestDistance = Infinity;
-
-         const children = Array.from(slider.children) as HTMLElement[];
-
-         children.forEach((child, index) => {
-            const rect = child.getBoundingClientRect();
-            const cardCenter = rect.left + rect.width / 2;
-            const distance = Math.abs(cardCenter - centerX);
-
-            if (distance < closestDistance) {
-               closestDistance = distance;
-               closestIndex = index;
-            }
-         });
-
-         setActiveIndex(closestIndex);
+      const onSelect = () => {
+         setSelectedIndex(emblaApi.selectedScrollSnap());
       };
 
-      handleScroll(); // set initial
-
-      slider.addEventListener('scroll', handleScroll, {passive: true});
-      window.addEventListener('resize', handleScroll);
+      onSelect();
+      emblaApi.on('select', onSelect);
 
       return () => {
-         slider.removeEventListener('scroll', handleScroll);
-         window.removeEventListener('resize', handleScroll);
+         emblaApi.off('select', onSelect);
       };
-   }, []);
-
-   useEffect(() => {
-  const slider = sliderRef.current;
-  if (!slider) return;
-
-  const interval = setInterval(() => {
-    setActiveIndex(prevIndex => {
-      const nextIndex = (prevIndex + 1) % REVIEWS.length;
-
-      const children = slider.children as unknown as HTMLElement[];
-      const target = children[nextIndex] as HTMLElement | undefined;
-      if (target) {
-        const sliderRect = slider.getBoundingClientRect();
-        const cardRect = target.getBoundingClientRect();
-
-        // how far we need to move so that card center == slider center
-        const offset =
-          cardRect.left -
-          sliderRect.left -
-          (sliderRect.width - cardRect.width) / 2;
-
-        slider.scrollTo({
-          left: slider.scrollLeft + offset,
-          behavior: 'smooth',
-        });
-      }
-
-      return nextIndex;
-    });
-  }, 4000); // 4 seconds per slide
-
-  return () => clearInterval(interval);
-}, []);
-
+   }, [emblaApi]);
 
    return (
       <section className='relative w-full bg-[#403D39] py-12 sd:py-16'>
-         <div className='mx-auto '>
-            <div className=''>
-               {/* TOP: REVIEWS PANEL */}
-               <div className=' z-10 h-[1000px]  px-6 sd:px-12 pt-12 pb-16 sauna-container bg-white  rounded-t-[32px]  shadow-[0_30px_80px_rgba(0,0,0,0.75)] '>
-                  <div className='text-center'>
-                     <SectionTitle title='Our Reviews' />
+         <div className='mx-auto'>
+            {/* TOP: REVIEWS PANEL */}
+            <div className='z-0 px-6 sd:px-12 pt-12 pb-24 sauna-container bg-white rounded-t-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.75)]'>
+               <div className='text-center'>
+                  <SectionTitle title='Our Reviews' />
 
-                     <div className='relative mt-6 inline-block'>
-                        {/* big faded quote mark */}
-                        <span className='pointer-events-none absolute -top-0 left-0 -translate-x-1/2 text-[90px] sd:text-[110px] leading-none text-[#F3EEE8] select-none'>
-                           <svg
-                              xmlns='http://www.w3.org/2000/svg'
-                              width='148'
-                              height='118'
-                              viewBox='0 0 148 118'
-                              fill='none'>
-                              <g clip-path='url(#clip0_1_42816)'>
+                  <div className='relative mt-6 inline-block'>
+                     {/* big faded quote mark */}
+                     <span className='pointer-events-none absolute -top-0 left-0 -translate-x-1/2 text-[90px] sd:text-[110px] leading-none text-[#F3EEE8] select-none'>
+                        <svg
+                           xmlns='http://www.w3.org/2000/svg'
+                           width='148'
+                           height='118'
+                           viewBox='0 0 148 118'
+                           fill='none'>
+                           <g clipPath='url(#clip0_1_42816)'>
+                              <rect width='148' height='117.587' fill='white' />
+                              <path
+                                 d='M0 117.587V57.3955L35.2421 0H67.0532L38.8426 53.7527H67.0532V117.587H0ZM81.1586 117.587V57.3955L116.994 0H148L120.425 53.7527H148V117.587H81.1586Z'
+                                 fill='#EFEFEF'
+                              />
+                           </g>
+                           <defs>
+                              <clipPath id='clip0_1_42816'>
                                  <rect
                                     width='148'
                                     height='117.587'
                                     fill='white'
                                  />
-                                 <path
-                                    d='M0 117.587V57.3955L35.2421 0H67.0532L38.8426 53.7527H67.0532V117.587H0ZM81.1586 117.587V57.3955L116.994 0H148L120.425 53.7527H148V117.587H81.1586Z'
-                                    fill='#EFEFEF'
-                                 />
-                              </g>
-                              <defs>
-                                 <clipPath id='clip0_1_42816'>
-                                    <rect
-                                       width='148'
-                                       height='117.587'
-                                       fill='white'
-                                    />
-                                 </clipPath>
-                              </defs>
-                           </svg>
+                              </clipPath>
+                           </defs>
+                        </svg>
+                     </span>
+
+                     {/* center label like mock */}
+                     <div className='relative z-10 flex items-center gap-4 px-5 py-2'>
+                        <span className='h-[1px] w-10' />
+                        <span className='text-[12px] sd:text-[33px] leading-20 font-semibold tracking-[0.05em] uppercase text-[#000]'>
+                           What our clients say!
                         </span>
-
-                        {/* center label like mock */}
-                        <div className='relative z-10 flex items-center gap-4  px-5 py-2'>
-                           <span className='h-[1px] w-10 ' />
-                           <span className='text-[12px] sd:text-[33px] leading-20 font-semibold tracking-[0.05em] uppercase text-[#000]'>
-                              What our clients say!
-                           </span>
-                           <span className='h-[1px] w-10 ' />
-                        </div>
-
-                        {/* small orange line under text */}
-                        <div className='aboslute z-10 border-custom mx-auto h-[2px] w-[87%] -mt-[6px] bg-[#E57B15]' />
+                        <span className='h-[1px] w-10' />
                      </div>
+
+                     {/* small orange line under text (with grey line behind via CSS) */}
+                     <div className='relative z-10 border-custom mx-auto h-[2px] w-[87%] -mt-[6px] bg-[#E57B15]' />
                   </div>
-
-                  {/* review cards */}
-                  {/* <div className='mt-10 absolute w-[100%] overflow-visible left-0 right-[100%]'>
-   <div className=' -mx-4 sd:-mx-8'>
-      <div className='flex gap-5 sd:gap-6 overflow-hidden pb-2 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory'>
-         {REVIEWS.map(review => (
-            <ReviewCard key={review.id} review={review} />
-         ))}
-      </div>
-   </div>
-</div> */}
-                  {/* review cards */}
-                  {/* <div className='mt-10 absolute w-[100%] left-0 right-[100%]'>
-                     <div
-                        ref={sliderRef}
-                        className='flex gap-5 sd:gap-6  pb-4 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory'>
-                        {REVIEWS.map((review, index) => (
-                           <ReviewCard
-                              key={`${review.id}-${index}`}
-                              review={review}
-                              isActive={index === activeIndex}
-                           />
-                        ))}
-                     </div>
-                  </div> */}
-
-<div className="mt-10 -mx-4 sd:-mx-8">
-  <div
-    ref={sliderRef}
-    className="flex gap-5 sd:gap-6 overflow-x-none overflow-y-none
-               pb-4 pl-4 pr-4 sd:pl-8 sd:pr-8 snap-x snap-mandatory left-0 absolute"
-  >
-    {REVIEWS.map((review, index) => (
-      <ReviewCard
-        key={`${review.id}-${index}`}
-        review={review}
-        isActive={index === activeIndex}
-      />
-    ))}
-  </div>
-</div>
-
-
-
                </div>
 
-               {/* BOTTOM: ORANGE HERO + DARK FOOTER */}
-               <div className='relative z-10 sauna-your-sauna-gradient rounded-t-[32px] '>
-                  {/* hero image + CTA */}
-                  <div className='relative mx-auto   h-[375px]  overflow-hidden sauna-container'>
-                     <img
-                        src={forestBg}
-                        alt='Sauna in landscaped garden'
-                        className='block  w-full object-cover'
-                     />
-                     <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/5' />
-
-                     <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center'>
-                        <p className='text-[12px] sd:text-[13px] font-semibold tracking-[0.35em] text-white/80 uppercase'>
-                           Want a sauna for your home?
-                        </p>
-                        <h3 className='mt-3 max-w-[520px] text-[22px] sd:text-[26px] font-bold uppercase tracking-[0.18em] text-white'>
-                           Contact us for a free consultation!
-                        </h3>
-
-                        <div className='mt-7 flex flex-wrap items-center justify-center gap-4'>
-                           <button className='inline-flex items-center gap-3 rounded-full bg-[#403D39]  px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#25211C] shadow-[0_12px_30px_rgba(0,0,0,0.55)]'>
-                              <span>Contact us</span>
-                              <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#F28A1F]'>
-                                 <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='53'
-                                    height='50'
-                                    viewBox='0 0 53 50'
-                                    fill='none'>
-                                    <g clip-path='url(#clip0_1_42952)'>
-                                       <path
-                                          d='M35.856 40.4866C26.9518 45.6408 15.2307 42.8827 9.84603 34.3653C4.39018 25.7367 7.24314 14.5881 16.2416 9.36986C25.1723 4.19185 36.8951 6.96501 42.3076 15.5369C47.7352 24.131 44.8528 35.278 35.8555 40.4857L35.856 40.4866ZM33.8847 18.6346C33.8756 18.7128 33.8662 18.7924 33.8572 18.8706C33.7166 18.9514 33.576 19.0322 33.4344 19.1136C27.3831 22.5928 21.3318 26.0721 15.2805 29.5513C15.1351 29.6349 14.9881 29.7157 14.8467 29.8057C14.3309 30.1331 14.1127 30.7199 14.3052 31.2523C14.5189 31.8431 15.0755 32.2243 15.7032 32.1343C15.9976 32.0924 16.2902 31.9489 16.5505 31.7993C22.6661 28.2905 28.7767 24.776 34.8888 21.2618L35.3058 21.022L35.5065 21.1107C35.4285 21.2396 35.3155 21.3603 35.2785 21.499C34.439 24.6952 33.608 27.8926 32.7755 31.0897C32.4922 32.1777 32.2093 33.2642 31.925 34.3528C31.7915 34.8624 31.9568 35.298 32.3415 35.6383C32.7365 35.9887 33.2255 36.0526 33.7251 35.8742C34.2542 35.685 34.4701 35.2591 34.5987 34.7622C35.7576 30.2928 36.9242 25.8252 38.0838 21.3566C38.1544 21.0823 38.213 20.8012 38.2384 20.5207C38.4083 18.5654 37.1162 16.9077 35.0147 16.4043C30.3157 15.2794 25.6141 14.1647 20.9137 13.0456C20.7904 13.0163 20.6665 12.9837 20.5408 12.9731C19.9873 12.9239 19.5404 13.1079 19.2456 13.5668C18.9641 14.0057 18.9621 14.4509 19.2363 14.9054C19.4778 15.3058 19.8654 15.4553 20.3038 15.5581C24.6769 16.5946 29.0475 17.6374 33.4207 18.6701C33.5631 18.7032 33.7282 18.6491 33.8822 18.6348L33.8847 18.6346Z'
-                                          fill='#EA7F15'
-                                       />
-                                       <path
-                                          d='M33.8842 18.6336C33.7297 18.647 33.5641 18.7026 33.4227 18.6689C29.0494 17.6362 24.6783 16.5925 20.3058 15.5569C19.8677 15.4526 19.4807 15.3041 19.2383 14.9042C18.9641 14.4497 18.9661 14.0045 19.2476 13.5656C19.5424 13.1067 19.9893 12.9227 20.5428 12.9719C20.6684 12.9825 20.793 13.016 20.9156 13.0444C25.6155 14.1626 30.3172 15.2773 35.0167 16.4031C37.1182 16.9065 38.4103 18.5642 38.2404 20.5195C38.2165 20.8004 38.1579 21.0814 38.0857 21.3554C36.9253 25.8245 35.7587 30.2921 34.6007 34.761C34.4721 35.2579 34.2562 35.6838 33.7271 35.873C33.2266 36.052 32.7385 35.9875 32.3435 35.6371C31.9597 35.2962 31.7945 34.8607 31.927 34.3516C32.2109 33.2645 32.4942 32.1765 32.7775 31.0885C33.61 27.8914 34.441 24.694 35.2805 21.4978C35.3175 21.3591 35.4304 21.2384 35.5085 21.1095L35.3078 21.0208L34.8908 21.2606C28.7786 24.7748 22.668 28.2893 16.5525 31.7981C16.2922 31.9477 15.9996 32.0912 15.7052 32.1331C15.0775 32.2231 14.5209 31.8419 14.3072 31.2512C14.1147 30.7187 14.3329 30.1319 14.8487 29.8045C14.99 29.7145 15.1371 29.6337 15.2825 29.5501C21.3338 26.0709 27.3851 22.5917 33.4364 19.1124C33.577 19.0316 33.7176 18.9507 33.8592 18.8694C33.8682 18.7912 33.8776 18.7116 33.8867 18.6334L33.8842 18.6336Z'
-                                          fill='white'
-                                       />
-                                    </g>
-                                    <defs>
-                                       <clipPath id='clip0_1_42952'>
-                                          <rect
-                                             width='37.5322'
-                                             height='36.7813'
-                                             fill='white'
-                                             transform='matrix(0.866923 -0.498442 0.532343 0.846529 0 18.708)'
-                                          />
-                                       </clipPath>
-                                    </defs>
-                                 </svg>
-                              </span>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-
-                  {/* dark footer panel */}
-                  <div className='relative mx-auto sauna-container -mt-10  rounded-b-[32px] bg-[#3D3A37] px-6 sd:px-10 py-8 sd:py-9 shadow-[0_24px_60px_rgba(0,0,0,0.75)] border border-white/5'>
-                     <div className='flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between'>
-                        {/* brand + socials */}
-                        <div className='max-w-[260px]'>
-                           <div className='text-[22px] sd:text-[24px] font-extrabold tracking-[0.45em] uppercase text-white'>
-                              Sauna
-                           </div>
-                           <p className='mt-3 text-[12px] leading-relaxed text-[#E4DFD8]'>
-                              Bespoke indoor and outdoor saunas that blend
-                              Scandinavian tradition with modern craftsmanship
-                              and technology.
-                           </p>
-
-                           <p className='mt-6 text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
-                              Follow us on social
-                           </p>
-                           <div className='mt-3 flex items-center gap-3'>
-                              <SocialIcon label='Facebook'>
-                                 <Facebook className='h-3.5 w-3.5' />
-                              </SocialIcon>
-                              <SocialIcon label='Instagram'>
-                                 <Instagram className='h-3.5 w-3.5' />
-                              </SocialIcon>
-                              <SocialIcon label='YouTube'>
-                                 <Youtube className='h-3.5 w-3.5' />
-                              </SocialIcon>
-                              <SocialIcon label='LinkedIn'>
-                                 <Linkedin className='h-3.5 w-3.5' />
-                              </SocialIcon>
-                           </div>
-                        </div>
-
-                        {/* links + newsletter */}
-                        <div className='flex flex-1 flex-col gap-8 md:flex-row md:gap-10'>
-                           <div className='flex flex-1 gap-10'>
-                              {FOOTER_LINK_GROUPS.map(group => (
-                                 <FooterLinks key={group.title} group={group} />
-                              ))}
-                           </div>
-
-                           <div className='w-full md:max-w-[260px]'>
-                              <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
-                                 Get update
-                              </p>
-                              <p className='mt-2 text-[12px] leading-relaxed text-[#E4DFD8]'>
-                                 Be the first to know about new models, seasonal
-                                 offers, and sauna care tips.
-                              </p>
-
-                              <form
-                                 onSubmit={e => e.preventDefault()}
-                                 className='mt-4 flex items-center gap-2 rounded-full bg-[#45413E] px-3 py-1.5'>
-                                 <input
-                                    type='email'
-                                    placeholder='Enter your email'
-                                    className='w-full bg-transparent text-[12px] text-[#F4EDE6] placeholder:text-[#A19992] outline-none border-none'
-                                 />
-                                 <button
-                                    type='submit'
-                                    className='flex h-7 w-7 items-center justify-center rounded-full bg-[#F28A1F] shadow-[0_8px_18px_rgba(0,0,0,0.6)]'>
-                                    <ArrowRight className='h-3.5 w-3.5 text-white' />
-                                 </button>
-                              </form>
-                           </div>
-                        </div>
-
-                        {/* payments */}
-                        <div className='w-full lg:w-[220px]'>
-                           <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
-                              Accepted payment methods
-                           </p>
-                           <div className='mt-3 flex flex-wrap gap-2'>
-                              {PAYMENT_METHODS.map(method => (
+               {/* review cards slider */}
+               {/* <div className="mt-10 -mx-4 sd:-mx-8 h-[300px] relative">
+            <div className="overflow-hidden px-4 sd:px-8">
+              <div
+                ref={emblaRef}
+                className="embla__viewport overflow-hidden "
+              >
+                <div className="embla__container flex z-99">
+                  {REVIEWS.map((review, index) => (
+                    <div
+                      key={review.id}
+                      className="
+                        embla__slide
+                        flex-[0_0_100%] sm:flex-[0_0_auto]
+                        flex justify-center
+                      "
+                    >
+                      <ReviewCard
+                        review={review}
+                        isActive={index === selectedIndex}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div> */}
+               {/* FULL-WIDTH REVIEW CARDS SLIDER */}
+               <div className='mt-6'>
+                  <div className='relative left-1/2 w-screen -translate-x-1/2 '>
+                     <div className='overflow-hidden px-4 sd:px-10'>
+                        <div
+                           ref={emblaRef}
+                           className='overflow-hidden h-[600px]'>
+                           <div className='flex items-end'>
+                              {REVIEWS.map((review, index) => (
                                  <div
-                                    key={method}
-                                    className='rounded-full bg-[#45413E] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#F4EDE6]'>
-                                    {method}
+                                    key={review.id}
+                                    className='
+          flex justify-center
+          flex-[0_0_85%] sm:flex-[0_0_10%]
+          px-2 items-center justify-center h-[500px]
+        '>
+                                    <ReviewCard
+                                       review={review}
+                                       isActive={index === selectedIndex}
+                                    />
                                  </div>
                               ))}
                            </div>
                         </div>
                      </div>
                   </div>
-
-                  {/* copyright */}
-                  <p className='mt-7 text-center text-[10px] sd:text-[11px] font-medium tracking-[0.28em] uppercase text-white/85'>
-                     © Copyright Reserved by Sauna.com
-                  </p>
                </div>
+            </div>
+
+            {/* BOTTOM: ORANGE HERO + DARK FOOTER */}
+            <div className='relative z-10 sauna-your-sauna-gradient rounded-t-[32px]'>
+               {/* hero image + CTA */}
+               <div className='relative mx-auto h-[375px] overflow-hidden sauna-container'>
+                  <img
+                     src={forestBg}
+                     alt='Sauna in landscaped garden'
+                     className='block w-full h-full object-cover'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/5' />
+
+                  <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center'>
+                     <p className='text-[12px] sd:text-[13px] font-semibold tracking-[0.35em] text-white/80 uppercase'>
+                        Want a sauna for your home?
+                     </p>
+                     <h3 className='mt-3 max-w-[520px] text-[22px] sd:text-[26px] font-bold uppercase tracking-[0.18em] text-white'>
+                        Contact us for a free consultation!
+                     </h3>
+
+                     <div className='mt-7 flex flex-wrap items-center justify-center gap-4'>
+                        <button className='inline-flex items-center gap-3 rounded-full bg-[#403D39] px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F4F1EA] shadow-[0_12px_30px_rgba(0,0,0,0.55)]'>
+                           <span>Contact us</span>
+                           <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#F28A1F]'>
+                              <ArrowRight className='h-3 w-3 text-white' />
+                           </span>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+
+               {/* dark footer panel */}
+               <div className='relative mx-auto sauna-container -mt-10 rounded-b-[32px] bg-[#3D3A37] px-6 sd:px-10 py-8 sd:py-9 shadow-[0_24px_60px_rgba(0,0,0,0.75)] border border-white/5'>
+                  <div className='flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between'>
+                     {/* brand + socials */}
+                     <div className='max-w-[260px]'>
+                        <div className='text-[22px] sd:text-[24px] font-extrabold tracking-[0.45em] uppercase text-white'>
+                           Sauna
+                        </div>
+                        <p className='mt-3 text-[12px] leading-relaxed text-[#E4DFD8]'>
+                           Bespoke indoor and outdoor saunas that blend
+                           Scandinavian tradition with modern craftsmanship and
+                           technology.
+                        </p>
+
+                        <p className='mt-6 text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+                           Follow us on social
+                        </p>
+                        <div className='mt-3 flex items-center gap-3'>
+                           <SocialIcon label='Facebook'>
+                              <Facebook className='h-3.5 w-3.5' />
+                           </SocialIcon>
+                           <SocialIcon label='Instagram'>
+                              <Instagram className='h-3.5 w-3.5' />
+                           </SocialIcon>
+                           <SocialIcon label='YouTube'>
+                              <Youtube className='h-3.5 w-3.5' />
+                           </SocialIcon>
+                           <SocialIcon label='LinkedIn'>
+                              <Linkedin className='h-3.5 w-3.5' />
+                           </SocialIcon>
+                        </div>
+                     </div>
+
+                     {/* links + newsletter */}
+                     <div className='flex flex-1 flex-col gap-8 md:flex-row md:gap-10'>
+                        <div className='flex flex-1 gap-10'>
+                           {FOOTER_LINK_GROUPS.map(group => (
+                              <FooterLinks key={group.title} group={group} />
+                           ))}
+                        </div>
+
+                        <div className='w-full md:max-w-[260px]'>
+                           <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+                              Get update
+                           </p>
+                           <p className='mt-2 text-[12px] leading-relaxed text-[#E4DFD8]'>
+                              Be the first to know about new models, seasonal
+                              offers, and sauna care tips.
+                           </p>
+
+                           <form
+                              onSubmit={e => e.preventDefault()}
+                              className='mt-4 flex items-center gap-2 rounded-full bg-[#45413E] px-3 py-1.5'>
+                              <input
+                                 type='email'
+                                 placeholder='Enter your email'
+                                 className='w-full bg-transparent text-[12px] text-[#F4EDE6] placeholder:text-[#A19992] outline-none border-none'
+                              />
+                              <button
+                                 type='submit'
+                                 className='flex h-7 w-7 items-center justify-center rounded-full bg-[#F28A1F] shadow-[0_8px_18px_rgba(0,0,0,0.6)]'>
+                                 <ArrowRight className='h-3.5 w-3.5 text-white' />
+                              </button>
+                           </form>
+                        </div>
+                     </div>
+
+                     {/* payments */}
+                     <div className='w-full lg:w-[220px]'>
+                        <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+                           Accepted payment methods
+                        </p>
+                        <div className='mt-3 flex flex-wrap gap-2'>
+                           {PAYMENT_METHODS.map(method => (
+                              <div
+                                 key={method}
+                                 className='rounded-full bg-[#45413E] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#F4EDE6]'>
+                                 {method}
+                              </div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               {/* copyright */}
+               <p className='mt-7 text-center text-[10px] sd:text-[11px] font-medium tracking-[0.28em] uppercase text-white/85'>
+                  © Copyright Reserved by Sauna.com
+               </p>
             </div>
          </div>
       </section>
    );
 }
 
-function ReviewCard({
-   review,
-   isActive,
-}: {
-   review: Review;
-   isActive: boolean;
-}) {
+function ReviewCard({review, isActive}: {review: Review; isActive: boolean}) {
    const avatarBase =
       'flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#F28A1F] text-[13px] font-semibold text-white shadow-[0_12px_30px_rgba(0,0,0,0.5)] border-[3px]';
    const avatarBorder = isActive ? ' border-[#1C85FF]' : ' border-[#F4F1EA]';
@@ -479,20 +373,23 @@ function ReviewCard({
    return (
       <article
          className={
-            `relative snap-center flex-shrink-0 w-[230px] sd:w-[250px] rounded-[30px]
-             bg-white px-6 pt-16 pb-6 border border-[#F1EAE1]
-             flex flex-col items-center text-center
-             transition-transform transition-shadow duration-300
-             ` +
+            `relative snap-center flex-shrink-0
+         rounded-[50px] bg-white px-5 pt-10 pb-12 border border-[#F1EAE1]
+         flex flex-col items-center text-center origin-bottom
+         transition-all duration-500
+         ease-[cubic-bezier(0.22,0.61,0.36,1)] justify-around
+        ` +
             (isActive
-               ? ' scale-110 shadow-[0_26px_55px_rgba(0,0,0,0.3)] z-10'
-               : ' scale-95 opacity-80 shadow-[0_18px_45px_rgba(0,0,0,0.12)]')
-         }
-      >
-         <div className={`${avatarBase} ${avatarBorder}`}>
+               ? ' w-[280px] h-[430px] shadow-[0_26px_55px_rgba(0,0,0,0.3)] z-10'
+               : ' w-[230px] h-[380px] opacity-80 shadow-[0_18px_45px_rgba(0,0,0,0.12)]')
+         }>
+         <div
+            className={`${avatarBase} ${avatarBorder} ${
+               isActive && 'scale-[1.2]'
+            }`}>
             {review.avatar ? (
                <img
-                  className="h-full w-full rounded-full object-cover"
+                  className='h-full w-full rounded-full object-cover'
                   src={review.avatar}
                   alt={review.name}
                />
@@ -501,18 +398,68 @@ function ReviewCard({
             )}
          </div>
 
-         <h4 className="mt-6 text-[13px] font-semibold text-[#3A332D]">
-            {review.name}
-         </h4>
-         <p className="mt-1 text-[11px] text-[#9B9085]">{review.role}</p>
+         <div>
+            <h4 className='mb-16 text-[18px] uppercase font-semibold text-[#3A332D] z-1 '>
+               {review.name}
+            </h4>
 
-         <p className="mt-4 text-[11px] leading-relaxed text-[#5D5147]">
-            {review.text}
-         </p>
+            <div
+               className={`mt-4 text-[11px] w-[200px] leading-relaxed text-[#5D5147] relative  ${
+                  isActive ? 'scale-[1.3]' : ''
+               } `}>
+               <span className="absolute -top-8 -z-2 left-0 opacity-65">
+                  <svg
+                     xmlns='http://www.w3.org/2000/svg'
+                     width='69'
+                     height='55'
+                     viewBox='0 0 69 55'
+                     fill='none'>
+                     <g clip-path='url(#clip0_1_41936)'>
+                        <path
+                           d='M0 54.9056V26.8001L16.2304 0H30.8807L17.8886 25.0991H30.8807V54.9056H0ZM37.3768 54.9056V26.8001L53.8804 0H68.16L55.4605 25.0991H68.16V54.9056H37.3768Z'
+                           fill='#EDEDED'
+                        />
+                     </g>
+                     <defs>
+                        <clipPath id='clip0_1_41936'>
+                           <rect width='68.16' height='54.9056' fill='white' />
+                        </clipPath>
+                     </defs>
+                  </svg>
+               </span>
+
+             <p className="z-1 text-[#3B3B3B] my-4"> {review.text} </p> 
+
+               <span className="absolute -bottom-8 -z-2 right-0 opacity-65">
+                  <svg
+                     xmlns='http://www.w3.org/2000/svg'
+                     width='69'
+                     height='55'
+                     viewBox='0 0 69 55'
+                     fill='none'>
+                     <g clip-path='url(#clip0_1_41939)'>
+                        <path
+                           d='M68.16 6.0415e-06L68.16 28.1055L51.9296 54.9056L37.2793 54.9056L50.2714 29.8065L37.2793 29.8065L37.2793 3.30432e-06L68.16 6.0415e-06ZM30.7832 2.72853e-06L30.7832 28.1055L14.2797 54.9056L2.28882e-05 54.9056L12.6996 29.8065L2.50524e-05 29.8065L2.76224e-05 0L30.7832 2.72853e-06Z'
+                           fill='#EDEDED'
+                        />
+                     </g>
+                     <defs>
+                        <clipPath id='clip0_1_41939'>
+                           <rect
+                              width='68.16'
+                              height='54.9056'
+                              fill='white'
+                              transform='translate(68.16 54.9056) rotate(-180)'
+                           />
+                        </clipPath>
+                     </defs>
+                  </svg>
+               </span>
+            </div>
+         </div>
       </article>
    );
 }
-
 
 function FooterLinks({group}: {group: FooterLinkGroup}) {
    return (
