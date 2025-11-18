@@ -190,3 +190,32 @@ body {
       rgb(152, 47, 5) 100%
    );
 }
+
+.border-custom {
+   position: relative;
+}
+
+.border-custom::before {
+   content: '';
+   position: absolute;
+   left: 0%;
+   top: -4px;
+   width: 10px; 
+   height: 10px;
+   border-radius: 100%;
+   background: #e57b15; /* light grey like mock */
+
+   z-index: 5; /* behind the orange bar */
+}
+.border-custom::after {
+   content: '';
+   position: absolute;
+   right: 0%;
+   top: -4px;
+   width: 10px; 
+   height: 10px;
+   border-radius: 100%;
+   background: #e57b15; /* light grey like mock */
+
+   z-index: 5; /* behind the orange bar */
+}

@@ -3,6 +3,7 @@ import {ArrowRight, Facebook, Instagram, Youtube, Linkedin} from 'lucide-react';
 
 import forestBg from './../../../../assets/Mask group (9).png';
 import bgPattern from './../../../../assets/Group 89.png';
+import SectionTitle from './../../../../components/shared/sectionTitle';
 
 type Review = {
    id: string;
@@ -98,27 +99,51 @@ export default function OurReviewSection() {
                {/* TOP: REVIEWS PANEL */}
                <div className='relative z-10 h-[1000px]  px-6 sd:px-12 pt-12 pb-16 sauna-container bg-white relative rounded-t-[32px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.75)] '>
                   <div className='text-center'>
-                     <p className='text-[11px] sd:text-[12px] font-medium tracking-[0.42em] text-[#CAC1B8] uppercase'>
-                        Our Reviews
-                     </p>
+                     <SectionTitle title='Our Reviews' />
 
                      <div className='relative mt-6 inline-block'>
                         {/* big faded quote mark */}
-                        <span className='pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 text-[90px] sd:text-[110px] leading-none text-[#F3EEE8] select-none'>
-                           “
+                        <span className='pointer-events-none absolute -top-0 left-0 -translate-x-1/2 text-[90px] sd:text-[110px] leading-none text-[#F3EEE8] select-none'>
+                           <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              width='148'
+                              height='118'
+                              viewBox='0 0 148 118'
+                              fill='none'>
+                              <g clip-path='url(#clip0_1_42816)'>
+                                 <rect
+                                    width='148'
+                                    height='117.587'
+                                    fill='white'
+                                 />
+                                 <path
+                                    d='M0 117.587V57.3955L35.2421 0H67.0532L38.8426 53.7527H67.0532V117.587H0ZM81.1586 117.587V57.3955L116.994 0H148L120.425 53.7527H148V117.587H81.1586Z'
+                                    fill='#EFEFEF'
+                                 />
+                              </g>
+                              <defs>
+                                 <clipPath id='clip0_1_42816'>
+                                    <rect
+                                       width='148'
+                                       height='117.587'
+                                       fill='white'
+                                    />
+                                 </clipPath>
+                              </defs>
+                           </svg>
                         </span>
 
                         {/* center label like mock */}
-                        <div className='relative z-10 flex items-center gap-4 bg-white px-5 py-2'>
-                           <span className='h-[1px] w-10 bg-[#E3DAD0]' />
-                           <span className='text-[12px] sd:text-[13px] font-semibold tracking-[0.35em] uppercase text-[#F08B1E]'>
+                        <div className='relative z-10 flex items-center gap-4  px-5 py-2'>
+                           <span className='h-[1px] w-10 ' />
+                           <span className='text-[12px] sd:text-[33px] leading-20 font-semibold tracking-[0.05em] uppercase text-[#000]'>
                               What our clients say!
                            </span>
-                           <span className='h-[1px] w-10 bg-[#E3DAD0]' />
+                           <span className='h-[1px] w-10 ' />
                         </div>
 
                         {/* small orange line under text */}
-                        <div className='relative z-10 mx-auto mt-3 h-[2px] w-24 rounded-full bg-[#F08B1E]' />
+                        <div className='aboslute z-10 border-custom mx-auto h-[2px] w-[87%] -mt-[6px] bg-[#E57B15]' />
                      </div>
                   </div>
 
