@@ -83,8 +83,8 @@ const PAYMENT_METHODS = ['Visa', 'MasterCard', 'Amex', 'PayPal'];
 export default function OurReviewSection() {
   return (
     <section className="relative w-full bg-[#403D39] py-12 sd:py-16">
-      <div className="mx-auto max-w-[1120px] px-4 sd:px-0">
-        <div className="relative rounded-[32px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.75)] sauna-container">
+      <div className="mx-auto ">
+        <div className="">
           {/* subtle pattern bg over whole block */}
           <div
             className="pointer-events-none absolute inset-0 opacity-15"
@@ -96,7 +96,7 @@ export default function OurReviewSection() {
           />
 
           {/* TOP: REVIEWS PANEL */}
-          <div className="relative z-10 bg-white px-6 sd:px-12 pt-12 pb-16">
+          <div className="relative z-10 h-[1000px]  px-6 sd:px-12 pt-12 pb-16 sauna-container bg-white relative rounded-t-[32px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.75)] ">
             <div className="text-center">
               <p className="text-[11px] sd:text-[12px] font-medium tracking-[0.42em] text-[#CAC1B8] uppercase">
                 Our Reviews
@@ -135,13 +135,13 @@ export default function OurReviewSection() {
           </div>
 
           {/* BOTTOM: ORANGE HERO + DARK FOOTER */}
-          <div className="relative z-10 bg-[#F28A1F] pt-12 pb-7 sauna-your-sauna-gradient">
+          <div className="relative z-10 bg-[#F28A1F] pt-12 pb-7 sauna-your-sauna-gradient rounded-t-[32px]">
             {/* hero image + CTA */}
-            <div className="relative mx-auto max-w-[980px] rounded-[28px] overflow-hidden">
+            <div className="relative mx-auto max-w-[980px]  h-[375px] rounded-[28px] overflow-hidden">
               <img
                 src={forestBg}
                 alt="Sauna in landscaped garden"
-                className="block h-[240px] sd:h-[260px] w-full object-cover"
+                className="block  sd:h-[260px] w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/5" />
 
@@ -154,16 +154,23 @@ export default function OurReviewSection() {
                 </h3>
 
                 <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
-                  <button className="inline-flex items-center gap-3 rounded-full bg-[#F4F1EA] px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#25211C] shadow-[0_12px_30px_rgba(0,0,0,0.55)]">
+                  <button className="inline-flex items-center gap-3 rounded-full bg-[#403D39]  px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#25211C] shadow-[0_12px_30px_rgba(0,0,0,0.55)]">
                     <span>Contact us</span>
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F28A1F]">
-                      <ArrowRight className="h-3 w-3 text-white" />
+                     <svg xmlns="http://www.w3.org/2000/svg" width="53" height="50" viewBox="0 0 53 50" fill="none">
+<g clip-path="url(#clip0_1_42952)">
+<path d="M35.856 40.4866C26.9518 45.6408 15.2307 42.8827 9.84603 34.3653C4.39018 25.7367 7.24314 14.5881 16.2416 9.36986C25.1723 4.19185 36.8951 6.96501 42.3076 15.5369C47.7352 24.131 44.8528 35.278 35.8555 40.4857L35.856 40.4866ZM33.8847 18.6346C33.8756 18.7128 33.8662 18.7924 33.8572 18.8706C33.7166 18.9514 33.576 19.0322 33.4344 19.1136C27.3831 22.5928 21.3318 26.0721 15.2805 29.5513C15.1351 29.6349 14.9881 29.7157 14.8467 29.8057C14.3309 30.1331 14.1127 30.7199 14.3052 31.2523C14.5189 31.8431 15.0755 32.2243 15.7032 32.1343C15.9976 32.0924 16.2902 31.9489 16.5505 31.7993C22.6661 28.2905 28.7767 24.776 34.8888 21.2618L35.3058 21.022L35.5065 21.1107C35.4285 21.2396 35.3155 21.3603 35.2785 21.499C34.439 24.6952 33.608 27.8926 32.7755 31.0897C32.4922 32.1777 32.2093 33.2642 31.925 34.3528C31.7915 34.8624 31.9568 35.298 32.3415 35.6383C32.7365 35.9887 33.2255 36.0526 33.7251 35.8742C34.2542 35.685 34.4701 35.2591 34.5987 34.7622C35.7576 30.2928 36.9242 25.8252 38.0838 21.3566C38.1544 21.0823 38.213 20.8012 38.2384 20.5207C38.4083 18.5654 37.1162 16.9077 35.0147 16.4043C30.3157 15.2794 25.6141 14.1647 20.9137 13.0456C20.7904 13.0163 20.6665 12.9837 20.5408 12.9731C19.9873 12.9239 19.5404 13.1079 19.2456 13.5668C18.9641 14.0057 18.9621 14.4509 19.2363 14.9054C19.4778 15.3058 19.8654 15.4553 20.3038 15.5581C24.6769 16.5946 29.0475 17.6374 33.4207 18.6701C33.5631 18.7032 33.7282 18.6491 33.8822 18.6348L33.8847 18.6346Z" fill="#EA7F15"/>
+<path d="M33.8842 18.6336C33.7297 18.647 33.5641 18.7026 33.4227 18.6689C29.0494 17.6362 24.6783 16.5925 20.3058 15.5569C19.8677 15.4526 19.4807 15.3041 19.2383 14.9042C18.9641 14.4497 18.9661 14.0045 19.2476 13.5656C19.5424 13.1067 19.9893 12.9227 20.5428 12.9719C20.6684 12.9825 20.793 13.016 20.9156 13.0444C25.6155 14.1626 30.3172 15.2773 35.0167 16.4031C37.1182 16.9065 38.4103 18.5642 38.2404 20.5195C38.2165 20.8004 38.1579 21.0814 38.0857 21.3554C36.9253 25.8245 35.7587 30.2921 34.6007 34.761C34.4721 35.2579 34.2562 35.6838 33.7271 35.873C33.2266 36.052 32.7385 35.9875 32.3435 35.6371C31.9597 35.2962 31.7945 34.8607 31.927 34.3516C32.2109 33.2645 32.4942 32.1765 32.7775 31.0885C33.61 27.8914 34.441 24.694 35.2805 21.4978C35.3175 21.3591 35.4304 21.2384 35.5085 21.1095L35.3078 21.0208L34.8908 21.2606C28.7786 24.7748 22.668 28.2893 16.5525 31.7981C16.2922 31.9477 15.9996 32.0912 15.7052 32.1331C15.0775 32.2231 14.5209 31.8419 14.3072 31.2512C14.1147 30.7187 14.3329 30.1319 14.8487 29.8045C14.99 29.7145 15.1371 29.6337 15.2825 29.5501C21.3338 26.0709 27.3851 22.5917 33.4364 19.1124C33.577 19.0316 33.7176 18.9507 33.8592 18.8694C33.8682 18.7912 33.8776 18.7116 33.8867 18.6334L33.8842 18.6336Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_1_42952">
+<rect width="37.5322" height="36.7813" fill="white" transform="matrix(0.866923 -0.498442 0.532343 0.846529 0 18.708)"/>
+</clipPath>
+</defs>
+</svg>
                     </span>
                   </button>
 
-                  <button className="inline-flex items-center gap-3 rounded-full border border-white/80 px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                    <span>Call now</span>
-                  </button>
                 </div>
               </div>
             </div>
