@@ -295,7 +295,6 @@ export default function ProductShowcase() {
    );
 
    const visibleProducts = filtered.slice(0, visibleCount);
-   const totalCount = ALL_PRODUCTS.length;
    const showingCount = Math.min(visibleCount, filtered.length);
 
    /* options for sidebar (auto-built from product list) */
@@ -341,10 +340,57 @@ export default function ProductShowcase() {
    };
 
    return (
-      <div className='min-h-screen   pb-10'>
-         <div className='mx-auto sauna-container rounded-b-[24px] bg-[#FFFDF6] px-8 pb-10 pt-6 shadow-lg'>
+      <div className='min-h-screen  w-full pb-10'>
+         <div className='mx-auto  rounded-b-[24px] shadow-lg'>
+
+
+
+            {/* showcase bar */}
+            <div className="w-full sauna-your-sauna-gradient rounded-[17px]">
+               <div className='flex flex-col gap-3  bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5'>
+                  <div className='flex items-center gap-3'>
+                     <span className='text-xs font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]'>
+                        Showcase
+                     </span>
+                     <ToggleGroup
+                        type='single'
+                        value={String(gridMode)}
+                        onValueChange={val => {
+                           if (!val) return;
+                           setGridMode(Number(val) as GridMode);
+                        }}
+                        className='flex gap-1 rounded-full bg-white p-1'>
+                        <GridToggle value='2' current={gridMode} />
+                        <GridToggle value='3' current={gridMode} />
+                        <GridToggle value='4' current={gridMode} />
+                        <GridToggle value='6' current={gridMode} />
+                     </ToggleGroup>
+                  </div>
+
+                  <div className='flex items-center gap-3 text-xs text-muted-foreground'>
+                     <div className='hidden text-[11px] md:block'>
+                        Showing {showingCount} of {filtered.length} items
+                     </div>
+                     <Select
+                        value={sort}
+                        onValueChange={val => setSort(val as SortId)}>
+                        <SelectTrigger className='h-9 w-[210px] rounded-full border border-[#f37021]/70 bg-[#f37021] text-[11px] font-semibold uppercase tracking-[0.12em] text-white'>
+                           <SelectValue placeholder='Featured' />
+                        </SelectTrigger>
+                        <SelectContent>
+                           <SelectItem value='featured'>Featured</SelectItem>
+                           <SelectItem value='alphabetical-asc'>
+                              Alphabetically, A–Z
+                           </SelectItem>
+                        </SelectContent>
+                     </Select>
+                  </div>
+               </div>
+            </div>
+
+
             {/* breadcrumb */}
-            <Breadcrumb className='mb-3'>
+            <Breadcrumb className='mb-3 sauna-container bg-white px-6'>
                <BreadcrumbList>
                   <BreadcrumbItem>
                      <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -357,7 +403,7 @@ export default function ProductShowcase() {
             </Breadcrumb>
 
             {/* header row */}
-            <div className='mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between'>
+            <div className='mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between sauna-container bg-white px-6'>
                <div>
                   <h1 className='text-2xl font-semibold tracking-[0.26em] text-[#333]'>
                      ALL SAUNA
@@ -388,7 +434,7 @@ export default function ProductShowcase() {
             </div>
 
             {/* body layout */}
-            <div className='grid gap-8 md:grid-cols-[260px_minmax(0,1fr)]'>
+            <div className='grid gap-8 md:grid-cols-[260px_minmax(0,1fr)] sauna-container bg-white px-6'>
                {/* left sidebar filters */}
                <aside className='space-y-4'>
                   <div className='flex items-center justify-between'>
@@ -462,47 +508,6 @@ export default function ProductShowcase() {
 
                {/* right: showcase + grid */}
                <section className='space-y-4'>
-                  {/* showcase bar */}
-                  <div className='flex flex-col gap-3 rounded-[18px] bg-[#f5f3f0] px-4 py-3 md:flex-row md:items-center md:justify-between'>
-                     <div className='flex items-center gap-3'>
-                        <span className='text-xs font-semibold uppercase tracking-[0.16em] text-[#555]'>
-                           Showcase
-                        </span>
-                        <ToggleGroup
-                           type='single'
-                           value={String(gridMode)}
-                           onValueChange={val => {
-                              if (!val) return;
-                              setGridMode(Number(val) as GridMode);
-                           }}
-                           className='flex gap-1 rounded-full bg-white p-1'>
-                           <GridToggle value='2' current={gridMode} />
-                           <GridToggle value='3' current={gridMode} />
-                           <GridToggle value='4' current={gridMode} />
-                           <GridToggle value='6' current={gridMode} />
-                        </ToggleGroup>
-                     </div>
-
-                     <div className='flex items-center gap-3 text-xs text-muted-foreground'>
-                        <div className='hidden text-[11px] md:block'>
-                           Showing {showingCount} of {filtered.length} items
-                        </div>
-                        <Select
-                           value={sort}
-                           onValueChange={val => setSort(val as SortId)}>
-                           <SelectTrigger className='h-9 w-[210px] rounded-full border border-[#f37021]/70 bg-[#f37021] text-[11px] font-semibold uppercase tracking-[0.12em] text-white'>
-                              <SelectValue placeholder='Featured' />
-                           </SelectTrigger>
-                           <SelectContent>
-                              <SelectItem value='featured'>Featured</SelectItem>
-                              <SelectItem value='alphabetical-asc'>
-                                 Alphabetically, A–Z
-                              </SelectItem>
-                           </SelectContent>
-                        </Select>
-                     </div>
-                  </div>
-
                   {/* products grid */}
                   <div className={cn('grid gap-5', gridClass(gridMode))}>
                      {visibleProducts.map(product => (

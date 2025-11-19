@@ -25,7 +25,7 @@ export default function ProductPage() {
    ];
 
    return (
-      <div>
+      <div className='bg-[#403D39]'>
          <SaunaHero
          
             title='ALL SAUNA'
