@@ -1,7 +1,7 @@
-import  {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import Footer from "../../../../components/shared/footer"
+import Footer from '../../../../components/shared/footer';
 import SectionTitle from './../../../../components/shared/sectionTitle';
 
 type Review = {
@@ -126,8 +126,6 @@ const REVIEWS: Review[] = [
    },
 ];
 
-
-
 export default function OurReviewSection() {
    const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -161,11 +159,11 @@ export default function OurReviewSection() {
    }, [emblaApi]);
 
    return (
-      <section className='relative w-full bg-[#403D39] py-12 sd:py-16'>
+      <section className='relative w-full  py-12 sd:py-16'>
          <div className='mx-auto'>
             {/* TOP: REVIEWS PANEL */}
-            <div className='z-0 px-6 sd:px-12 pt-12 pb-24 sauna-container bg-white rounded-t-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.75)]'>
-               <div className='text-center'>
+            <div className='z-0 px-6 sd:px-12 pt-12 pb-24 sauna-container flex flex-col justify-end  h-[1270px] bg-white rounded-t-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.75)]'>
+               <div className='text-center '>
                   <SectionTitle title='Our Reviews' />
 
                   <div className='relative mt-6 inline-block'>
@@ -231,7 +229,7 @@ export default function OurReviewSection() {
                   </div>
                </div>
             </div>
-<Footer/>
+            <Footer />
          </div>
       </section>
    );
@@ -332,4 +330,3 @@ function ReviewCard({review, isActive}: {review: Review; isActive: boolean}) {
       </article>
    );
 }
-

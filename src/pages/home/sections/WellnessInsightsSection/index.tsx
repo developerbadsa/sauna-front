@@ -101,7 +101,7 @@ export default function WellnessInsightsSection() {
          <div className='sauna-container px-5 sd:px-10'>
             <SectionTitle title='WELLNESS INSIGHTS' />
 
-            <div className='relative mt-12 group'>
+            <div className='relative mt-12 mb-80  group'>
                {/* orange curve / glow behind cards */}
                <div className='pointer-events-none absolute inset-0'>
                   <div
@@ -114,7 +114,7 @@ export default function WellnessInsightsSection() {
                </div>
 
                {/* card track */}
-               <div className='relative z-10 flex gap-7 overflow-visible'>
+               <div className='absolute z-10 flex gap-7 overflow-visible justify-between w-full'>
                   {visibleArticles.map(article => (
                      <article
                         key={article.id}
