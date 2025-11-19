@@ -47,10 +47,10 @@ export function SaunaHero({
    contactItems = DEFAULT_HERO_CONTACT_ITEMS,
    heroImage,
    iconElemets,
-   headingBlock = false,
-   showparagraphandexplore = false,
-   showcenterImg = false,
-   showinfocard = true,
+  //  headingBlock = false,
+  //  showparagraphandexplore = false,
+  //  showcenterImg = false,
+  //  showinfocard = true,
    reasonfor,
 }: SaunaHeroProps) {
    const imageConfig: HeroImageConfig = {
