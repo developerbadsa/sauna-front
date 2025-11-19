@@ -1,7 +1,9 @@
+
 import {SaunaHero} from './../components/hero/SaunaHero';
 import {PhoneIcon} from '../components/ui/icons/akar-icons-phone';
 import {EnvelopeIcon} from '../components/ui/icons/akar-icons-envelope.tsx';
 import {ClockIcon} from '../components/ui/icons/akar-icons-clock.tsx';
+import ProductShowcase from './products';
 
 export default function ProductPage() {
    const contactItems = [
@@ -25,6 +27,7 @@ export default function ProductPage() {
    return (
       <div>
          <SaunaHero
+         
             title='ALL SAUNA'
             taglineLines={[
                'All indoor & outdoor models Compare sizes, woods & heaters',
@@ -57,7 +60,10 @@ export default function ProductPage() {
                   ))}
                </div>
             }
+            boxoutlined={false}
          />
+
+         <ProductShowcase/>
       </div>
    );
 }

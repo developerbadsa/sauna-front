@@ -34,6 +34,8 @@ type SaunaHeroProps = {
    showparagraphandexplore?: boolean;
    showcenterImg?: boolean;
    showinfocard?: boolean;
+   boxoutlined?: boolean;
+   bottomzero?: boolean;
    reasonfor?: string;
    iconElemets?: ReactNode;
 };
@@ -47,10 +49,12 @@ export function SaunaHero({
    contactItems = DEFAULT_HERO_CONTACT_ITEMS,
    heroImage,
    iconElemets,
-  //  headingBlock = false,
-  //  showparagraphandexplore = false,
-  //  showcenterImg = false,
-  //  showinfocard = true,
+   boxoutlined = true,
+   bottomzero = false,
+   //  headingBlock = false,
+   //  showparagraphandexplore = false,
+   //  showcenterImg = false,
+   //  showinfocard = true,
    reasonfor,
 }: SaunaHeroProps) {
    const imageConfig: HeroImageConfig = {
@@ -65,7 +69,10 @@ export function SaunaHero({
    };
 
    return (
-      <section className='relative flex h-[950px] overflow-hidden'>
+      <section
+         className={`relative flex  overflow-hidden ${
+            bottomzero ? 'h-[950px]' : ''
+         }`}>
          {/* background pattern – unchanged */}
          <div
             className='pointer-events-none absolute inset-0 opacity-60 z-0'
@@ -77,10 +84,16 @@ export function SaunaHero({
          />
 
          <div className='bg-linear-to-t from-[#403d39d7] to-[#00000000] h-full w-full flex items-start justify-center inset-1 z-10'>
-            {/* main card wrapper – unchanged */}
-            <div className='relative z-10 w-full px-4 mx-auto flex justify-center'>
-               <div className='relative overflow-visible rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px] mt-28 h-[640px] sd:h-[730px] w-[85%]'>
-                  <div className='relative overflow-visible rounded-[40px] bg-[#fbf2e5] px-6 pt-8 h-full flex flex-col justify-between'>
+            {/* main card wrapper */}
+            <div className='relative z-10 w-full px-0 flex justify-center'>
+               <div
+                  className={`${
+                     boxoutlined
+                        ? ' rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px] mt-28 h-[640px] sd:h-[730px] w-[85%]'
+                        : 
+                        'mt-28 h-[640px] sd:h-[730px] w-[85%]'
+                  }`}>
+                  <div className={`relative overflow-visible bg-[#FFFDF6] px-6 pt-8 h-full flex flex-col justify-between ${!bottomzero?"rounded-t-[40px]":'rounded-[40px]'}`}>
                      {/* top nav */}
                      <Header />
 
@@ -147,9 +160,8 @@ export function SaunaHero({
                            {/* bottom content region end */}
                         </div>
                      ) : (
-
-                        <div className="flex items-center justify-between">
-                           <div className="ml-10">
+                        <div className='flex items-center justify-between'>
+                           <div className='ml-10'>
                               {/* heading block */}
                               <div className='mb-0 mt-24 text-start mr-12 '>
                                  <h2 className='text-[18px] md:text-[20px] font-semibold leading-5 uppercase text-[#2f241c]'>
@@ -162,7 +174,7 @@ export function SaunaHero({
 
                               {/* right contact info card */}
                               <div className='relative z-20  overflow-hidden'>
-                                {iconElemets}
+                                 {iconElemets}
                               </div>
                            </div>
                            <div className={imageConfig.wrapperClassName}>

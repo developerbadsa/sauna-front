@@ -1,5 +1,3 @@
-
-// import {HeroSection} from './home/sections/heroSection';
 import ProductCategorySection from './home/sections/productCategorySection';
 import ShopConfidenceSection from './home/sections/shopConfidenceSection';
 import YourSaunaSection from './home/sections/yourSaunaSection';
@@ -15,7 +13,7 @@ export default function HomePage() {
    return (
       <>
          {/* <HeroSection /> */}
-         <SaunaHero reasonfor="homepage"/>
+         <SaunaHero reasonfor="homepage" bottomzero={true}/>
          <ProductCategorySection />
          <ShopConfidenceSection />
          <YourSaunaSection />
