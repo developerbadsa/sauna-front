@@ -162,7 +162,7 @@ export default function OurReviewSection() {
       <section className='relative w-full  py-12 sd:py-16'>
          <div className='mx-auto'>
             {/* TOP: REVIEWS PANEL */}
-            <div className='z-0 px-6 sd:px-12 pt-12 pb-24 sauna-container flex flex-col justify-end  h-[1270px] bg-white rounded-t-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.75)]'>
+            <div className='z-0 px-6 sd:px-12 pt-12 pb-24 sauna-container flex flex-col justify-end  h-[1090px] bg-white rounded-t-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.75)]'>
                <div className='text-center '>
                   <SectionTitle title='Our Reviews' />
 
