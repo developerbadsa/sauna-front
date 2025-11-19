@@ -15,7 +15,7 @@ export default function HomePage() {
    return (
       <>
          {/* <HeroSection /> */}
-         <SaunaHero/>
+         <SaunaHero reasonfor="homepage"/>
          <ProductCategorySection />
          <ShopConfidenceSection />
          <YourSaunaSection />

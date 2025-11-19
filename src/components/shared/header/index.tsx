@@ -1,11 +1,11 @@
-
+import {Link} from "react-router-dom"
 export default function Header() {
    return (
       <header className='grid grid-cols-[auto_1fr_auto] items-center'>
          {/* logo */}
          <div className='flex items-center'>
             <div className='flex h-10 w-10 items-center justify-center rounded-full '>
-               <span className='text-3xl font-extrabold leading-none text-[#f7901e]'>
+               <Link to={'/'} className='text-3xl font-extrabold leading-none text-[#f7901e]'>
                   {/* S */}
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
@@ -18,15 +18,15 @@ export default function Header() {
                         fill='#EA7F15'
                      />
                   </svg>
-               </span>
+               </Link>
             </div>
          </div>
 
          {/* center nav links */}
          <nav className='flex justify-center gap-10 text-[13px] font-medium uppercase tracking-[0.16em] text-[#2f241c]'>
-            <button className='transition-colors uppercase hover:text-black'>
+            <Link to={'/products'} className='transition-colors uppercase hover:text-black'>
                Product
-            </button>
+            </Link>
             <button className='transition-colors uppercase hover:text-black'>
                Reviews
             </button>
