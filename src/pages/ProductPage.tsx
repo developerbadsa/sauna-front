@@ -4,6 +4,7 @@ import {PhoneIcon} from '../components/ui/icons/akar-icons-phone';
 import {EnvelopeIcon} from '../components/ui/icons/akar-icons-envelope.tsx';
 import {ClockIcon} from '../components/ui/icons/akar-icons-clock.tsx';
 import ProductShowcase from './products/index';
+import Footer from '@/components/shared/footer'
 
 export default function ProductPage() {
    const contactItems = [
@@ -64,6 +65,8 @@ export default function ProductPage() {
          />
 
          <ProductShowcase/>
+
+         <Footer/>
       </div>
    );
 }

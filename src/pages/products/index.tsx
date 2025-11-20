@@ -106,7 +106,7 @@ export default function ProductShowcase() {
    };
 
    return (
-      <div className='min-h-screen w-full pb-10'>
+      <div className='min-h-screen w-full pb-24'>
          <div className='mx-auto rounded-b-[24px] shadow-lg'>
             {/* showcase bar */}
             <div className='w-full sauna-your-sauna-gradient rounded-[17px] '>
@@ -144,9 +144,10 @@ export default function ProductShowcase() {
                            <SelectValue placeholder='Alphabetically, A-Z' />
                         </SelectTrigger>
 
-
                         <SelectContent>
-                           <SelectItem value='featured'>Alphabetically, A–Z</SelectItem>
+                           <SelectItem value='featured'>
+                              Alphabetically, A–Z
+                           </SelectItem>
                            <SelectItem value='alphabetical-asc'>
                               Alphabetically, A–Z
                            </SelectItem>
@@ -157,7 +158,7 @@ export default function ProductShowcase() {
             </div>
 
             {/* breadcrumb */}
-            <Breadcrumb className='mb-3 sauna-container bg-white px-6'>
+            <Breadcrumb className='mb-3 sauna-container bg-white px-6 py-8 text-[12px]'>
                <BreadcrumbList>
                   <BreadcrumbItem>
                      <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -170,9 +171,9 @@ export default function ProductShowcase() {
             </Breadcrumb>
 
             {/* header row */}
-            <div className='mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between sauna-container bg-white px-6'>
+            <div className='mb-0 flex flex-col gap-3 md:flex-row md:items-end md:justify-between sauna-container bg-white px-6'>
                <div>
-                  <h1 className='text-2xl font-semibold tracking-[0.26em] text-[#333]'>
+                  <h1 className='text-[40px] font-bold tracking-[0.12em] text-[#403D39] pb-2'>
                      ALL SAUNA
                   </h1>
                   <p className='mt-1 text-sm text-muted-foreground'>
