@@ -106,7 +106,7 @@ export default function ProductShowcase() {
    };
 
    return (
-      <div className='min-h-screen w-full pb-24'>
+      <div className=' w-full '>
          <div className='mx-auto rounded-b-[24px] shadow-lg'>
             {/* showcase bar */}
             <div className='w-full sauna-your-sauna-gradient rounded-[17px] '>

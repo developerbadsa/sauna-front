@@ -1,10 +1,10 @@
-
 import {SaunaHero} from './../components/hero/SaunaHero';
 import {PhoneIcon} from '../components/ui/icons/akar-icons-phone';
 import {EnvelopeIcon} from '../components/ui/icons/akar-icons-envelope.tsx';
 import {ClockIcon} from '../components/ui/icons/akar-icons-clock.tsx';
 import ProductShowcase from './products/index';
-import Footer from '@/components/shared/footer'
+import Footer from '@/components/shared/footer';
+import WellbeingSection from './products/sections/WellbeingSection';
 
 export default function ProductPage() {
    const contactItems = [
@@ -28,7 +28,6 @@ export default function ProductPage() {
    return (
       <div className='bg-[#403D39]'>
          <SaunaHero
-         
             title='ALL SAUNA'
             taglineLines={[
                'All indoor & outdoor models Compare sizes, woods & heaters',
@@ -49,7 +48,7 @@ export default function ProductPage() {
                         <div className='rounded-full bg-[#403D39] w-9 h-9 flex justify-center items-center text-[#fff] hover:bg-[#EA7F15] nav-info-item-icon'>
                            {item.icon}
                         </div>
-                        <div className="flex flex-col gap-0 ml-1">
+                        <div className='flex flex-col gap-0 ml-1'>
                            <p className='text-[12px] text-[#403D39] font-bold'>
                               {item.name}
                            </p>
@@ -64,9 +63,9 @@ export default function ProductPage() {
             boxoutlined={false}
          />
 
-         <ProductShowcase/>
-
-         <Footer/>
+         <ProductShowcase />
+         <WellbeingSection />
+         <Footer />
       </div>
    );
 }
