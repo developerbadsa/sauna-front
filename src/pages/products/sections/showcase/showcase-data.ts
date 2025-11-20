@@ -1,6 +1,6 @@
 // products/sections/showcase/showcase-data.ts
 
-import type {ShowcaseProduct} from "./showcase-types";
+import type {ShowcaseProduct} from "./../../showcase-types";
 
 export const ALL_PRODUCTS: ShowcaseProduct[] = [
   {
