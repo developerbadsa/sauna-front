@@ -12,7 +12,7 @@ export default function ProductDetailsAccordion({ sections }: Props) {
   if (!sections.length) return null;
 
   return (
-    <section className='rounded-3xl border border-neutral-200 bg-white/90 p-4 shadow-sm'>
+    <section className=' p-4 '>
       <div className='space-y-2'>
         {sections.map((section) => {
           const isOpen = section.id === openId;
@@ -20,7 +20,7 @@ export default function ProductDetailsAccordion({ sections }: Props) {
           return (
             <div
               key={section.id}
-              className='overflow-hidden rounded-2xl border border-transparent bg-white transition hover:border-neutral-200'
+              className='overflow-hidden rounded-2xl border border-transparent  transition '
             >
               <button
                 type='button'

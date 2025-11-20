@@ -32,7 +32,7 @@ export default function ProductReviewsSection({ product }: Props) {
 
   return (
     <section aria-labelledby='reviews-heading' className='space-y-6'>
-      <div className='rounded-3xl border border-orange-100 bg-white/90 p-5 shadow-sm'>
+      <div className=' p-5 '>
         <div className='flex flex-wrap items-center justify-between gap-4'>
           <div className='flex items-center gap-3'>
             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-orange-50'>
@@ -83,7 +83,7 @@ export default function ProductReviewsSection({ product }: Props) {
         {product.reviews.map((review) => (
           <article
             key={review.id}
-            className='rounded-3xl border border-neutral-100 bg-white/90 p-4 shadow-sm'
+            className=' p-4 '
           >
             <div className='mb-2 flex flex-wrap items-center justify-between gap-2'>
               <div>
