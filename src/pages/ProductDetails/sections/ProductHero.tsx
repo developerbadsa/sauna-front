@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+// import { Star } from 'lucide-react';
 import type { Product } from '../product-types';
 import { Button } from '../../../components/ui/button';
 
