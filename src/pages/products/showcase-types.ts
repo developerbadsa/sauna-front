@@ -1,10 +1,5 @@
+
 export type GridMode = 2 | 3 | 4 | 6;
-
-export type GridToggleProps = {
-   value: string;
-   current: GridMode;
-};
-
 
 export type ShowcaseProduct = {
   id: string;
@@ -16,10 +11,26 @@ export type ShowcaseProduct = {
   heatingType: string;
   seatingCapacity: string;
   price: number;
-  currency: 'CAD';
+  currency: "CAD";
   badge?: string;
   extendedInfo?: string;
   rating?: number;
   reviewsCount?: number;
   thumbnailUrl: string;
+};
+
+export type SortId = "featured" | "alphabetical-asc";
+
+export type FiltersState = {
+  productTypes: string[];
+  woodTypes: string[];
+  brands: string[];
+  heatingTypes: string[];
+  seatingCapacities: string[];
+};
+
+export type FilterOption = {
+  value: string;
+  label: string;
+  count: number;
 };
