@@ -21,10 +21,10 @@ export default function ProductCard({product}: ProductCardProps) {
    } = product;
 
    return (
-      <Card className='group flex flex-col overflow-hidden border-0 bg-[#f5f3f0] shadow-none transition-all hover:-translate-y-[2px] hover:shadow-md'>
+      <Card className='group flex flex-col overflow-hidden border-0  shadow-none transition-all hover:-translate-y-[2px] '>
          <CardContent className='flex flex-1 flex-col px-4 pb-4 pt-3'>
             <div className='mb-3 flex items-center justify-center'>
-               <div className='relative inline-flex  w-[200px] h-[200px] items-center justify-center overflow-hidden  bg-white shadow-md'>
+               <div className='relative inline-flex  w-[200px] h-[200px] items-center justify-center overflow-hidden  '>
                   <img
                      src={thumbnailUrl}
                      alt={name}
@@ -34,16 +34,16 @@ export default function ProductCard({product}: ProductCardProps) {
             </div>
 
             {badge && (
-               <div className='bg-[#555] px-3 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white'>
+               <div className='bg-[#403D39] rounded-sm px-3 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white'>
                   {badge}
                </div>
             )}
 
-            <div className='mb-1 min-h-[40px] text-sm font-semibold text-[#222]'>
+            <div className='mb-1  text-sm font-semibold text-[#403D39] my-2'>
                {name}
             </div>
 
-            <div className='mb-1 text-sm font-semibold text-[#222]'>
+            <div className='mb-1 text-[34px] font-bold text-[#403D39]'>
                {price.toLocaleString('en-CA', {
                   style: 'currency',
                   currency,
@@ -57,7 +57,7 @@ export default function ProductCard({product}: ProductCardProps) {
             {extendedInfo && (
                <Badge
                   variant='outline'
-                  className='mb-3 w-fit border-gray-300 bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-gray-700'>
+                  className='mb-3 w-fit border-gray-300  bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-gray-700'>
                   {extendedInfo}
                </Badge>
             )}

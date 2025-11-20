@@ -11,7 +11,7 @@ export default function WellbeingSection() {
           <span>877-446-3565</span>.
         </p>
 
-        <div className="mt-8 space-y-4 text-sm md:text-[18px] leading-relaxed text-[#403D39] text-center md:text-center">
+        <div className="mt-8 space-y-4 text-sm md:text-[18px] leading-5.5 text-[#403D39] text-center md:text-center">
           <p>
             Indulge in safe, simple, and profound relaxation without leaving the comfort
             of your home. Say goodbye to crowded communal saunas and enjoy spa-quality

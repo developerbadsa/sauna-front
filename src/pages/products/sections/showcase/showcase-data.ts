@@ -19,7 +19,7 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 5,
     reviewsCount: 89,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3951628/pexels-photo-3951628.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/xKZYc1VC/SADSFSDSDFSD-1-1.png",
   },
   {
     id: "2",
@@ -37,7 +37,7 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 4.8,
     reviewsCount: 41,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3735152/pexels-photo-3735152.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/7dzNqdXW/suasdasdna-1.png",
   },
   {
     id: "3",
@@ -55,7 +55,7 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 4.9,
     reviewsCount: 63,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3735150/pexels-photo-3735150.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/xKZYc1VC/SADSFSDSDFSD-1-1.png",
   },
   {
     id: "4",
@@ -73,7 +73,7 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 4.7,
     reviewsCount: 37,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3735151/pexels-photo-3735151.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/7dzNqdXW/suasdasdna-1.png",
   },
   {
     id: "5",
@@ -91,7 +91,7 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 5,
     reviewsCount: 22,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3735160/pexels-photo-3735160.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/xKZYc1VC/SADSFSDSDFSD-1-1.png",
   },
   {
     id: "6",
@@ -109,6 +109,6 @@ export const ALL_PRODUCTS: ShowcaseProduct[] = [
     rating: 4.6,
     reviewsCount: 18,
     thumbnailUrl:
-      "https://images.pexels.com/photos/3735161/pexels-photo-3735161.jpeg?auto=compress&w=600",
+      "https://i.ibb.co.com/7dzNqdXW/suasdasdna-1.png",
   },
 ];
