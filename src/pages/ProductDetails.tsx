@@ -2,12 +2,12 @@ import Header from '@/components/shared/header';
 import Footer from '@/components/shared/footer';
 import {
    MAIN_PRODUCT,
-   MATCHING_PRODUCTS,
+  //  MATCHING_PRODUCTS,
 } from './ProductDetails/product-data.ts';
 import ProductHero from './ProductDetails/sections/ProductHero';
-import MatchingProductsRow from './ProductDetails/sections/MatchingProductsRow';
-import ProductDetailsAccordion from './ProductDetails/sections/ProductDetailsAccordion';
-import ProductReviewsSection from './ProductDetails/sections/ProductReviewsSection';
+// import MatchingProductsRow from './ProductDetails/sections/MatchingProductsRow';
+// import ProductDetailsAccordion from './ProductDetails/sections/ProductDetailsAccordion';
+// import ProductReviewsSection from './ProductDetails/sections/ProductReviewsSection';
 
 const ProductDetails = () => {
    const product = MAIN_PRODUCT;
@@ -19,7 +19,18 @@ const ProductDetails = () => {
                <Header />
             </div>
          </div>
+         <main className='sauna-container px-4 pb-16 pt-10 lg:px-0 lg:pt-14'>
+            <ProductHero product={product} />
 
+            <div className='mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1.1fr)] lg:items-start'>
+               {/* <ProductReviewsSection product={product} /> */}
+
+               {/* <div className='space-y-8'>
+                  <MatchingProductsRow products={MATCHING_PRODUCTS} />
+                  <ProductDetailsAccordion sections={product.detailSections} />
+               </div> */}
+            </div>
+         </main>
          <Footer />
       </div>
    );
