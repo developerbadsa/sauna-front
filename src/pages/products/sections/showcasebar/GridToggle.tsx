@@ -3,8 +3,7 @@ import {ToggleGroupItem} from '@/components/ui/toggle-group';
 import cn from '@/helper/cn';
 // import {GridMode} from "./../../index"
 
-import type {GridMode} from './showcase-types';
-import type {GridToggleProps} from './showcase-types';
+import type {GridMode, GridToggleProps} from '../../showcase-types.ts';
 
 
 

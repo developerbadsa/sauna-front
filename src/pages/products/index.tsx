@@ -25,17 +25,15 @@ import {
 } from '@/components/ui/accordion';
 import {Checkbox} from '@/components/ui/checkbox';
 import {ToggleGroup} from '@/components/ui/toggle-group';
-import GridToggle from './GridToggle';
-import ProductCard from "./productcards/productCard";
-import type {GridMode, ShowcaseProduct} from './showcase-types';
+import GridToggle from './sections/showcasebar/GridToggle';
+import ProductCard from './sections/productcards/ProductCard';
+import type {GridMode, ShowcaseProduct} from './showcase-types.ts';
 
 /* ------------------------------------------------------------------ */
 /* types                                                               */
 /* ------------------------------------------------------------------ */
 
 type SortId = 'featured' | 'alphabetical-asc';
-
-
 
 type FiltersState = {
    productTypes: string[];
@@ -171,8 +169,8 @@ const ALL_PRODUCTS: ShowcaseProduct[] = [
 /* ------------------------------------------------------------------ */
 
 function buildFilterOptions(
-   products: Product[],
-   key: keyof Product
+   products: ShowcaseProduct[],
+   key: keyof ShowcaseProduct
 ): FilterOption[] {
    const map = new Map<string, number>();
 
@@ -192,7 +190,10 @@ function buildFilterOptions(
       .sort((a, b) => a.label.localeCompare(b.label));
 }
 
-function applyFilters(products: ShowcaseProduct[], filters: FiltersState): ShowcaseProduct[] {
+function applyFilters(
+   products: ShowcaseProduct[],
+   filters: FiltersState
+): ShowcaseProduct[] {
    return products.filter(p => {
       if (
          filters.productTypes.length > 0 &&
@@ -225,7 +226,10 @@ function applyFilters(products: ShowcaseProduct[], filters: FiltersState): Showc
    });
 }
 
-function applySort(products: ShowcaseProduct[], sort: SortId): ShowcaseProduct[] {
+function applySort(
+   products: ShowcaseProduct[],
+   sort: SortId
+): ShowcaseProduct[] {
    const cloned = [...products];
    if (sort === 'alphabetical-asc') {
       cloned.sort((a, b) => a.name.localeCompare(b.name));
@@ -319,8 +323,6 @@ export default function ProductShowcase() {
    return (
       <div className='min-h-screen  w-full pb-10'>
          <div className='mx-auto  rounded-b-[24px] shadow-lg'>
-
-
             {/* showcase bar */}
             <div className='w-full sauna-your-sauna-gradient rounded-[17px] '>
                <div className='flex  flex-col gap-3  bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5 '>
@@ -330,7 +332,7 @@ export default function ProductShowcase() {
                      </span>
                   </div>
 
-                  <div className=" w-[350px] flex justify-center">
+                  <div className=' w-[350px] flex justify-center'>
                      <ToggleGroup
                         type='single'
                         value={String(gridMode)}
