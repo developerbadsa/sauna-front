@@ -23,8 +23,8 @@ export default function ProductHero({ product }: Props) {
     <section className='grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start'>
       {/* Left: gallery */}
       <div>
-        <div className='overflow-hidden rounded-[32px] bg-neutral-100 shadow-sm'>
-          <div className='aspect-[4/3] w-full'>
+        <div className='overflow-hidden rounded-[32px] bg-neutral-100 shadow-sm '>
+          <div className='aspect-[12/11] w-full'>
             <img
               src={activeImage.src}
               alt={activeImage.alt}
@@ -42,10 +42,10 @@ export default function ProductHero({ product }: Props) {
                   key={img.id}
                   type='button'
                   onClick={() => setActiveIndex(index)}
-                  className={`relative aspect-[4/3] w-24 overflow-hidden rounded-2xl border transition ${
+                  className={`relative aspect-[12/11] w-24 overflow-hidden rounded-2xl border transition ] ${
                     isActive
                       ? 'border-orange-500 shadow-sm'
-                      : 'border-transparent hover:border-neutral-300'
+                      : ' hover:border-neutral-300 border-[#ddd]'
                   }`}
                 >
                   <img
@@ -108,10 +108,10 @@ export default function ProductHero({ product }: Props) {
         >
           Add to Cart
         </Button>
-
+{/* 
         <div className='space-y-1 text-xs text-neutral-500'>
           <p>Secure checkout • Designed for Canadian climate • 10-year structural warranty</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );
