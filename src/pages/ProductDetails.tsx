@@ -21,7 +21,7 @@ const ProductDetails = () => {
          </div>
 
 
-         <main className='relative sauna-container px-4 pb-16 pt-16'>
+         <main className='min-h-screen sauna-container px-4 pb-16 pt-16'>
             <ProductHero product={product} />
 
             <div className='mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1.1fr)]'>

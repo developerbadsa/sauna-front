@@ -46,7 +46,7 @@ export default function MatchingProductsRow({ products }: Props) {
             {products.map((product) => (
               <article
                 key={product.id}
-                className='min-w-[190px] max-w-[200px]'
+                className='min-w-[90px] max-w-[170px]'
               >
                 <div className='relative flex items-center justify-center rounded-[18px] bg-white px-3 py-3 shadow-[0_10px_30px_rgba(15,23,42,0.16)]'>
                   {/* Product image */}
