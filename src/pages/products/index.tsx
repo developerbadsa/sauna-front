@@ -344,14 +344,16 @@ export default function ProductShowcase() {
          <div className='mx-auto  rounded-b-[24px] shadow-lg'>
 
 
-
             {/* showcase bar */}
-            <div className="w-full sauna-your-sauna-gradient rounded-[17px]">
-               <div className='flex flex-col gap-3  bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5'>
-                  <div className='flex items-center gap-3'>
+            <div className='w-full sauna-your-sauna-gradient rounded-[17px] '>
+               <div className='flex  flex-col gap-3  bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5 '>
+                  <div className='flex items-centern gap-3'>
                      <span className='text-xs font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]'>
                         Showcase
                      </span>
+                  </div>
+
+                  <div className=" w-[350px] flex justify-center">
                      <ToggleGroup
                         type='single'
                         value={String(gridMode)}
@@ -359,7 +361,7 @@ export default function ProductShowcase() {
                            if (!val) return;
                            setGridMode(Number(val) as GridMode);
                         }}
-                        className='flex gap-1 rounded-full bg-white p-1'>
+                        className='flex gap-1 rounded-full p-1 w-full justify-between'>
                         <GridToggle value='2' current={gridMode} />
                         <GridToggle value='3' current={gridMode} />
                         <GridToggle value='4' current={gridMode} />
@@ -387,7 +389,6 @@ export default function ProductShowcase() {
                   </div>
                </div>
             </div>
-
 
             {/* breadcrumb */}
             <Breadcrumb className='mb-3 sauna-container bg-white px-6'>
@@ -615,24 +616,24 @@ function GridToggle({value, current}: GridToggleProps) {
          value={value}
          aria-label={`${value} column grid`}
          className={cn(
-            'flex h-7 w-7 items-center justify-center rounded-full border text-[10px] font-semibold',
+            'flex  items-center justify-center rounded-full border text-[30px] font-semibold bg-transparent border-[#E4E4E4]',
             active
-               ? 'border-[#f37021] bg-[#f37021]/10 text-[#f37021]'
-               : 'border-transparent text-gray-500 hover:bg-gray-100'
+               ? 'border-[#f37021]  text-[#f37021]'
+               : 'border-transparent text-gray-500'
          )}>
          {/* simple mini grid icon */}
          <div
             className={cn(
-               'grid gap-[1px]',
+               'grid gap-[2px]',
                numeric === 2 && 'grid-cols-2',
                numeric === 3 && 'grid-cols-3',
                numeric === 4 && 'grid-cols-4',
-               numeric === 6 && 'grid-cols-3'
+               numeric === 6 && 'grid-cols-6'
             )}>
             {Array.from({length: numeric === 6 ? 6 : numeric}).map((_, idx) => (
                <span
                   key={idx}
-                  className='h-[4px] w-[4px] rounded-[1px] bg-current'
+                  className='h-[32px] w-[16px] rounded-[0px] bg-[#E4E4E4]'
                />
             ))}
          </div>
