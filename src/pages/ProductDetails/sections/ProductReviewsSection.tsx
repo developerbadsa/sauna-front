@@ -1,84 +1,87 @@
-import { Star } from 'lucide-react';
-import type { Product } from '../product-types';
+import {Star} from 'lucide-react';
+import type {Product} from '../product-types';
 
 type Props = {
-  product: Product;
+   product: Product;
 };
 
-const RatingStars = ({ value }: { value: number }) => {
-  const rounded = Math.round(value);
-  return (
-    <div className='flex items-center gap-0.5'>
-      {Array.from({ length: 5 }).map((_, index) => {
-        const filled = index < rounded;
-        return (
-          <Star
-            key={index}
-            className={`h-4 w-4 ${
-              filled ? 'fill-orange-400 text-orange-400' : 'text-neutral-300'
-            }`}
-          />
-        );
-      })}
-    </div>
-  );
-};
+// const RatingStars = ({value}: {value: number}) => {
+//    const rounded = Math.round(value);
+//    return (
+//       <div className='flex items-center gap-0.5'>
+//          {Array.from({length: 5}).map((_, index) => {
+//             const filled = index < rounded;
+//             return (
+//                <Star
+//                   key={index}
+//                   className={`h-4 w-4 ${
+//                      filled
+//                         ? 'fill-orange-400 text-orange-400'
+//                         : 'text-neutral-300'
+//                   }`}
+//                />
+//             );
+//          })}
+//       </div>
+//    );
+// };
 
-export default function ProductReviewsSection({ product }: Props) {
-  if (!product.reviews.length) return null;
+export default function ProductReviewsSection({product}: Props) {
+   if (!product.reviews.length) return null;
 
-  const average = product.rating;
-  const reviewCount = product.reviewCount;
+   const average = product.rating;
+   const reviewCount = product.reviewCount;
 
-  return (
-    <section aria-labelledby='reviews-heading' className='space-y-6'>
-      <div className=' p-5 '>
-        <div className='flex flex-wrap items-center justify-between gap-4'>
-          <div className='flex items-center gap-3'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-orange-50'>
-              <Star className='h-6 w-6 fill-orange-400 text-orange-400' />
+   return (
+      <section aria-labelledby='reviews-heading' className='space-y-6'>
+         <div className=' p-5 '>
+            <div className='flex flex-wrap items-center justify-between gap-4'>
+               <div className='flex items-center gap-3'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-orange-50'>
+                     <Star className='h-6 w-6 fill-orange-400 text-orange-400' />
+                  </div>
+                  <div>
+                     <p className='text-sm font-semibold text-neutral-900'>
+                        {average.toFixed(1)} / 5
+                     </p>
+                     <p className='text-xs text-neutral-500'>
+                        Item average · {reviewCount} reviews
+                     </p>
+                  </div>
+               </div>
+
+               <div className='flex flex-wrap gap-2 text-[11px] text-neutral-700'>
+                  <span className='rounded-full bg-neutral-50 px-3 py-1'>
+                     5.0 item average
+                  </span>
+                  <span className='rounded-full bg-neutral-50 px-3 py-1'>
+                     4.9 delivery
+                  </span>
+                  <span className='rounded-full bg-neutral-50 px-3 py-1'>
+                     4.9 customer service
+                  </span>
+                  <span className='rounded-full bg-neutral-50 px-3 py-1'>
+                     98% buyers recommend
+                  </span>
+               </div>
             </div>
-            <div>
-              <p className='text-sm font-semibold text-neutral-900'>
-                {average.toFixed(1)} / 5
-              </p>
-              <p className='text-xs text-neutral-500'>
-                Item average · {reviewCount} reviews
-              </p>
+
+            <div className='mt-4 border-t border-neutral-100 pt-4'>
+               <p className='mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-800'>
+                  Buyer highlights, summarized by AI
+               </p>
+               <div className='flex flex-wrap gap-2 text-[11px]'>
+                  {product.reviewTags.map(tag => (
+                     <span
+                        key={tag.id}
+                        className='rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-neutral-700'>
+                        {tag.label}
+                     </span>
+                  ))}
+               </div>
             </div>
-          </div>
-
-          <div className='flex flex-wrap gap-2 text-[11px] text-neutral-700'>
-            <span className='rounded-full bg-neutral-50 px-3 py-1'>
-              5.0 item average
-            </span>
-            <span className='rounded-full bg-neutral-50 px-3 py-1'>4.9 delivery</span>
-            <span className='rounded-full bg-neutral-50 px-3 py-1'>
-              4.9 customer service
-            </span>
-            <span className='rounded-full bg-neutral-50 px-3 py-1'>
-              98% buyers recommend
-            </span>
-          </div>
-        </div>
-
-        <div className='mt-4 border-t border-neutral-100 pt-4'>
-          <p className='mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-800'>
-            Buyer highlights, summarized by AI
-          </p>
-          <div className='flex flex-wrap gap-2 text-[11px]'>
-            {product.reviewTags.map((tag) => (
-              <span
-                key={tag.id}
-                className='rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-neutral-700'
-              >
-                {tag.label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
+         </div>
+         {/* 
       <div className='space-y-4'>
         {product.reviews.map((review) => (
           <article
@@ -116,7 +119,7 @@ export default function ProductReviewsSection({ product }: Props) {
             )}
           </article>
         ))}
-      </div>
-    </section>
-  );
+      </div> */}
+      </section>
+   );
 }
