@@ -61,21 +61,19 @@ export default function ProductHero({ product }: Props) {
       </div>
 
       {/* Right: info */}
-      <div className='space-y-5 rounded-[32px] bg-white/80 p-6 shadow-sm backdrop-blur-sm lg:p-8'>
-        <div className='space-y-2'>
-          <p className='text-xs font-semibold uppercase tracking-[0.14em] text-orange-500'>
-            Outdoor Barrel Sauna
-          </p>
-          <h1 className='text-2xl font-semibold leading-tight text-neutral-900 lg:text-3xl'>
+      <div className='space-y-6   p-6  backdrop-blur-sm lg:p-8'>
+        <div className='space-y-4'>
+ 
+          <h1 className='text-2xl font-bold leading-8 tracking-[0.001rem] text-[#403D39] lg:text-[30px]'>
             {product.name}
           </h1>
 
           <div className='flex flex-wrap items-center gap-3 text-sm'>
-            <span className='font-medium text-emerald-600'>In Stock</span>
+            <span className='font-medium text-[#EA7F15]'>In Stock</span>
             <span className='text-xs text-neutral-500'>{product.stockMessage}</span>
           </div>
 
-          <div className='flex flex-wrap items-end justify_between gap-4 pt-1'>
+          <div className='flex flex-wrap items-end justify_between gap-4 pt-4'>
             <div>
               <div className='flex items-baseline gap-1'>
                 <span className='text-3xl font-semibold text-neutral-900'>
@@ -85,13 +83,13 @@ export default function ProductHero({ product }: Props) {
                   {product.currency.toLowerCase()}
                 </span>
               </div>
-              <div className='mt-1 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700'>
-                <span className='inline-block h-1.5 w-1.5 rounded-full bg-emerald-500' />
+              <div className='mt-1 inline-flex items-center gap-2 rounded-full text-[#403D39]'>
+      
                 {product.shippingBadge}
               </div>
             </div>
 
-            <div className='flex items-center gap-2 text-sm'>
+            {/* <div className='flex items-center gap-2 text-sm'>
               <div className='flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1'>
                 <Star className='h-4 w-4 fill-orange-400 text-orange-400' />
                 <span className='font-semibold'>{product.rating.toFixed(1)}</span>
@@ -100,13 +98,13 @@ export default function ProductHero({ product }: Props) {
               <span className='text-xs text-neutral-500'>
                 ({product.reviewCount} reviews)
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
 
         <Button
           type='button'
-          className='h-12 w-full rounded-full text-sm font-semibold uppercase tracking-[0.16em]'
+          className='h-12 w-full rounded-sm text-sm font-semibold uppercase tracking-[0.16em] bg-[#EA7F15]'
         >
           Add to Cart
         </Button>
