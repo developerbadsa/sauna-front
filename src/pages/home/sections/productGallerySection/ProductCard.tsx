@@ -1,4 +1,4 @@
-import type { Product } from "./productGalleryData";
+import type { Product } from "./productGalleryData.ts";
 
 type ProductCardProps = {
   product: Product;

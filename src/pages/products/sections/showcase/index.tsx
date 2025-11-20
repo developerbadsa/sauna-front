@@ -1,9 +1,7 @@
 import {useMemo, useState} from 'react';
-import {Star} from 'lucide-react';
 
+import cn from '@/helper/cn';
 import {Button} from '@/components/ui/button';
-import {Card, CardContent} from '@/components/ui/card';
-import {Badge} from '@/components/ui/badge';
 import {
    Breadcrumb,
    BreadcrumbItem,
@@ -26,39 +24,18 @@ import {
    AccordionTrigger,
 } from '@/components/ui/accordion';
 import {Checkbox} from '@/components/ui/checkbox';
-import {ToggleGroup, ToggleGroupItem} from '@/components/ui/toggle-group';
-
-/* ------------------------------------------------------------------ */
-/* small helper                                                        */
-/* ------------------------------------------------------------------ */
-function cn(...classes: Array<string | undefined | null | false>) {
-   return classes.filter(Boolean).join(' ');
-}
+import {ToggleGroup} from '@/components/ui/toggle-group';
+import GridToggle from './GridToggle';
+import ProductCard from "./productcards/productCard";
+import type {GridMode, ShowcaseProduct} from './showcase-types';
 
 /* ------------------------------------------------------------------ */
 /* types                                                               */
 /* ------------------------------------------------------------------ */
 
-type GridMode = 2 | 3 | 4 | 6;
 type SortId = 'featured' | 'alphabetical-asc';
 
-type Product = {
-   id: string;
-   name: string;
-   slug: string;
-   productType: string;
-   woodType: string;
-   brand: string;
-   heatingType: string;
-   seatingCapacity: string;
-   price: number;
-   currency: 'CAD';
-   badge?: string;
-   extendedInfo?: string;
-   rating?: number;
-   reviewsCount?: number;
-   thumbnailUrl: string;
-};
+
 
 type FiltersState = {
    productTypes: string[];
@@ -78,7 +55,7 @@ type FilterOption = {
 /* dummy data                                                          */
 /* ------------------------------------------------------------------ */
 
-const ALL_PRODUCTS: Product[] = [
+const ALL_PRODUCTS: ShowcaseProduct[] = [
    {
       id: '1',
       name: 'Modern Sauna – Valhalla',
@@ -215,7 +192,7 @@ function buildFilterOptions(
       .sort((a, b) => a.label.localeCompare(b.label));
 }
 
-function applyFilters(products: Product[], filters: FiltersState): Product[] {
+function applyFilters(products: ShowcaseProduct[], filters: FiltersState): ShowcaseProduct[] {
    return products.filter(p => {
       if (
          filters.productTypes.length > 0 &&
@@ -248,7 +225,7 @@ function applyFilters(products: Product[], filters: FiltersState): Product[] {
    });
 }
 
-function applySort(products: Product[], sort: SortId): Product[] {
+function applySort(products: ShowcaseProduct[], sort: SortId): ShowcaseProduct[] {
    const cloned = [...products];
    if (sort === 'alphabetical-asc') {
       cloned.sort((a, b) => a.name.localeCompare(b.name));
@@ -595,142 +572,5 @@ function FilterSection({
             </div>
          </AccordionContent>
       </AccordionItem>
-   );
-}
-
-/* ------------------------------------------------------------------ */
-/* grid toggle                                                         */
-/* ------------------------------------------------------------------ */
-
-type GridToggleProps = {
-   value: string; // "2" | "3" | "4" | "6"
-   current: GridMode;
-};
-
-function GridToggle({value, current}: GridToggleProps) {
-   const numeric = Number(value) as GridMode;
-   const active = current === numeric;
-
-   return (
-      <ToggleGroupItem
-         value={value}
-         aria-label={`${value} column grid`}
-         className={cn(
-            'flex  items-center justify-center rounded-full border text-[30px] font-semibold bg-transparent border-[#E4E4E4]',
-            active
-               ? 'border-[#f37021]  text-[#f37021]'
-               : 'border-transparent text-gray-500'
-         )}>
-         {/* simple mini grid icon */}
-         <div
-            className={cn(
-               'grid gap-[2px]',
-               numeric === 2 && 'grid-cols-2',
-               numeric === 3 && 'grid-cols-3',
-               numeric === 4 && 'grid-cols-4',
-               numeric === 6 && 'grid-cols-6'
-            )}>
-            {Array.from({length: numeric === 6 ? 6 : numeric}).map((_, idx) => (
-               <span
-                  key={idx}
-                  className='h-[32px] w-[16px] rounded-[0px] bg-[#E4E4E4]'
-               />
-            ))}
-         </div>
-      </ToggleGroupItem>
-   );
-}
-
-/* ------------------------------------------------------------------ */
-/* product card                                                        */
-/* ------------------------------------------------------------------ */
-
-type ProductCardProps = {
-   product: Product;
-};
-
-function ProductCard({product}: ProductCardProps) {
-   const {
-      name,
-      price,
-      currency,
-      badge,
-      extendedInfo,
-      rating = 0,
-      reviewsCount = 0,
-      thumbnailUrl,
-   } = product;
-
-   return (
-      <Card className='group flex flex-col overflow-hidden border-0 bg-[#f5f3f0] shadow-none transition-all hover:-translate-y-[2px] hover:shadow-md'>
-         {/* top badge */}
-         {badge && (
-            <div className='bg-[#555] px-3 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white'>
-               {badge}
-            </div>
-         )}
-
-         <CardContent className='flex flex-1 flex-col px-4 pb-4 pt-3'>
-            {/* image */}
-            <div className='mb-3 flex items-center justify-center'>
-               <div className='relative inline-flex aspect-[4/3] w-full max-w-[220px] items-center justify-center overflow-hidden rounded-full bg-white shadow-md'>
-                  <img
-                     src={thumbnailUrl}
-                     alt={name}
-                     className='h-full w-full object-cover'
-                  />
-               </div>
-            </div>
-
-            {/* name */}
-            <div className='mb-1 min-h-[40px] text-sm font-semibold text-[#222]'>
-               {name}
-            </div>
-
-            {/* price */}
-            <div className='mb-1 text-sm font-semibold text-[#222]'>
-               {price.toLocaleString('en-CA', {
-                  style: 'currency',
-                  currency,
-                  maximumFractionDigits: 0,
-               })}
-            </div>
-            <div className='mb-2 text-[11px] uppercase tracking-[0.16em] text-gray-500'>
-               Estimated value
-            </div>
-
-            {/* small info */}
-            {extendedInfo && (
-               <Badge
-                  variant='outline'
-                  className='mb-3 w-fit border-gray-300 bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-gray-700'>
-                  {extendedInfo}
-               </Badge>
-            )}
-
-            {/* rating */}
-            <div className='mt-auto flex items-center gap-1 text-[11px] text-gray-600'>
-               <div className='flex items-center gap-[2px]'>
-                  {Array.from({length: 5}).map((_, idx) => {
-                     const filled = idx < Math.round(rating);
-                     return (
-                        <Star
-                           key={idx}
-                           className={cn(
-                              'h-3 w-3',
-                              filled
-                                 ? 'fill-[#FF8A00] text-[#FF8A00]'
-                                 : 'text-gray-300'
-                           )}
-                        />
-                     );
-                  })}
-               </div>
-               <span className='ml-1'>
-                  {rating.toFixed(1)} ({reviewsCount})
-               </span>
-            </div>
-         </CardContent>
-      </Card>
    );
 }
