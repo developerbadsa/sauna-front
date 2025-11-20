@@ -1,7 +1,4 @@
-
-
 import {useMemo, useState} from "react";
-
 import cn from "@/helper/cn";
 import {Button} from "@/components/ui/button";
 import {
@@ -46,9 +43,6 @@ import type {
   FilterOption,
 } from "./showcase-types.ts";
 
-/* ------------------------------------------------------------------ */
-/* main page                                                           */
-/* ------------------------------------------------------------------ */
 
 export default function ProductShowcase() {
   const [sort, setSort] = useState<SortId>("featured");
@@ -119,12 +113,12 @@ export default function ProductShowcase() {
         <div className="w-full sauna-your-sauna-gradient rounded-[17px] ">
           <div className="flex flex-col gap-3 bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5 ">
             <div className="flex items-centern gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]">
+              <span className="text-[15px] font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]">
                 Showcase
               </span>
             </div>
 
-            <div className="w-[350px] flex justify-center">
+            <div className="w-[450px] flex justify-center">
               <ToggleGroup
                 type="single"
                 value={String(gridMode)}
@@ -132,7 +126,7 @@ export default function ProductShowcase() {
                   if (!val) return;
                   setGridMode(Number(val) as GridMode);
                 }}
-                className="flex gap-1 rounded-full p-1 w-full justify-between"
+                className="flex gap-1 rounded-none p-1 w-full justify-between"
               >
                 <GridToggle value="2" current={gridMode} />
                 <GridToggle value="3" current={gridMode} />
@@ -142,9 +136,9 @@ export default function ProductShowcase() {
             </div>
 
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
-              <div className="hidden text-[11px] md:block">
+              {/* <div className="hidden text-[11px] md:block">
                 Showing {showingCount} of {filtered.length} items
-              </div>
+              </div> */}
               <Select value={sort} onValueChange={val => setSort(val as SortId)}>
                 <SelectTrigger className="h-9 w-[210px] rounded-full border border-[#f37021]/70 bg-[#f37021] text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
                   <SelectValue placeholder="Featured" />
