@@ -42,6 +42,7 @@ import type {
    FiltersState,
    FilterOption,
 } from './showcase-types.ts';
+import SectionBar from './../../components/SectionBar';
 
 export default function ProductShowcase() {
    const [sort, setSort] = useState<SortId>('featured');
@@ -109,53 +110,51 @@ export default function ProductShowcase() {
       <div className=' w-full '>
          <div className='mx-auto rounded-b-[24px] shadow-lg'>
             {/* showcase bar */}
-            <div className='w-full sauna-your-sauna-gradient rounded-[17px] '>
-               <div className='flex flex-col gap-3 bg-[#403D39] sauna-container md:flex-row md:items-center md:justify-between py-10 px-5 '>
-                  <div className='flex items-centern gap-3'>
-                     <span className='text-[15px] font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]'>
-                        Showcase
-                     </span>
-                  </div>
+            <SectionBar>
+               <div className='flex items-centern gap-3'>
+                  <span className='text-[15px] font-semibold uppercase tracking-[0.16em] text-[#EEEEEE]'>
+                     Showcase
+                  </span>
+               </div>
 
-                  <div className='w-[450px] flex justify-center'>
-                     <ToggleGroup
-                        type='single'
-                        value={String(gridMode)}
-                        onValueChange={val => {
-                           if (!val) return;
-                           setGridMode(Number(val) as GridMode);
-                        }}
-                        className='flex gap-1 rounded-none p-1 w-full justify-between'>
-                        <GridToggle value='2' current={gridMode} />
-                        <GridToggle value='3' current={gridMode} />
-                        <GridToggle value='4' current={gridMode} />
-                        <GridToggle value='6' current={gridMode} />
-                     </ToggleGroup>
-                  </div>
+               <div className='w-[450px] flex justify-center'>
+                  <ToggleGroup
+                     type='single'
+                     value={String(gridMode)}
+                     onValueChange={val => {
+                        if (!val) return;
+                        setGridMode(Number(val) as GridMode);
+                     }}
+                     className='flex gap-1 rounded-none p-1 w-full justify-between'>
+                     <GridToggle value='2' current={gridMode} />
+                     <GridToggle value='3' current={gridMode} />
+                     <GridToggle value='4' current={gridMode} />
+                     <GridToggle value='6' current={gridMode} />
+                  </ToggleGroup>
+               </div>
 
-                  <div className='flex items-center gap-3 text-xs text-muted-foreground'>
-                     {/* <div className="hidden text-[11px] md:block">
+               <div className='flex items-center gap-3 text-xs text-muted-foreground'>
+                  {/* <div className="hidden text-[11px] md:block">
                 Showing {showingCount} of {filtered.length} items
               </div> */}
-                     <Select
-                        value={sort}
-                        onValueChange={val => setSort(val as SortId)}>
-                        <SelectTrigger className='h-9 w-[210px]  border border-[#EEEEEE]  bg-transparent text-[11px] font-semibold uppercase tracking-[0.12em] text-white rounded-none'>
-                           <SelectValue placeholder='Alphabetically, A-Z' />
-                        </SelectTrigger>
+                  <Select
+                     value={sort}
+                     onValueChange={val => setSort(val as SortId)}>
+                     <SelectTrigger className='h-9 w-[210px]  border border-[#EEEEEE]  bg-transparent text-[11px] font-semibold uppercase tracking-[0.12em] text-white rounded-none'>
+                        <SelectValue placeholder='Alphabetically, A-Z' />
+                     </SelectTrigger>
 
-                        <SelectContent>
-                           <SelectItem value='featured'>
-                              Alphabetically, A–Z
-                           </SelectItem>
-                           <SelectItem value='alphabetical-asc'>
-                              Alphabetically, A–Z
-                           </SelectItem>
-                        </SelectContent>
-                     </Select>
-                  </div>
+                     <SelectContent>
+                        <SelectItem value='featured'>
+                           Alphabetically, A–Z
+                        </SelectItem>
+                        <SelectItem value='alphabetical-asc'>
+                           Alphabetically, A–Z
+                        </SelectItem>
+                     </SelectContent>
+                  </Select>
                </div>
-            </div>
+            </SectionBar>
 
             {/* breadcrumb */}
             <Breadcrumb className='mb-3 sauna-container bg-white px-6 py-8 text-[12px]'>
