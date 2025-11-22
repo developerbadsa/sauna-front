@@ -4,7 +4,7 @@ import HomePage from '@/pages/HomePage';
 import ProductDetails from '@/pages/ProductDetails';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ProductPage from '@/pages/ProductPage';
-// import TermsAndConditonPage from './../pages/TermsAndConditonPage';s
+import TermsAndConditonPage from './../pages/TermsAndConditonPage';
 import CancellationPolicy from '@/pages/CancellationPolicy/index';
 
 export const router = createBrowserRouter([
@@ -24,10 +24,10 @@ export const router = createBrowserRouter([
             path: 'products-details',
             Component: ProductDetails,
          },
-         // {
-         //    path: 'terms-and-condition',
-         //    Component: TermsAndConditonPage,
-         // },
+         {
+            path: 'terms-and-condition',
+            Component: TermsAndConditonPage,
+         },
              {
             path: 'cancellation-policy',
             Component: CancellationPolicy,
