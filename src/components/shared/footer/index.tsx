@@ -32,22 +32,6 @@ export default function Footer() {
       );
    }
 
-   function SocialIcon({
-      children,
-      label,
-   }: {
-      children: React.ReactNode;
-      label: string;
-   }) {
-      return (
-         <button
-            type='button'
-            aria-label={label}
-            className='flex h-8 w-8 items-center justify-center rounded-full bg-[#45413E] text-white/90 shadow-[0_10px_24px_rgba(0,0,0,0.6)]'>
-            {children}
-         </button>
-      );
-   }
 
    const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       {
