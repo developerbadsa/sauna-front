@@ -3,6 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Footer from '../../../../components/shared/footer';
 import SectionTitle from '../../../../components/shared/SectionTitle';
+import OrangeBorder from './../../../../components/OrangeBorder/index';
 
 type Review = {
    id: string;
@@ -203,8 +204,8 @@ export default function OurReviewSection() {
                         <span className='h-[1px] w-10' />
                      </div>
 
-                     {/* small orange line under text (with grey line behind via CSS) */}
-                     <div className='relative z-10 border-custom mx-auto h-[2px] w-[87%] -mt-[6px] bg-[#E57B15]' />
+                     {/*border*/}
+                     <OrangeBorder/>
                   </div>
                </div>
                {/* FULL-WIDTH REVIEW CARDS SLIDER */}
