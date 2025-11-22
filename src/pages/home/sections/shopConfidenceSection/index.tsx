@@ -1,7 +1,7 @@
 import supportIcon from './../../../../assets/icons/Bento_Grid (1).svg';
 import styleIcon from './../../../../assets/icons/Group 52 (1).svg';
 import warrantyIcon from './../../../../assets/icons/Group 59.png';
-import SectionTitle from './../../../../components/shared/sectionTitle';
+import SectionTitle from '../../../../components/shared/SectionTitle';
 import ShopConfidenceCard from './ShopConfidenceCard';
 import bgPattern from './../../../../assets/Clip path group.png';
 

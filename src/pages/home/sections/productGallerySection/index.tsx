@@ -7,7 +7,7 @@ import {
    type SubCategoryId,
 } from './productGalleryData';
 import {ProductCard} from './ProductCard';
-import SectionTitle from './../../../../components/shared/sectionTitle';
+import SectionTitle from '../../../../components/shared/SectionTitle';
 
 export default function ProductGallerySection() {
    const [mainTab, setMainTab] = useState<MainCategoryId>('SAUNAS');

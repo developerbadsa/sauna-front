@@ -181,6 +181,9 @@ body {
    margin: 0 auto;
    max-width: 85%;
 }
+.sauna-bg {
+   background: #403D39;
+}
 
 .sauna-your-sauna-gradient {
    background: #ea7f15;

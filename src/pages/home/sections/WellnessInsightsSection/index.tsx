@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import SectionTitle from './../../../../components/shared/sectionTitle';
+import SectionTitle from '../../../../components/shared/SectionTitle';
 import cardImg1 from './../../../../assets/Mask group (11).png';
 import cardImg2 from './../../../../assets/Mask group (12).png';
 import cardImg3 from './../../../../assets/Mask group (13).png';

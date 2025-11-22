@@ -5,7 +5,7 @@ import coldPlungeImg from './../../../../assets/Infrared Saunas 1.png';
 import heaterImg from './../../../../assets/Infrared Saunas 1.png';
 import accessoriesImg from './../../../../assets/Infrared Saunas 1.png';
 import bgPattern from './../../../../assets/Clip path group.png';
-import SectionTitle from './../../../../components/shared/sectionTitle';
+import SectionTitle from '../../../../components/shared/SectionTitle';
 
 type Category = {
    id: string;

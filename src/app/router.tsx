@@ -3,7 +3,8 @@ import AppLayout from './AppLayout';
 import HomePage from '../pages/HomePage';
 import ProductDetails from '../pages/ProductDetails';
 import NotFoundPage from '../pages/NotFoundPage';
-import ProductPage from './../pages/ProductPage';  
+import ProductPage from './../pages/ProductPage';
+// import TermsAndConditonPage from './../pages/TermsAndConditonPage';
 
 export const router = createBrowserRouter([
    {
@@ -14,14 +15,18 @@ export const router = createBrowserRouter([
             index: true,
             Component: HomePage,
          },
-           {
+         {
             path: 'products',
             Component: ProductPage,
          },
-                    {
+         {
             path: 'products-details',
             Component: ProductDetails,
          },
+         // {
+         //    path: 'terms-and-condition',
+         //    Component: TermsAndConditonPage,
+         // },
          {
             path: '*',
             Component: NotFoundPage,
