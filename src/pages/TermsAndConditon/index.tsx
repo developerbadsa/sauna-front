@@ -3,8 +3,8 @@ import {SaunaHero} from './../../components/hero/SaunaHero';
 import {PhoneIcon} from '@/components/ui/icons/akar-icons-phone';
 import {EnvelopeIcon} from '@/components/ui/icons/akar-icons-envelope.tsx';
 import {ClockIcon} from '@/components/ui/icons/akar-icons-clock.tsx';
-import SectionTitle from './../../components/shared/SectionTitle';
-import Heading from './../../components/PageContent/Heading/index';
+import SectionTitle from '@/components/shared/SectionTitle';
+import Heading from '@/components/PageContent/Heading/index';
 import Description from './../../components/PageContent/Description/index';
 import Footer from '@/components/shared/footer';
 

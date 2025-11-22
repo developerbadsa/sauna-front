@@ -1,5 +1,5 @@
 import {useMemo, useState} from 'react';
-import {Star, Sparkles, ChevronDown} from 'lucide-react';
+import {Star, ChevronDown} from 'lucide-react';
 import type {Product} from '../product-types';
 import OrangeBorder from './../../../components/OrangeBorder';
 
@@ -163,7 +163,7 @@ export default function ProductReviewsSection({product}: Props) {
                   <span>
                      <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        xmlns:xlink='http://www.w3.org/1999/xlink'
+                        xmlnsXlink='http://www.w3.org/1999/xlink'
                         width='9'
                         height='9'
                         viewBox='0 0 9 9'
@@ -177,7 +177,7 @@ export default function ProductReviewsSection({product}: Props) {
                      </svg>
                      <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        xmlns:xlink='http://www.w3.org/1999/xlink'
+                        xmlnsXlink='http://www.w3.org/1999/xlink'
                         width='15'
                         height='15'
                         viewBox='0 0 15 15'

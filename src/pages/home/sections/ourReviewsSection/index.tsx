@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import Footer from '../../../../components/shared/footer';
-import SectionTitle from '../../../../components/shared/SectionTitle';
-import OrangeBorder from './../../../../components/OrangeBorder/index';
+import Footer from '@/components/shared/footer';
+import SectionTitle from '@/components/shared/SectionTitle';
+import OrangeBorder from '@/components/OrangeBorder/index';
 
 type Review = {
    id: string;

@@ -52,7 +52,6 @@ export function SaunaHero({
    iconElemets,
    boxoutlined = true,
    bottomzero = false,
-   mainheight=0,
    //  headingBlock = false,
    //  showparagraphandexplore = false,
    //  showcenterImg = false,

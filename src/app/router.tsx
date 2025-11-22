@@ -4,7 +4,7 @@ import HomePage from '../pages/HomePage';
 import ProductDetails from '../pages/ProductDetails';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProductPage from './../pages/ProductPage';
-// import TermsAndConditonPage from './../pages/TermsAndConditonPage';
+// import TermsAndConditonPage from './../pages/TermsAndConditonPage';s
 
 export const router = createBrowserRouter([
    {

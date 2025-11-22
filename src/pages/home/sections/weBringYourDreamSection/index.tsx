@@ -1,5 +1,5 @@
-import dreamPoster from './../../../../assets/Generated Image November 11, 2025 - 3_31PM (1) 1.png'; // change path/name to your image
-import SectionTitle from '../../../../components/shared/SectionTitle';
+import dreamPoster from '@/assets/Generated Image November 11, 2025 - 3_31PM (1) 1.png'; // change path/name to your image
+import SectionTitle from '@/components/shared/SectionTitle';
 
 type WeBringYourDreamSectionProps = {
    onPlay?: () => void;
