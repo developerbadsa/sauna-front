@@ -1,9 +1,10 @@
 import supportIcon from './../../../../assets/icons/Bento_Grid (1).svg';
 import styleIcon from './../../../../assets/icons/Group 52 (1).svg';
 import warrantyIcon from './../../../../assets/icons/Group 59.png';
-import SectionTitle from '@/components/shared/SectionTitle';
+// import SectionTitle from '@/components/shared/SectionTitle';
 import ShopConfidenceCard from './ShopConfidenceCard';
 import bgPattern from './../../../../assets/Clip path group.png';
+import SectionTitle from '@/components/shared/SectionTitle';
 
 export type ConfidenceItem = {
    id: string;
