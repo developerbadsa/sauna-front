@@ -1,6 +1,9 @@
 import React from 'react';
-import {ArrowRight, Facebook, Instagram, Youtube, Linkedin} from 'lucide-react';
-import forestBg from './../../../assets/Mask group (9).png';
+import {ArrowRight} from 'lucide-react';
+import forestBg from '@/assets/footerbg.png';
+import saunaLogo from '@/assets/suana.png';
+import {ArrowBtn} from './../../../assets/icons/svg/arrowbtn';
+import { FooterSocialSection } from './FooterSocialSection';
 
 export type FooterLinkGroup = {
    title: string;
@@ -10,11 +13,11 @@ export type FooterLinkGroup = {
 export default function Footer() {
    function FooterLinks({group}: {group: FooterLinkGroup}) {
       return (
-         <div>
-            <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+         <div className=' w-full'>
+            <p className='text-[22px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
                {group.title}
             </p>
-            <ul className='mt-3 space-y-1.5'>
+            <ul className='mt-3 space-y-[2px]'>
                {group.links.map(link => (
                   <li key={link.label}>
                      <a
@@ -50,24 +53,28 @@ export default function Footer() {
       {
          title: 'ABOUT',
          links: [
-            {label: 'About Us', href: '#'},
-            {label: 'Our Process', href: '#'},
-            {label: 'Projects', href: '#'},
-            {label: 'Contact', href: '#'},
+            {label: 'contact', href: '/contact'},
+            {label: 'Frequently Asked Questions', href: '/faq'},
+            {label: 'About Us', href: '/about'},
+            {label: 'Shipping & Returns', href: '/cancellation-policy'},
+            {label: 'Payment methods', href: '/payment-methods'},
+            {label: 'imprint', href: '#'},
+            {label: 'Terms and Conditions', href: '/terms-and-condition'},
+            {label: 'Privacy Policy', href: '/terms-and-condition'},
          ],
       },
       {
          title: 'MY ACCOUNT',
          links: [
-            {label: 'Dashboard', href: '#'},
-            {label: 'Orders', href: '#'},
-            {label: 'Wishlist', href: '#'},
-            {label: 'Support', href: '#'},
+            {label: 'Register', href: '#'},
+            {label: 'My order', href: '#'},
          ],
       },
    ];
 
-   const PAYMENT_METHODS = ['Visa', 'MasterCard', 'Amex', 'PayPal'];
+
+
+   // const PAYMENT_METHODS = ['Visa', 'MasterCard', 'Amex', 'PayPal'];
 
    return (
       <div>
@@ -80,62 +87,39 @@ export default function Footer() {
                   alt='Sauna in landscaped garden'
                   className='block w-full h-full object-cover'
                />
-               <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/5' />
+               <div className='absolute inset-0 ' />
 
                <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center'>
-                  <p className='text-[12px] sd:text-[13px] font-semibold tracking-[0.35em] text-white/80 uppercase'>
-                     Want a sauna for your home?
-                  </p>
-                  <h3 className='mt-3 max-w-[520px] text-[22px] sd:text-[26px] font-bold uppercase tracking-[0.18em] text-white'>
-                     Contact us for a free consultation!
+                  <h3 className='mt-3 max-w-[720px] text-[36px] font-bold uppercase tracking-[0.07em] text-white'>
+                     WANT A SAUNA FOR YOUR HOME? CONTACT US FOR A FREE
+                     CONSULTATION!
                   </h3>
 
                   <div className='mt-7 flex flex-wrap items-center justify-center gap-4'>
-                     <button className='inline-flex items-center gap-3 rounded-full bg-[#403D39] px-6 sd:px-7 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F4F1EA] shadow-[0_12px_30px_rgba(0,0,0,0.55)]'>
+                     <button className='inline-flex items-center rounded-full bg-[#403D39]  px-3 pl-7 py-1 text-[15px] font-bold uppercase tracking-[0.2em] text-[#F4F1EA]  shadow-[0_12px_30px_rgba(0,0,0,0.55)] gap-9'>
                         <span>Contact us</span>
-                        <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#F28A1F]'>
-                           <ArrowRight className='h-3 w-3 text-white' />
-                        </span>
+                        <ArrowBtn className=' text-white' />
                      </button>
                   </div>
                </div>
             </div>
 
             {/* dark footer panel */}
-            <div className='relative mx-auto sauna-container -mt-10 rounded-b-[32px] bg-[#3D3A37] px-6 sd:px-10 py-8 sd:py-9 shadow-[0_24px_60px_rgba(0,0,0,0.75)] border border-white/5'>
+            <div className='relative mx-auto sauna-container h-[440px] -mt-10 rounded-b-[32px] sauna-bg px-6 sd:px-10 py-8 sd:py-9 shadow-[0_24px_60px_rgba(0,0,0,0.15)] border border-white/5 flex flex-col justify-between'>
                <div className='flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between'>
                   {/* brand + socials */}
-                  <div className='max-w-[260px]'>
+                  <div className='max-w-[360px]'>
                      <div className='text-[22px] sd:text-[24px] font-extrabold tracking-[0.45em] uppercase text-white'>
-                        Sauna
+                        <img src={saunaLogo} alt='' />
                      </div>
                      <p className='mt-3 text-[12px] leading-relaxed text-[#E4DFD8]'>
-                        Bespoke indoor and outdoor saunas that blend
-                        Scandinavian tradition with modern craftsmanship and
-                        technology.
+                        Engear blends style and function to create thoughtful
+                        essentials for everyday life. make it more short
                      </p>
-
-                     <p className='mt-6 text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
-                        Follow us on social
-                     </p>
-                     <div className='mt-3 flex items-center gap-3'>
-                        <SocialIcon label='Facebook'>
-                           <Facebook className='h-3.5 w-3.5' />
-                        </SocialIcon>
-                        <SocialIcon label='Instagram'>
-                           <Instagram className='h-3.5 w-3.5' />
-                        </SocialIcon>
-                        <SocialIcon label='YouTube'>
-                           <Youtube className='h-3.5 w-3.5' />
-                        </SocialIcon>
-                        <SocialIcon label='LinkedIn'>
-                           <Linkedin className='h-3.5 w-3.5' />
-                        </SocialIcon>
-                     </div>
                   </div>
 
                   {/* links + newsletter */}
-                  <div className='flex flex-1 flex-col gap-8 md:flex-row md:gap-10'>
+                  <div className='flex flex-1 flex flex-col gap-8 md:flex-row md:gap-10'>
                      <div className='flex flex-1 gap-10'>
                         {FOOTER_LINK_GROUPS.map(group => (
                            <FooterLinks key={group.title} group={group} />
@@ -167,28 +151,37 @@ export default function Footer() {
                         </form>
                      </div>
                   </div>
+               </div>
+
+               <div className=' flex w-full justify-between -mt-12'>
+                  {/* social medias */}
+                   <FooterSocialSection/>
 
                   {/* payments */}
-                  <div className='w-full lg:w-[220px]'>
-                     <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+                  <div className='flex justify-end flex-col'>
+                     <p className='text-[22px] font-semibold tracking-[0.24em] text-[#fff] uppercase'>
                         Accepted payment methods
                      </p>
                      <div className='mt-3 flex flex-wrap gap-2'>
-                        {PAYMENT_METHODS.map(method => (
+                        {/* {PAYMENT_METHODS.map(method => (
                            <div
                               key={method}
                               className='rounded-full bg-[#45413E] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#F4EDE6]'>
                               {method}
                            </div>
-                        ))}
+                        ))} */}
+                        <img
+                           src='https://i.ibb.co.com/LDHrhSzz/Group-364.png'
+                           alt=''
+                        />
                      </div>
                   </div>
                </div>
             </div>
 
             {/* copyright */}
-            <p className='mt-7 text-center text-[10px] sd:text-[11px] font-medium tracking-[0.28em] uppercase text-white/85'>
-               © Copyright Reserved by Sauna.com
+            <p className='mt-7 text-center text-[12px] font-medium tracking-[0.28em] uppercase text-white pb-12'>
+               © Copyright Reserved by Suana.Com
             </p>
          </div>
       </div>

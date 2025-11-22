@@ -188,9 +188,7 @@ body {
 .sauna-your-sauna-gradient {
    background: #ea7f15;
    background: linear-gradient(
-      138deg,
-      rgba(234, 127, 21, 0.8) 43%,
-      rgb(152, 47, 5) 100%
+      138deg,  #E87D14,#BC5D0E
    );
 }
 
