@@ -8,7 +8,7 @@ import Heading from '@/components/PageContent/Heading/index';
 import Description from '@/components/PageContent/Description/index';
 import Footer from '@/components/shared/footer';
 
-export default function TermsAndConditon() {
+export default function CancellationPolicy() {
    const contactItems = [
       {
          name: 'Phone',
@@ -112,7 +112,7 @@ export default function TermsAndConditon() {
          />
          <SectionBar>
             <SectionTitle
-               title='Terms & Conditions'
+               title='Cancellation Policy'
                style='tracking-[32px]  font-light !leading-20'
             />
          </SectionBar>
@@ -120,80 +120,35 @@ export default function TermsAndConditon() {
          <div className='sauna-container px-22 py-16  text-center bg-white'>
             <Description>
                <p>
-                  Welcome to [Your Brand Name]. These Terms & Conditions govern
-                  your use of our website, services, and products. By accessing
-                  or using our site, you agree to follow all terms listed below.
-                  Please read them carefully.
+                  Customers may request to cancel an order within 12 hours of
+                  purchase, and we will gladly process a full refund. After the
+                  12-hour window has passed, your order will likely have entered
+                  the fulfillment or shipping process and can no longer be
+                  canceled or modified — except for updates to the shipping
+                  address.
+               </p>
+               <p>
+                  We can still update your shipping address before your order
+                  ships, so please contact us as soon as possible if an address
+                  change is needed.
                </p>
 
-               <Heading heading='INTRODUCTION' />
-               <p>
-                  By using our website, purchasing products, or accessing any
-                  content provided by [Your Brand Name], you accept and agree to
-                  be bound by these Terms & Conditions. If you do not agree,
-                  please discontinue use immediately.
-               </p>
+               <Heading heading='Contact Information' />
 
-               <p>
-                  Lorem ipsum dolor sit amet consectetur. Aenean est turpis eu
-                  eget at enim sollicitudin pharetra eu. Diam est sem amet
-                  ultricies ut ultricies porta. Eget nisi gravida semper et
-                  varius penatibus pellentesque elementum dictum. Aliquet id
-                  nisi in eget ac sit. Turpis vitae rutrum lacinia eu dui
-                  egestas eu ullamcorper. Massa pharetra varius nibh vel arcu
-                  arcu. Maecenas mi tristique lacus nunc id aliquet metus. Nunc
-                  vitae fames elementum non quam arcu pretium vel. Purus commodo
-                  cursus sit interdum. Dolor egestas a nascetur congue pretium
-                  etiam nibh sed. Congue enim porttitor dolor faucibus tristique
-                  tristique. Lacus iaculis volutpat sed gravida non. Sit aliquam
-                  neque vulputate amet. Cras arcu non accumsan urna ante.
-                  Commodo egestas habitant egestas dictum in orci. Nulla duis
-                  adipiscing senectus ultrices at mauris sed diam. Vehicula
-                  morbi pharetra accumsan enim vel. In orci ullamcorper urna
-                  proin orci sed. Arcu ac amet gravida metus lectus ullamcorper
-                  auctor integer a. Nunc blandit blandit ut ut. Turpis sed
-                  sagittis aliquam convallis malesuada. Sed nulla justo at
-                  parturient tempus malesuada in pharetra. Nec lectus etiam et
-                  amet in. Dolor nisl a dui sagittis quam vel morbi integer.
-                  Viverra sit arcu tempor risus eu semper est egestas. Proin
-                  adipiscing elit donec placerat scelerisque gravida. Risus
-                  mauris placerat felis turpis proin scelerisque. Felis amet
-                  cras massa eget sapien consectetur eget sed morbi. Aliquam
-                  massa id netus sapien ultricies nulla aliquam ut vulputate.
-                  Suspendisse quis vulputate euismod orci amet arcu. Volutpat
-                  justo eget tortor lorem tincidunt aliquam mattis. Nisi sed
-                  nulla in pellentesque ultricies hendrerit commodo est. Mi in
-                  et in odio ut. Pulvinar platea luctus id diam mauris donec. In
-                  auctor suscipit elementum turpis at habitant neque vitae. A
-                  nam mus nec vestibulum id quis. Aliquam eget leo vitae
-                  facilisi tristique a fermentum tellus consectetur. Mauris
-                  egestas ac commodo pellentesque ante imperdiet. Magna donec
-                  bibendum malesuada quis iaculis nulla aenean ultricies. Nec at
-                  adipiscing cum mi. At diam augue in dictum elit eget. Purus
-                  lobortis viverra adipiscing nullam. Suspendisse ullamcorper
-                  quam mi ac fusce tellus malesuada. In non sapien faucibus amet
-                  lacus quis lectus. Nulla sapien tempor proin eu scelerisque
-                  arcu. Amet sit suspendisse donec vel ultricies vel. Mi
-                  pellentesque a egestas commodo sollicitudin leo risus urna.
-                  Tellus et ultricies lobortis quam etiam amet magnis cum. A nec
-                  feugiat in fringilla orci vel elit. At amet viverra eleifend
-                  gravida laoreet. Sit tincidunt purus nunc erat fermentum nunc
-                  orci etiam amet. Mi eget sit nisl eu. Nulla at nec sed non.
-                  Orci faucibus tor
-               </p>
-               <p>
-                  At diam augue in dictum elit eget. Purus lobortis viverra
-                  adipiscing nullam. Suspendisse ullamcorper quam mi ac fusce
-                  tellus malesuada. In non sapien faucibus amet lacus quis
-                  lectus. Nulla sapien tempor proin eu scelerisque arcu. Amet
-                  sit suspendisse donec vel ultricies vel. Mi pellentesque a
-                  egestas commodo sollicitudin leo risus urna. Tellus et
-                  ultricies lobortis quam etiam amet magnis cum. A nec feugiat
-                  in fringilla orci vel elit. At amet viverra eleifend gravida
-                  laoreet. Sit tincidunt purus nunc erat fermentum nunc orci
-                  etiam amet. Mi eget sit nisl eu. Nulla at nec sed non. Orci
-                  faucibus tor
-               </p>
+               <div>
+                  <p className='text-[11px] sm:text-[12px]'>
+                     Email: hello@sauna.com
+                  </p>
+                  <p className='text-[11px] sm:text-[12px]'>
+                     Phone: +1 XXX XXX XXXX
+                  </p>
+                  <p className='text-[11px] sm:text-[12px]'>
+                     Business Address: xxxxx xxxxx xxxxx xxxxx xxxxxx
+                  </p>
+                  <p className='text-[11px] sm:text-[12px]'>
+                     Support Hours: Mon–Sun, 9 AM – 5 PM
+                  </p>
+               </div>
             </Description>
          </div>
 
