@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {ArrowRight} from 'lucide-react';
 import forestBg from '@/assets/footerbg.png';
 import saunaLogo from '@/assets/suana.png';
