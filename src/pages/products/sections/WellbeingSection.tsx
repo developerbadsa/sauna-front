@@ -4,7 +4,7 @@ import Description from './../../../components/PageContent/Description/index';
 export default function WellbeingSection() {
    return (
       <section className=''>
-         <div className='sauna-container px-6 py-16  text-center bg-white'>
+         <div className='sauna-container px-22 py-16  text-center bg-white'>
             <Heading heading='INVEST IN YOUR WELLBEING WITH A STYLISH BARREL OR OUTDOOR SAUNA' />
 
             <p className='mt-4 text-sm md:text-base font-semibold text-[#555]'>

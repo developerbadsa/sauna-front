@@ -37,6 +37,7 @@ type SaunaHeroProps = {
    boxoutlined?: boolean;
    bottomzero?: boolean;
    reasonfor?: string;
+   mainheight?: number;
    iconElemets?: ReactNode;
 };
 
@@ -51,6 +52,7 @@ export function SaunaHero({
    iconElemets,
    boxoutlined = true,
    bottomzero = false,
+   mainheight=0,
    //  headingBlock = false,
    //  showparagraphandexplore = false,
    //  showcenterImg = false,
@@ -72,7 +74,7 @@ export function SaunaHero({
       <section
          className={`relative flex  overflow-hidden ${
             bottomzero ? 'h-[950px]' : ''
-         }`}>
+         } `}>
          {/* background pattern – unchanged */}
          <div
             className='pointer-events-none absolute inset-0 opacity-60 z-0'
@@ -89,11 +91,13 @@ export function SaunaHero({
                <div
                   className={`${
                      boxoutlined
-                        ? ' rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px] mt-28 h-[640px] sd:h-[730px] w-[85%]'
-                        : 
-                        'mt-28 h-[640px] sd:h-[730px] w-[85%]'
+                        ? ' rounded-[46px] bg-[#403D39] border border-[#8e8e8e] p-[40px] mt-28 h-[730px] w-[85%]'
+                        : 'mt-28 h-[640px] sd:h-[730px] w-[85%]'
                   }`}>
-                  <div className={`relative overflow-visible bg-[#FFFDF6] px-6 pt-8 h-full flex flex-col justify-between ${!bottomzero?"rounded-t-[40px]":'rounded-[40px]'}`}>
+                  <div
+                     className={`relative overflow-visible bg-[#FFFDF6] px-6 pt-8 h-full flex flex-col justify-between ${
+                        !bottomzero ? 'rounded-t-[40px]' : 'rounded-[40px]'
+                     }`}>
                      {/* top nav */}
                      <Header />
 
@@ -111,7 +115,6 @@ export function SaunaHero({
 
                            {/* bottom content region */}
                            <div className='relative mt-10 flex items-end justify-end gap-6 pb-10'>
-                              {/* left copy + explore button */}(
                               <div className='relative z-20 max-w-[220px] text-[11px] leading-relaxed uppercase tracking-[0.16em] text-[#736355] py-10'>
                                  {taglineLines.map(line => (
                                     <p key={line}>{line}</p>
@@ -126,7 +129,6 @@ export function SaunaHero({
                                     </span>
                                  </button>
                               </div>
-                              ){/* center sauna image */}(
                               <div className={imageConfig.wrapperClassName}>
                                  <img
                                     src={imageConfig.src}
@@ -134,7 +136,7 @@ export function SaunaHero({
                                     className={imageConfig.imgClassName}
                                  />
                               </div>
-                              ){/* right contact info card */}
+                              {/* right contact info card */}
                               <div className='relative z-20 flex flex-1 justify-end overflow-hidden'>
                                  <div className='max-w-[210px] px-4 pb-4 pt-3 flex flex-col justify-end items-end gap-2 mb-32'>
                                     {contactItems.map(item => (
@@ -160,7 +162,7 @@ export function SaunaHero({
                            {/* bottom content region end */}
                         </div>
                      ) : (
-                        <div className='flex items-center justify-between'>
+                        <div className='flex items-center justify-between '>
                            <div className='ml-10'>
                               {/* heading block */}
                               <div className='mb-0 mt-24 text-start mr-12 '>
@@ -171,12 +173,13 @@ export function SaunaHero({
                                     {title}
                                  </h1>
                               </div>
-
                               {/* right contact info card */}
-                              <div className='relative z-20  overflow-hidden'>
+                              <div className='relative z-20 overflow-hidden'>
                                  {iconElemets}
+                                 
                               </div>
                            </div>
+
                            <div className={imageConfig.wrapperClassName}>
                               <img
                                  src={imageConfig.src}
