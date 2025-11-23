@@ -17,7 +17,9 @@ import ContactForm from './Section/ContactForm';
 import Footer from '@/components/shared/footer';
 import {SaunaHero} from '@/components/hero/SaunaHero';
 import SectionBar from '@/components/SectionBar/index';
-import SectionTitle from '@/components/shared/SectionTitle';
+import sectionbarimg1 from '@/assets/logos/logo1.png';
+import sectionbarimg2 from '@/assets/logos/logo2.png';
+import sectionbarimg3 from '@/assets/logos/logo3.png';
 
 export default function Contact() {
    const [inlineEmail, setInlineEmail] = useState('');
@@ -42,7 +44,21 @@ export default function Contact() {
    const taglineLines = [
       'All indoor & outdoor models Compare sizes, woods & heaters',
    ];
-   const ctaLabel = 'Explore';
+
+   const sectionBardata = [
+      {
+         title: 'CSA certified',
+         icon: sectionbarimg1,
+      },
+      {
+         title: 'UL Certified',
+         icon: sectionbarimg2,
+      },
+      {
+         title: 'ETL Certified',
+         icon: sectionbarimg3,
+      },
+   ];
 
    return (
       <div className='min-h-screen sauna-bg py-16'>
@@ -85,7 +101,7 @@ export default function Contact() {
                      ))}
 
                      <button className='mt-3 inline-flex items-center gap-3 rounded-full bg-[#151515] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.45)]'>
-                        <span>{ctaLabel}</span>
+                        <span>Explore</span>
                         <span className='flex h-6 w-6 items-center justify-center rounded-full bg-[#f7901e]'>
                            <svg
                               xmlns='http://www.w3.org/2000/svg'
@@ -123,10 +139,16 @@ export default function Contact() {
             bottomzero={true}
          />
          <SectionBar>
-            <SectionTitle
-               title='Terms & Conditions'
-               style='tracking-[32px]  font-light !leading-20'
-            />
+            <div className="flex justify-between w-full px-12  items-center"> 
+               {sectionBardata.map(({icon, title}, idx) => (
+                  <div
+                     key={idx}
+                     className='flex justify-center items-center gap-4'>
+                     <img src={icon} />
+                     <span className="text-[25px] uppercase tracking-[3px] font-bold">{title}</span>
+                  </div>
+               ))}
+            </div>
          </SectionBar>
          <div className='sauna-container px-12  bg-[#FFFDF6]'>
             {/* Top grid */}
