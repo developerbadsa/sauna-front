@@ -41,9 +41,9 @@ export default function Header() {
                className='transition-colors uppercase hover:text-black'>
                ProductDetails
             </Link>
-            <button className='transition-colors uppercase hover:text-black'>
+            <Link to={"/contact"} className='transition-colors uppercase hover:text-black'>
                Contacts
-            </button>
+            </Link>
          </nav>
 
          {/* cart button */}

@@ -61,7 +61,7 @@ export default function Contact() {
    ];
 
    return (
-      <div className='min-h-screen sauna-bg py-16'>
+      <div className='min-h-screen sauna-bg pb-16'>
          <SaunaHero
             // mainheight={1000}
             HeadingFullContainer={true}
@@ -150,9 +150,9 @@ export default function Contact() {
                ))}
             </div>
          </SectionBar>
-         <div className='sauna-container px-12  bg-[#FFFDF6]'>
+         <div className='sauna-container px-12  bg-[#FFFDF6] py-16'>
             {/* Top grid */}
-            <section className='grid bg-[#FFFDF6] pt-12 pb-4 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1.1fr)] lg:gap-12'>
+            <section className='grid bg-[#FFFDF6] pt-2 pb-4 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1.1fr)] lg:gap-12'>
                {/*  MAIN FORM */}
                <ContactForm />
 
