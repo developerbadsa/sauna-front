@@ -6,6 +6,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import ProductPage from '@/pages/ProductPage';
 import TermsAndConditonPage from './../pages/TermsAndConditonPage';
 import CancellationPolicy from '@/pages/CancellationPolicy/index';
+import ContactPage from './../pages/ContactPage';
 
 export const router = createBrowserRouter([
    {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
              {
             path: 'cancellation-policy',
             Component: CancellationPolicy,
+         },
+                      {
+            path: 'contact',
+            Component: ContactPage,
          },
          {
             path: '*',
