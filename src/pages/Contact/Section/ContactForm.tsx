@@ -30,7 +30,6 @@ export default function ContactForm() {
       handleSubmit,
       formState: {errors, isSubmitting},
       reset,
-      watch,
    } = useForm<ContactFormValues>({
       resolver: zodResolver(contactSchema),
       defaultValues: {
@@ -42,8 +41,6 @@ export default function ContactForm() {
       mode: 'onBlur',
    });
 
-   const messageValue = watch('message') ?? '';
-   const messageLength = messageValue.length;
    const messageMaxLength = 800;
 
    const onSubmit = async () => {
@@ -78,7 +75,7 @@ export default function ContactForm() {
             onSubmit={handleSubmit(onSubmit)}
             noValidate
             aria-label='Contact Sauna Canada'
-            className='flex flex-col gap-4'>
+            className='flex flex-col gap-4 bg-[#FFFDF6]'>
             {/* Name + Email */}
             <div className='grid gap-4 sm:grid-cols-2  m-0 p-0]'>
                <div className='  flex items-center'>

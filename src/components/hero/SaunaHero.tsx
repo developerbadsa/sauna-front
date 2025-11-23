@@ -39,6 +39,7 @@ type SaunaHeroProps = {
    reasonfor?: string;
    mainheight?: number;
    iconElemets?: ReactNode;
+   HeadingFullContainer?: boolean
 };
 
 export function SaunaHero({
@@ -52,6 +53,7 @@ export function SaunaHero({
    iconElemets,
    boxoutlined = true,
    bottomzero = false,
+   HeadingFullContainer = false,
    //  headingBlock = false,
    //  showparagraphandexplore = false,
    //  showcenterImg = false,
@@ -161,10 +163,10 @@ export function SaunaHero({
                            {/* bottom content region end */}
                         </div>
                      ) : (
-                        <div className='flex items-center justify-between '>
-                           <div className='ml-10'>
+                        <div className={` items-center justify-between ${HeadingFullContainer? "w-full" : "flex"}`}>
+                           <div className='ml-10 relative'>
                               {/* heading block */}
-                              <div className='mb-0 mt-24 text-start mr-12 '>
+                              <div className={`mb-0  ${HeadingFullContainer? "text-center -top-48 absolute" : "text-start mr-12 "}  w-full`}>
                                  <h2 className='text-[18px] md:text-[20px] font-semibold leading-5 uppercase text-[#2f241c]'>
                                     {eyebrow}
                                  </h2>
