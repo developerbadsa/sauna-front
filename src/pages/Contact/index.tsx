@@ -17,9 +17,9 @@ import ContactForm from './Section/ContactForm';
 import Footer from '@/components/shared/footer';
 import {SaunaHero} from '@/components/hero/SaunaHero';
 import SectionBar from '@/components/SectionBar/index';
-// import sectionbarimg1 from '@/assets/logos/logo1.png';
-// import sectionbarimg2 from '@/assets/logos/logo2.png';
-// import sectionbarimg3 from '@/assets/logos/logo3.png';
+import sectionbarimg1 from '@/assets/logos/logo1.png';
+import sectionbarimg2 from '@/assets/logos/logo2.png';
+import sectionbarimg3 from '@/assets/logos/logo3.png';
 import SectionTitle from '@/components/shared/SectionTitle';
 
 export default function Contact() {
@@ -46,20 +46,20 @@ export default function Contact() {
       'All indoor & outdoor models Compare sizes, woods & heaters',
    ];
 
-  //  const sectionBardata = [
-  //     {
-  //        title: 'CSA certified',
-  //        icon: sectionbarimg1,
-  //     },
-  //     {
-  //        title: 'UL Certified',
-  //        icon: sectionbarimg2,
-  //     },
-  //     {
-  //        title: 'ETL Certified',
-  //        icon: sectionbarimg3,
-  //     },
-  //  ];
+   const sectionBardata = [
+      {
+         title: 'CSA certified',
+         icon: sectionbarimg1,
+      },
+      {
+         title: 'UL Certified',
+         icon: sectionbarimg2,
+      },
+      {
+         title: 'ETL Certified',
+         icon: sectionbarimg3,
+      },
+   ];
 
    return (
       <div className='min-h-screen sauna-bg pb-16'>
@@ -140,21 +140,22 @@ export default function Contact() {
             bottomzero={true}
          />
          <SectionBar>
-            {/* <div className="flex justify-between w-full px-12  items-center"> 
+
+
+            <SectionTitle title="Contact Us"/>
+         </SectionBar>
+         <div className='sauna-container px-12  bg-[#FFFDF6] py-16'>
+                      <div className="flex justify-between w-full  items-center pb-12"> 
 
                {sectionBardata.map(({icon, title}, idx) => (
                   <div
                      key={idx}
                      className='flex justify-center items-center gap-4'>
                      <img src={icon} />
-                     <span className="text-[25px] uppercase tracking-[3px] font-bold">{title}</span>
+                     <span className="text-[25px] uppercase tracking-[3px] font-bold text-[#403D39]">{title}</span>
                   </div>
                ))}
-            </div> */}
-
-            <SectionTitle title="Contact Us"/>
-         </SectionBar>
-         <div className='sauna-container px-12  bg-[#FFFDF6] py-16'>
+            </div>
             {/* Top grid */}
             <section className='grid bg-[#FFFDF6] pt-2 pb-4 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1.1fr)] lg:gap-12'>
                {/*  MAIN FORM */}
