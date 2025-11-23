@@ -20,6 +20,7 @@ import SectionBar from '@/components/SectionBar/index';
 import sectionbarimg1 from '@/assets/logos/logo1.png';
 import sectionbarimg2 from '@/assets/logos/logo2.png';
 import sectionbarimg3 from '@/assets/logos/logo3.png';
+import SectionTitle from '@/components/shared/SectionTitle';
 
 export default function Contact() {
    const [inlineEmail, setInlineEmail] = useState('');
@@ -45,20 +46,20 @@ export default function Contact() {
       'All indoor & outdoor models Compare sizes, woods & heaters',
    ];
 
-   const sectionBardata = [
-      {
-         title: 'CSA certified',
-         icon: sectionbarimg1,
-      },
-      {
-         title: 'UL Certified',
-         icon: sectionbarimg2,
-      },
-      {
-         title: 'ETL Certified',
-         icon: sectionbarimg3,
-      },
-   ];
+  //  const sectionBardata = [
+  //     {
+  //        title: 'CSA certified',
+  //        icon: sectionbarimg1,
+  //     },
+  //     {
+  //        title: 'UL Certified',
+  //        icon: sectionbarimg2,
+  //     },
+  //     {
+  //        title: 'ETL Certified',
+  //        icon: sectionbarimg3,
+  //     },
+  //  ];
 
    return (
       <div className='min-h-screen sauna-bg pb-16'>
@@ -139,7 +140,8 @@ export default function Contact() {
             bottomzero={true}
          />
          <SectionBar>
-            <div className="flex justify-between w-full px-12  items-center"> 
+            {/* <div className="flex justify-between w-full px-12  items-center"> 
+
                {sectionBardata.map(({icon, title}, idx) => (
                   <div
                      key={idx}
@@ -148,7 +150,9 @@ export default function Contact() {
                      <span className="text-[25px] uppercase tracking-[3px] font-bold">{title}</span>
                   </div>
                ))}
-            </div>
+            </div> */}
+
+            <SectionTitle title="Contact Us"/>
          </SectionBar>
          <div className='sauna-container px-12  bg-[#FFFDF6] py-16'>
             {/* Top grid */}
