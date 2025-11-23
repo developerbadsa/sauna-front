@@ -14,7 +14,7 @@ export default function Footer() {
    function FooterLinks({group}: {group: FooterLinkGroup}) {
       return (
          <div className=' w-full'>
-            <p className='text-[22px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+            <p className='text-[22px] font-semibold tracking-[0.04em] text-[#fff] uppercase'>
                {group.title}
             </p>
             <ul className='mt-3 space-y-[2px]'>
@@ -110,8 +110,8 @@ export default function Footer() {
                         ))}
                      </div>
 
-                     <div className='w-full md:max-w-[260px]'>
-                        <p className='text-[11px] font-semibold tracking-[0.24em] text-[#F4EDE6] uppercase'>
+                     <div className='w-full md:max-w-[270px]'>
+                        <p className='text-[22px] font-semibold tracking-[0.14em] text-[#fff] uppercase'>
                            Get update
                         </p>
                         <p className='mt-2 text-[12px] leading-relaxed text-[#E4DFD8]'>
