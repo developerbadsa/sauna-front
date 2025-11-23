@@ -17,9 +17,9 @@ import ContactForm from './Section/ContactForm';
 import Footer from '@/components/shared/footer';
 import {SaunaHero} from '@/components/hero/SaunaHero';
 import SectionBar from '@/components/SectionBar/index';
-import sectionbarimg1 from '@/assets/logos/logo1.png';
-import sectionbarimg2 from '@/assets/logos/logo2.png';
-import sectionbarimg3 from '@/assets/logos/logo3.png';
+// import sectionbarimg1 from '@/assets/logos/logo1.png';
+// import sectionbarimg2 from '@/assets/logos/logo2.png';
+// import sectionbarimg3 from '@/assets/logos/logo3.png';
 import SectionTitle from '@/components/shared/SectionTitle';
 
 export default function Contact() {
