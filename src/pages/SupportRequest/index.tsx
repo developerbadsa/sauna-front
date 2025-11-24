@@ -1,12 +1,3 @@
-import {motion} from 'framer-motion';
-import {Button} from '@/components/ui/button';
-import {Input} from '@/components/ui/input';
-import {
-   Card,
-   CardHeader,
-   CardTitle,
-   CardDescription,
-} from '@/components/ui/card';
 import {PhoneIcon} from '@/components/ui/icons/akar-icons-phone';
 import {EnvelopeIcon} from '@/components/ui/icons/akar-icons-envelope.tsx';
 import {ClockIcon} from '@/components/ui/icons/akar-icons-clock.tsx';
@@ -15,9 +6,6 @@ import {SaunaHero} from '@/components/hero/SaunaHero';
 import SectionBar from '@/components/SectionBar/index';
 import SectionTitle from '@/components/shared/SectionTitle';
 import SectionWrapper from '@/components/shared/SectionWrapper';
-import sectionbarimg1 from '@/assets/logos/logo1.png';
-import sectionbarimg2 from '@/assets/logos/logo2.png';
-import sectionbarimg3 from '@/assets/logos/logo3.png';
 import SupportForm from './Sections/SupportForm';
 
 export default function SupportRequest() {
@@ -42,23 +30,6 @@ export default function SupportRequest() {
    const taglineLines = [
       'All indoor & outdoor models Compare sizes, woods & heaters',
    ];
-
-   const sectionBardata = [
-      {
-         title: 'CSA certified',
-         icon: sectionbarimg1,
-      },
-      {
-         title: 'UL Certified',
-         icon: sectionbarimg2,
-      },
-      {
-         title: 'ETL Certified',
-         icon: sectionbarimg3,
-      },
-   ];
-
-
 
    return (
       <div className='min-h-screen sauna-bg pb-16'>
@@ -148,21 +119,11 @@ export default function SupportRequest() {
                <div className=''>
                   {/*  MAIN FORM */}
                   <SupportForm />
-
                </div>
-
             </div>
          </SectionWrapper>
 
          <Footer />
       </div>
    );
-
-
-
-
-
-
-
-
 }
