@@ -22,14 +22,8 @@ const supportSchema = z.object({
   description: z
     .string()
     .min(10, 'Description should be at least 10 characters.'),
-  attachments: z.any().optional(),
-  privacyConsent: z.literal(true, {
-    errorMap: () => ({
-      message:
-        'You must agree that we can use your information to process this support request.',
-    }),
-  }),
-});
+  attachments: z.any().optional()
+  });
 
 type SupportFormValues = z.infer<typeof supportSchema>;
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
@@ -53,7 +47,6 @@ export default function SupportForm() {
       subject: '',
       description: '',
       attachments: undefined,
-      privacyConsent: false,
     },
     mode: 'onBlur',
   });
@@ -62,7 +55,7 @@ export default function SupportForm() {
   const showSuccess = status === 'success';
   const showError = status === 'error';
 
-  const onSubmit = async (_values: SupportFormValues) => {
+  const onSubmit = async () => {
     setStatus('submitting');
 
     try {
@@ -329,7 +322,6 @@ export default function SupportForm() {
               <input
                 id='privacyConsent'
                 type='checkbox'
-                {...register('privacyConsent')}
                 className='mt-[2px] h-4 w-4 rounded border-[#e6d7c4] text-[#f7931d] focus-visible:ring-[#f7931d]'
               />
               <label
@@ -341,14 +333,6 @@ export default function SupportForm() {
                 policy. <span className='text-red-500'>*</span>
               </label>
             </div>
-            {errors.privacyConsent && (
-              <p
-                id='privacyConsent-error'
-                className='pl-6 text-[11px] text-red-500'
-              >
-                {errors.privacyConsent.message}
-              </p>
-            )}
           </div>
 
           {/* Submit */}
