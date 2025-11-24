@@ -7,6 +7,7 @@ import ProductPage from '@/pages/ProductPage';
 import TermsAndConditonPage from './../pages/TermsAndConditonPage';
 import CancellationPolicy from '@/pages/CancellationPolicy/index';
 import ContactPage from './../pages/ContactPage';
+import SupportRequestPage from './../pages/SupportRequestPage';
 
 export const router = createBrowserRouter([
    {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
                       {
             path: 'contact',
             Component: ContactPage,
+         },
+                               {
+            path: 'support-request',
+            Component: SupportRequestPage,
          },
          {
             path: '*',
