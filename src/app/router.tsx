@@ -9,6 +9,7 @@ import CancellationPolicy from '@/pages/CancellationPolicy/index';
 import ContactPage from './../pages/ContactPage';
 import SupportRequestPage from './../pages/SupportRequestPage';
 import AboutUsPage from './../pages/AboutUsPage';
+import FAQPage from '@/pages/FAQPage';
 
 export const router = createBrowserRouter([
    {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
                        {
             path: 'about-us',
             Component: AboutUsPage,
+         },
+          {
+            path: 'faq',
+            Component: FAQPage,
          },
          {
             path: '*',
