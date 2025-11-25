@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import type {Product} from '../product-types';
-import OrangeBorder from './../../../components/OrangeBorder';
 
 type Props = {
    product: Product;

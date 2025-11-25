@@ -1,4 +1,4 @@
-// src/pages/products/ProductDetails/sections/ProductTabsSection.tsx
+
 import {useState} from 'react';
 import type {Product} from '../product-types';
 import ProductReviewsSection from './ProductReviewsSection';
