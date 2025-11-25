@@ -6,6 +6,7 @@ import {SaunaHero} from '@/components/hero/SaunaHero';
 import SectionBar from '@/components/SectionBar/index';
 import SectionTitle from '@/components/shared/SectionTitle';
 import SectionWrapper from '@/components/shared/SectionWrapper';
+import SupportFaqCards from './sections/SupportFaqCards';
 export default function FAQ() {
    const contactItems = [
       {
@@ -112,9 +113,9 @@ export default function FAQ() {
          </SectionBar>
 
          <SectionWrapper>
-            <div className='relative sauna-container px-12  bg-[#FFFDF6]  z-2'>
+            <div className='relative sauna-container bg-[#FFFDF6]  z-2'>
                {/* Top grid */}
-               
+               <SupportFaqCards/>
             </div>
          </SectionWrapper>
 
