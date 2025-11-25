@@ -1,5 +1,4 @@
-import {useMemo, useState} from 'react';
-import {Star, ChevronDown} from 'lucide-react';
+import {useState} from 'react';
 import type {Product} from '../product-types';
 import OrangeBorder from './../../../components/OrangeBorder';
 
@@ -10,322 +9,221 @@ type Props = {
 const RatingStars = ({value}: {value: number}) => {
    const rounded = Math.round(value);
    return (
-      <div className='flex items-center gap-0.5 text-orange-400'>
+      <div className='flex items-center gap-[2px] text-[#F8991E]'>
          {Array.from({length: 5}).map((_, index) => {
             const filled = index < rounded;
             return (
-               <Star
-                  key={index}
-                  className={`h-4 w-4 ${
-                     filled
-                        ? 'fill-orange-400 text-orange-400'
-                        : 'text-neutral-300'
-                  }`}
-               />
+               <span
+                  className={`h-[14px] w-[14px] ${
+                     filled ? 'fill-[#F8991E] text-[#F8991E]' : 'text-[#D5D5D8]'
+                  }`}>
+                  <svg
+                     xmlns='http://www.w3.org/2000/svg'
+                     width='17'
+                     height='16'
+                     viewBox='0 0 17 16'
+                     fill='none'>
+                     <path
+                        d='M8.08398 0L9.99235 5.87336L16.168 5.87336L11.1718 9.50329L13.0802 15.3766L8.08398 11.7467L3.08781 15.3766L4.99618 9.50329L3.8147e-06 5.87336L6.17562 5.87336L8.08398 0Z'
+                        fill='#F8991E'
+                        fill-opacity='0.98'
+                     />
+                  </svg>
+               </span>
             );
          })}
       </div>
    );
 };
 
-const RATING_METRICS = [
-   {id: 'item-avg', label: 'item average', value: '5.0'},
-   {id: 'delivery', label: 'Delivery', value: '4.9'},
-   {id: 'service', label: 'Customer service', value: '5.0'},
-   {id: 'recommend', label: 'Buyers recommend', value: '99%'},
-];
-
-const ASPECT_FILTERS = [
-   'Appearance (61)',
-   'Quality (53)',
-   'Delivery & Packaging (42)',
-   'Seller service (17)',
-];
-
-type SortKey = 'suggested' | 'newest' | 'rating-desc' | 'rating-asc';
-
-const SORT_OPTIONS: {value: SortKey; label: string}[] = [
-   {value: 'suggested', label: 'Suggested'},
-   {value: 'newest', label: 'Most recent'},
-   {value: 'rating-desc', label: 'Highest rated'},
-   {value: 'rating-asc', label: 'Lowest rated'},
-];
-
-const parseDate = (value: string) => {
-   // supports “Nov 3, 2025” or “10 Nov,2025”
-   const normalized = value
-      .replace('|', '')
-      .replace(/(\d{1,2}) (\w+),?(\d{4})/, '$1 $2 $3');
-   const d = new Date(normalized);
-   return isNaN(d.getTime()) ? 0 : d.getTime();
-};
+const STAR_RANGE = [5, 4, 3, 2, 1];
 
 export default function ProductReviewsSection({product}: Props) {
-   const hasReviews = product.reviews && product.reviews.length > 0;
+   const totalReviews = product.reviews.length;
+   const average = totalReviews ? product.rating : 0;
 
-   const average = hasReviews ? product.rating : 0;
-   const reviewCount = hasReviews ? product.reviewCount : 0;
+   // build distribution
+   const counts: Record<number, number> = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+   product.reviews.forEach(review => {
+      const key = Math.min(5, Math.max(1, Math.round(review.rating)));
+      counts[key] = (counts[key] || 0) + 1;
+   });
 
-   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-   const [sortBy, setSortBy] = useState<SortKey>('suggested');
-
-   const filteredReviews = useMemo(() => {
-      if (!hasReviews) return [];
-      if (!activeFilter) return product.reviews;
-
-      return product.reviews.filter(review =>
-         review.badges?.some(badge =>
-            badge.toLowerCase().includes(activeFilter.toLowerCase())
-         )
-      );
-   }, [product.reviews, activeFilter, hasReviews]);
-
-   const sortedReviews = useMemo(() => {
-      const copy = [...filteredReviews];
-      switch (sortBy) {
-         case 'newest':
-            return copy.sort((a, b) => parseDate(b.date) - parseDate(a.date));
-         case 'rating-desc':
-            return copy.sort((a, b) => b.rating - a.rating);
-         case 'rating-asc':
-            return copy.sort((a, b) => a.rating - b.rating);
-         default:
-            return copy; // suggested
-      }
-   }, [filteredReviews, sortBy]);
-
-   const handleTagClick = (label: string) => {
-      setActiveFilter(current => (current === label ? null : label));
+   const getPercent = (stars: number) => {
+      if (!totalReviews) return 0;
+      return (counts[stars] / totalReviews) * 100;
    };
 
+   // show-more behaviour
+   const [visibleCount, setVisibleCount] = useState(3);
+   const visibleReviews = product.reviews.slice(0, visibleCount);
+
    return (
-      <section aria-labelledby='reviews-heading' className='space-y-6'>
-         {/* top orange line */}
-         <OrangeBorder style='w-full !h-[1px]' />
+      <section className='space-y-10'>
 
-         {/* header block */}
-         <div className='pt-6'>
-            <h2
-               id='reviews-heading'
-               className='mb-4 text-[16px] font-bold uppercase tracking-[0.2em] text-[#403D39]'>
-               Reviews
-            </h2>
+         {/* summary + distribution block */}
+         <div className='pt-6 flex flex-col gap-8 md:flex-row md:items-start md:justify-between'>
+            {/* left: rating summary */}
+            <div className='space-y-3'>
+               <p className='text-[28px] font-semibold text-[#403D39]'>
+                  {average.toFixed(2)}{' '}
+                  <span className='text-[15px] font-normal text-[#403D39]'>
+                     out of 5
+                  </span>
+               </p>
 
-            <div className='flex flex-wrap items-center gap-6'>
-               {/* big star + average */}
-               <div className='flex items-center gap-4'>
-                  <div className='flex h-12 w-12 items-center justify-center rounded-full'>
-                     <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        width='41'
-                        height='39'
-                        viewBox='0 0 41 39'
-                        fill='none'>
-                        <path
-                           d='M20.4478 0L25.2748 14.8561H40.8955L28.2581 24.0377L33.0851 38.8939L20.4478 29.7123L7.81037 38.8939L12.6374 24.0377L3.8147e-05 14.8561H15.6207L20.4478 0Z'
-                           fill='#F8991E'
-                           fill-opacity='0.98'
-                        />
-                     </svg>
-                  </div>
-                  <div>
-                     <p className='text-xl font-semibold text-[#403D39]'>
-                        {average.toFixed(1)} / 5
-                     </p>
-                     <p className='text-xs text-[#403D39]'>
-                        item average · {reviewCount} reviews
-                     </p>
-                  </div>
-               </div>
+               <RatingStars value={average} />
 
-               {/* metrics row */}
-               <div className='flex flex-wrap gap-3 text-xs text-neutral-800'>
-                  {RATING_METRICS.map(metric => (
-                     <div
-                        key={metric.id}
-                        className='inline-flex items-center  gap-2 rounded-full  bg-white px-3 py-1'>
-                        <span className='relative flex h-8 w-8 items-center justify-center rounded-full border border-[#F89B22] text-[11px] font-semibold text-orange-600 '>
-                           <span className='absolute right-[-1.3px] w-[98%] h-[98%] flex justify-center items-center bg-white rounded-full'>
-                              {metric.value}
-                           </span>
-                        </span>
-                        <span className='text-[11px] text-neutral-700'>
-                           {metric.label}
-                        </span>
-                     </div>
-                  ))}
-               </div>
+               <p className='text-xs text-[#403D39]'>(Lorem ipsum)</p>
             </div>
 
-            {/* AI summary + filters */}
-            <div className='mt-6 space-y-2 text-[11px]'>
-               <div className='flex flex-wrap items-center gap-2 text-neutral-700'>
-                  <span>
-                     <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        xmlnsXlink='http://www.w3.org/1999/xlink'
-                        width='9'
-                        height='9'
-                        viewBox='0 0 9 9'
-                        fill='none'>
-                        <g id='Repeat group 2_inner' data-figma-trr='r1p110-0f'>
-                           <path
-                              d='M4.44539 0L5.74045 3.15032L8.89078 4.44539L5.74045 5.74045L4.44539 8.89078L3.15032 5.74045L0 4.44539L3.15032 3.15032L4.44539 0Z'
-                              fill='#222222'
+            {/* right: 5–1 star bar chart */}
+            <div className='flex-1 max-w-xl space-y-1 text-[11px] text-[#403D39]'>
+               {STAR_RANGE.map(star => {
+                  const percent = getPercent(star);
+                  return (
+                     <div key={star} className='flex items-center gap-3'>
+                        <span className=' text-right flex justify-center items-center text-[20px] gap-1'>
+                           {star}
+                           <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              width='17'
+                              height='16'
+                              viewBox='0 0 17 16'
+                              fill='none'>
+                              <path
+                                 d='M8.08398 0L9.99235 5.87336L16.168 5.87336L11.1718 9.50329L13.0802 15.3766L8.08398 11.7467L3.08781 15.3766L4.99618 9.50329L3.8147e-06 5.87336L6.17562 5.87336L8.08398 0Z'
+                                 fill='#F8991E'
+                                 fill-opacity='0.98'
+                              />
+                           </svg>
+                        </span>
+                        <div className='relative h-[14px] flex-1 overflow-hidden rounded-full bg-[#E0E0E3]'>
+                           <div
+                              className='absolute inset-y-0 left-0 rounded-full bg-[#F8991E] '
+                              style={{width: `${percent}% `}}
                            />
-                        </g>
-                     </svg>
-                     <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        xmlnsXlink='http://www.w3.org/1999/xlink'
-                        width='15'
-                        height='15'
-                        viewBox='0 0 15 15'
-                        fill='none'>
-                        <g id='Repeat group 1_inner' data-figma-trr='r1p110-0f'>
-                           <path
-                              d='M7.38496 0L9.5364 5.23351L14.7699 7.38496L9.5364 9.5364L7.38496 14.7699L5.23351 9.5364L0 7.38496L5.23351 5.23351L7.38496 0Z'
-                              fill='#222222'
-                           />
-                        </g>
-                     </svg>
-                  </span>
-                  <span className='inline-flex items-center gap-1 font-semibold'>
-                     Buyer highlights, summarised by AI
-                  </span>
-               </div>
-
-               {/* highlight tags row */}
-               <div className='flex flex-wrap items-center gap-2'>
-                  {product.reviewTags.map((tag, index) => {
-                     const isActive = activeFilter === tag.label;
-                     return (
-                        <div key={tag.id} className='flex items-center'>
-                           <button
-                              type='button'
-                              onClick={() => handleTagClick(tag.label)}
-                              className={`text-[11px] ${
-                                 isActive
-                                    ? 'font-semibold text-orange-600'
-                                    : 'text-neutral-700'
-                              } hover:text-orange-600`}>
-                              {tag.label}
-                           </button>
-                           {index < product.reviewTags.length - 1 && (
-                              <span className='mx-1 text-neutral-300'>|</span>
-                           )}
                         </div>
-                     );
-                  })}
-               </div>
-
-               {/* aspect chips + sort */}
-               <div className='mt-3 flex flex-wrap items-center justify-between gap-3'>
-                  <div className='flex flex-wrap gap-2'>
-                     {ASPECT_FILTERS.map(label => {
-                        const isActive = activeFilter === label;
-                        return (
-                           <button
-                              key={label}
-                              type='button'
-                              onClick={() => handleTagClick(label)}
-                              className={`rounded-full border px-3 py-1 text-[11px] ${
-                                 isActive
-                                    ? 'border-orange-400 bg-orange-50 text-orange-700'
-                                    : 'border-neutral-200 bg-white text-neutral-700 hover:border-orange-200'
-                              }`}>
-                              {label}
-                           </button>
-                        );
-                     })}
-                  </div>
-
-                  <div className='flex items-center gap-3 text-xs text-neutral-600'>
-                     <button
-                        type='button'
-                        className='inline-flex items-center gap-1 text-[11px] font-medium hover:text-orange-600'>
-                        Description
-                        <ChevronDown className='h-3.5 w-3.5' />
-                     </button>
-
-                     <div className='flex items-center gap-1 text-[11px]'>
-                        <span className='text-neutral-500'>Sort by</span>
-                        <select
-                           value={sortBy}
-                           onChange={e => setSortBy(e.target.value as SortKey)}
-                           className='rounded-full border border-neutral-300 bg-white px-3 py-1 text-[11px] outline-none focus:border-orange-400'>
-                           {SORT_OPTIONS.map(opt => (
-                              <option key={opt.value} value={opt.value}>
-                                 {opt.label}
-                              </option>
-                           ))}
-                        </select>
+                        <span className='w-10 text-right text-[14px] text-[#403D39]'>
+                           {percent.toFixed(1)}%
+                        </span>
                      </div>
-                  </div>
-               </div>
+                  );
+               })}
             </div>
+         </div>
+
+         {/* review list header */}
+         <div className='flex items-center gap-2 text-sm font-semibold text-[#403D39]'>
+            <span className='flex items-center gap-[3px]'>
+               {/* same little sparkle icon  */}
+               <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='9'
+                  height='9'
+                  viewBox='0 0 9 9'
+                  fill='none'>
+                  <path
+                     d='M4.44539 0L5.74045 3.15032L8.89078 4.44539L5.74045 5.74045L4.44539 8.89078L3.15032 5.74045L0 4.44539L3.15032 3.15032L4.44539 0Z'
+                     fill='#222222'
+                  />
+               </svg>
+               <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='15'
+                  height='15'
+                  viewBox='0 0 15 15'
+                  fill='none'>
+                  <path
+                     d='M7.38496 0L9.5364 5.23351L14.7699 7.38496L9.5364 9.5364L7.38496 14.7699L5.23351 9.5364L0 7.38496L5.23351 5.23351L7.38496 0Z'
+                     fill='#222222'
+                  />
+               </svg>
+            </span>
+            <span className="text-[15px]">Review list</span>
          </div>
 
          {/* reviews list */}
-         <div className='space-y-5'>
-            {!hasReviews && (
-               <p className='text-sm text-neutral-500'>
-                  There are no reviews for this product yet.
-               </p>
-            )}
-
-            {hasReviews &&
-               sortedReviews.map((review, index) => (
-                  <article
-                     key={review.id}
-                     className={`pb-5 ${
-                        index < sortedReviews.length - 1
-                           ? 'border-b border-neutral-200/70'
-                           : ''
-                     }`}>
-                     <div className='mb-2 flex flex-wrap items-start justify-between gap-4'>
-                        <div className='space-y-1'>
-                           <div className='flex flex-wrap items-center gap-2'>
-                              <RatingStars value={review.rating} />
-                              <span className='text-xs font-semibold text-neutral-800'>
-                                 {review.rating.toFixed(1)}
-                              </span>
-                              {index === 0 && (
-                                 <span className='rounded-full bg-orange-50 px-2 py-[2px] text-[10px] font-semibold text-orange-600'>
-                                    Top review
-                                 </span>
-                              )}
-                           </div>
+         <div className='space-y-6'>
+            {visibleReviews.map(review => (
+               <article
+                  key={review.id}
+                  className='border-b border-[#E4E4E7] pb-6 last:border-none'>
+                  {/* top row: avatar + name + date + stars + badge */}
+                  <div className='flex flex-col gap-2 md:flex-row md:items-center md:justify-between'>
+                     <div className='flex items-center gap-3'>
+                        {/* avatar circle (placeholder initial) */}
+                        <div className='flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-[#E4E4E7] font-semibold text-[#403D39]'>
+                           <img src="https://i.ibb.co.com/8DTJxSPN/Rectangle-3.png" alt="" />
                         </div>
-
-                        <div className='flex items-center gap-2 text-xs text-neutral-500'>
-                           <span className='text-[13px]'>👤</span>
-                           <span className='font-semibold text-neutral-800'>
+                        <div className='flex flex-wrap items-center gap-2 text-[11px] text-[#403D39]'>
+                           <span className='font-semibold text-[13px] '>
                               {review.author}
                            </span>
-                           <span className='text-neutral-300'>|</span>
+                           <span className='text-[#B0B0B5]'>|</span>
                            <span>{review.date}</span>
+                           <span className='flex items-center gap-1'>
+                              <span>
+                                 <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    width='17'
+                                    height='16'
+                                    viewBox='0 0 17 16'
+                                    fill='none'>
+                                    <path
+                                       d='M8.08398 0L9.99235 5.87336L16.168 5.87336L11.1718 9.50329L13.0802 15.3766L8.08398 11.7467L3.08781 15.3766L4.99618 9.50329L3.8147e-06 5.87336L6.17562 5.87336L8.08398 0Z'
+                                       fill='#F8991E'
+                                       fill-opacity='0.98'
+                                    />
+                                 </svg>
+                              </span>
+                              <span className='text-[11px] font-semibold'>
+                                 {review.rating.toFixed(1)}
+                              </span>
+                           </span>
+                           <span className='rounded-full bg-[#E4F7EC] px-2 py-[2px] text-[9px] font-semibold text-[#2EAD5C]'>
+                              Verified
+                           </span>
                         </div>
                      </div>
+                  </div>
 
-                     <p className='text-sm leading-relaxed text-neutral-700'>
-                        {review.text}
-                     </p>
+                  {/* review text */}
+                  <p className='mt-2 text-[11px] leading-relaxed text-[#403D39]'>
+                     {review.text}
+                  </p>
 
-                     {review.badges && review.badges.length > 0 && (
-                        <div className='mt-3 flex flex-wrap gap-1.5 text-[11px]'>
-                           {review.badges.map(badge => (
-                              <span
-                                 key={badge}
-                                 className='rounded-full bg-neutral-50 px-2.5 py-1 text-neutral-600'>
-                                 {badge}
-                              </span>
-                           ))}
+                  {/* images row like design (reuse main product images) */}
+                  <div className='mt-3 flex gap-3'>
+                     {product.images.slice(0, 3).map(image => (
+                        <div
+                           key={image.id}
+                           className='h-[72px] w-[72px] overflow-hidden rounded-[16px] bg-[#F1F1F3]'>
+                           <img
+                              src={image.src}
+                              alt={image.alt}
+                              className='h-full w-full object-cover'
+                           />
                         </div>
-                     )}
-                  </article>
-               ))}
+                     ))}
+                  </div>
+               </article>
+            ))}
          </div>
+
+         {/* show more link */}
+         {visibleCount < totalReviews && (
+            <div className='flex justify-end'>
+               <button
+                  type='button'
+                  onClick={() =>
+                     setVisibleCount(c => Math.min(totalReviews, c + 3))
+                  }
+                  className='text-[10px] font-semibold uppercase tracking-[0.26em] text-[#8F8F94] hover:text-[#403D39]'>
+                  Show more
+               </button>
+            </div>
+         )}
       </section>
    );
 }
