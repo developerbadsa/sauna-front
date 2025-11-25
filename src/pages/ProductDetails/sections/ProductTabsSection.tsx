@@ -19,40 +19,63 @@ export default function ProductTabsSection({product}: Props) {
    const [activeTab, setActiveTab] = useState<TabId>('description');
 
    const descriptionSection = product.detailSections.find(
-      section => section.id === 'description',
+      section => section.id === 'description'
    );
    const featuresSection = product.detailSections.find(
-      section => section.id === 'features',
+      section => section.id === 'features'
    );
    const specsSection = product.detailSections.find(
-      section => section.id === 'specifications',
+      section => section.id === 'specifications'
    );
    const materialsSection = product.detailSections.find(
-      section => section.id === 'materials',
+      section => section.id === 'materials'
    );
 
    return (
       <section className='mt-14'>
          {/* Tabs header */}
-         <div className='border-b border-neutral-200'>
-            <div className='flex items-center justify-center gap-10 text-xs font-semibold uppercase tracking-[0.25em]'>
-               {TABS.map(tab => {
-                  const isActive = tab.id === activeTab;
+         <div className=''>
+            <div className='flex items-center justify-center gap-0 text-xs font-semibold uppercase tracking-[0.05em]'>
+               {TABS.map((tab, idx) => {
+                  const isFirst = idx === 0;
+                  const isLast = idx === TABS.length - 1;
+                  const active = tab.id === activeTab;
                   return (
                      <button
                         key={tab.id}
                         type='button'
                         onClick={() => setActiveTab(tab.id)}
-                        className={`relative pb-4 pt-2 transition ${
-                           isActive
-                              ? 'text-orange-500'
-                              : 'text-neutral-500 hover:text-neutral-800'
-                        }`}
-                     >
+                        className={`
+                       relative pb-1 px-6 border-b-2 border-b-[#090909] transition-colors duration-150 text-[24px] font-bold leading-15 uppercase
+                       ${
+                          active
+                             ? 'text-[#f48a1c] border-b-[#EA7F15]'
+                             : 'text-[#090909] '
+                       }
+               
+                       ${
+                          isFirst
+                             ? `before:absolute before:left-2.5 before:top-[64.3px] before:h-[8px] before:w-[6px]
+                              before:-translate-x-3 before:-translate-y-1/2 before:rounded-full
+                              ${
+                                 active
+                                    ? 'before:bg-[#D47318]'
+                                    : 'before:bg-[#090909]'
+                              }`
+                             : ''
+                       }
+               
+                       ${
+                          isLast
+                             ? `after:absolute after:right-2.5 after:top-[64.3px] after:h-[8px] after:w-[6px] after:translate-x-3 after:-translate-y-1/2 after:rounded-full  ${
+                                  active
+                                     ? 'after:bg-[#D47318]'
+                                     : 'after:bg-[#090909]'
+                               }`
+                             : ''
+                       }
+                     `}>
                         {tab.label}
-                        {isActive && (
-                           <span className='absolute inset-x-0 bottom-0 mx-auto block h-[2px] max-w-[90px] rounded-full bg-orange-500' />
-                        )}
                      </button>
                   );
                })}
